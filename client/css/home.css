@@ -1,14 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: inherit;
-    font: inherit;
-}
-
-html {
-    box-sizing: border-box;
-    font: 16px/1.5 Verdana, Geneva, Tahoma, sans-serif;
-}
 
 .parallax {
     background-image: url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtZXJhJTIwaW4lMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');
@@ -18,12 +7,3 @@ html {
     background-attachment: fixed;
 }
 
-.parallax-content {
-    height: 10vh;
-    color: #fff;
-    text-align: center;
-}
-
-.parallax-content p {
-    color: black;
-}
