@@ -1,0 +1,26 @@
+.notifications-container-inactive {
+    display: none;
+}
+.notifications-container{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    right: 8em;
+    bottom: -2em;
+    background: black;
+    border-radius: 0.6em
+}
+
+.notifications-container ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: .2em;
+    padding: 1em;
+}
+
+.notifications-container ul li {
+    color: azure;
+    text-shadow: 0 0 1em azure;
+    cursor: pointer;
+}

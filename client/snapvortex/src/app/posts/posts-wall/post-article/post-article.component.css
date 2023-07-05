@@ -1,0 +1,145 @@
+.post {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    gap: .3em;
+    border-radius: .4em;
+}
+
+.post .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header .author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.post-header .author-info .author-img {
+    flex: 0 1 18%;
+    border-radius: 6em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    max-height: 4em;
+}
+
+.post-header .author-info .author-img img {
+    width: 100%;
+    height: auto;
+}
+
+.post-header .author-info .author-name-and-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-header .option-btns {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.post-header .option-btns button {
+    padding: 1em;
+    border: none;
+    border-radius: 3em;
+    max-height: 3em;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.post-header .option-btns button:hover {
+    cursor: pointer;
+    background-color: #F0F0F0;
+}
+
+.post-header .option-btns button svg {
+    width: 1em;
+}
+
+
+.post .post-description p {
+    font-size: clamp(.8rem, 1rem, 1.8rem);;
+}
+
+.post .post-image {
+    border-radius: 2em;
+    overflow: hidden;
+}
+
+.post .post-image img {
+    width: 100%;
+    height: auto;
+}
+
+.post .post-stats {
+    display: flex;
+}
+
+.post .post-stats .likes {
+    display: flex;
+    align-items: center;
+    gap: .7em;
+}
+
+.post .post-stats .likes svg {
+    width: 1em;
+    fill: #2B8AE5;
+}
+
+.post .post-stats .comments-and-shares {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    flex: 0 1 73%;
+    justify-content: flex-end;
+}
+
+.post .post-stats .comments-and-shares .comments, .post .post-stats .comments-and-shares .shares {
+    display: flex; 
+    gap: .7em;
+    align-items: center;
+    flex: 1 1 50%;
+    justify-content: flex-end;
+}
+
+.post .post-stats .comments-and-shares .comments svg, .post .post-stats .comments-and-shares .shares svg {
+    max-width: 1em;
+}
+
+.post .post-stats .comments-and-shares .comments svg {
+    fill: orangered;
+}
+
+.post .post-stats .comments-and-shares .shares svg {
+    fill: springgreen;
+}
+
+.post .line-divider {
+    height: 0.2em;
+    width: 100%;
+    background: lightgray
+}
+
+.post .post-interactions {
+    display: flex;
+}
+
+.post .post-interactions button {
+    flex: 1 1 33%;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    border-radius: .6em;
+    padding: .3em;
+}
+
+.post .post-interactions button:hover {
+    background-color: #E5E5E5;
+}

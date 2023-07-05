@@ -1,0 +1,90 @@
+.site-header-authorized {
+    display: flex;
+    position: relative;
+    background: cornflowerblue;
+    min-width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+    max-height: 15vh;
+}
+
+.site-header-authorized .header-left {
+    min-height: 100%;
+    flex: 1 1 33%;
+}
+
+.site-header-authorized .header-middle {
+ flex: 1 1 33%;
+ position: relative;
+}
+
+.site-header-authorized .header-middle input {
+    width: 100%;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 3em;
+    background: lightgray;
+}
+
+.site-header-authorized .header-middle svg {
+    width: 1.5em;
+    position: absolute;
+    right: 0.5em;
+    bottom: 0.3em;
+}
+
+.site-header-authorized .logo-container img {
+    width: clamp(6em, 12em, 20em);
+    min-height: 6em;
+}
+
+.site-header-authorized .header-right {
+    flex: 1 1 33%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.site-header-authorized .notifications {
+ flex: 0 1 5%;
+ padding: 1em;
+ background-color: #f3f3f3;
+ border-radius: 4em;
+ cursor: pointer;
+}
+
+.site-header-authorized .notifications:hover {
+    background-color: lightgray;
+}
+
+.site-header-authorized .notifications svg {
+    width: 1em;
+}
+
+.site-header-authorized .header-right .profile-options {
+    flex: 0 1 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 30vh;
+    padding: 1em;
+}
+
+.site-header-authorized .header-right .profile-options:hover {
+    opacity: .6;
+}
+
+.site-header-authorized .header-right .profile-options label {
+    flex: 0 1 100%;
+    border-radius: 4em;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.site-header-authorized .profile-options label img {
+    height: auto;
+    width: 100%;
+}

@@ -1,0 +1,7 @@
+.contacts-header {
+    display: flex;
+}
+
+.contacts-header h5, .contacts-header .contacts-search {
+    flex: 1 1 30%;
+}

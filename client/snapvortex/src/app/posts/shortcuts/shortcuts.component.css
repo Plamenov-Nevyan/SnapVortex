@@ -1,0 +1,13 @@
+.shortcuts {
+    display: flex;
+    flex-direction: column;
+    /* position: fixed; */
+    gap: 2em;
+    padding: 2em;
+}
+
+.shortcuts .line-divider {
+    height: 0.2em;
+    width: 100%;
+    background: lightgray
+}
