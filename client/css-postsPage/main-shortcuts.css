@@ -1,0 +1,21 @@
+.site-main .shortcuts {
+    display: flex;
+    flex-direction: column;
+    /* position: fixed; */
+    gap: 2em;
+    padding: 2em;
+}
+
+.shortcuts .line-divider {
+    height: 0.2em;
+    width: 100%;
+    background: lightgray
+}
+
+.shortcuts .groups-list, .shortcuts .pages-list {
+    list-style-type: none;
+}
+
+.shortcuts .groups-list li p, .shortcuts .pages-list li p {
+    font-size: clamp(1rem, 1.2rem, 1.8rem);
+} 

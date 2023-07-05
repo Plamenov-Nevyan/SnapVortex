@@ -16,6 +16,7 @@
 
 .header-middle {
  flex: 1 1 33%;
+ position: relative;
 }
 
 .header-middle input {
@@ -26,6 +27,12 @@
     background: lightgray;
 }
 
+.header-middle svg {
+    width: 1.5em;
+    position: absolute;
+    right: 0.5em;
+    bottom: 0.3em;
+}
 
 .site-header .header-nav-inactive {
     display: none;
