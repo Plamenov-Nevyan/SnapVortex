@@ -1,3 +1,4 @@
-<app-header></app-header>
-<app-posts></app-posts>
+<app-header (showModal)="onShowModal()"></app-header>
+<app-modal-dialog *ngIf="showModal" [action]="'register'" (closeModal)="onCloseModal()"/>
+<app-home></app-home>
 <app-footer></app-footer>

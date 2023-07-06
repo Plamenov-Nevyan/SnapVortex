@@ -18,6 +18,9 @@ import { PostArticleComponent } from './posts/posts-wall/post-article/post-artic
 import { ContactsHeaderComponent } from './posts/contacts/contacts-header/contacts-header.component';
 import { ContactsListItemComponent } from './posts/contacts/contacts-list-item/contacts-list-item.component';
 import { NotificationsComponent } from './header/notifications/notifications.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { LoginRegisterFormsComponent } from './login-register-forms/login-register-forms.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { NotificationsComponent } from './header/notifications/notifications.com
     PostArticleComponent,
     ContactsHeaderComponent,
     ContactsListItemComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ModalDialogComponent,
+    LoginRegisterFormsComponent,
+    TermsAndConditionsComponent
   ],
   imports: [
     BrowserModule,

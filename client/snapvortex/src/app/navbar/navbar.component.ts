@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +9,11 @@ export class NavbarComponent {
 
   @Input() authorized: boolean = false
   @Input() showProfOptions: boolean = false
-
+  @Output() showModal: EventEmitter<boolean> = new EventEmitter<boolean>()
   constructor(){}
+
+  onShowModal(event: MouseEvent){
+    event.preventDefault()
+    this.showModal.emit(true)
+  }
 }

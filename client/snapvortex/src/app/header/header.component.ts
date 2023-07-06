@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css', './headerAuthorized.component.css']
 })
 export class HeaderComponent {
- authorized: boolean = true
+ authorized: boolean = false
  showProfOptions: boolean = false
  showNotifications: boolean = false
+ @Output() showModal: EventEmitter<boolean> = new EventEmitter<boolean>()
   constructor(){}
 
   onProfOptions(){
@@ -16,5 +17,10 @@ export class HeaderComponent {
   }
   onShowNotifications(){
     this.showNotifications ? this.showNotifications = false : this.showNotifications = true
+  }
+
+  onShowModal(event: boolean){
+    console.log(event)
+    this.showModal.emit(true)
   }
 }

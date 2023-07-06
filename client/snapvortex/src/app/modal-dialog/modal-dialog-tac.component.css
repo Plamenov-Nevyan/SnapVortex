@@ -1,0 +1,56 @@
+.modal-content-tac {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: -moz-fit-content;
+    max-width: 55%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1em;
+    box-shadow: -1px 1px 19px 0px rgba(0,0,0,0.75);
+    max-height: 80%;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+}
+
+.icons .back-to-form {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    order: 2;
+    align-self: flex-start;
+}
+
+.icons  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    order: 2;
+    align-self: flex-start;
+}
+
+.icons .close:hover,
+.icons .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.back-to-form svg:hover{
+    cursor: pointer;
+    fill: rgb(207, 83, 61);
+}
+
+.back-to-form svg {
+    width: 1em;
+    fill: tomato;
+}
+
+.text-wrapper .text-article h5 {
+    font-weight: bold;
+}

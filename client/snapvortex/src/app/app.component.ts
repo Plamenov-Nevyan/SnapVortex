@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'snapvortex';
+  showModal: boolean = false
+  constructor(){ }
+
+  onShowModal(){
+    this.showModal = true
+  }
+
+  onCloseModal(){
+    this.showModal = false
+  }
 }

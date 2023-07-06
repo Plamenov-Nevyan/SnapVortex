@@ -30,3 +30,7 @@ h1 {
 h4 {
     font-size: clamp(1.4rem, 1.7rem, 2rem);
 }
+
+h5 {
+    font-size: clamp(2rem, 2rem, 2.5rem);
+}
