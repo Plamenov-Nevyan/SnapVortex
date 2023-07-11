@@ -1,0 +1,40 @@
+.log-form button {
+    max-width: 50%;
+    align-self: center;
+    padding: 0.3em 2em;
+    background: cornflowerblue;
+    color: azure;
+    border: none;
+    border-radius: 0.6em;
+    cursor: pointer;
+    box-shadow: -1px 1px 6px 0px rgba(0,0,0,0.75);
+}
+
+.log-form button:hover {
+    background: rgb(87, 129, 207);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+form fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: none;
+}
+
+form fieldset input {
+    flex: 1 1 100%;
+    padding: .3em 1em;
+    border: none;
+    border-radius: 1.4em;
+    box-shadow: -1px 1px 6px 0px rgba(0,0,0,0.75);
+    outline: none;
+}
+
+form fieldset input:focus {
+    background-color: whitesmoke;
+}

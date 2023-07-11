@@ -1,4 +1,6 @@
 <app-header (showModal)="onShowModal()"></app-header>
 <app-modal-dialog *ngIf="showModal" [action]="'register'" (closeModal)="onCloseModal()"/>
-<app-home></app-home>
+<!-- <app-home [showModal]="showModal" (closeModal)="onCloseModal()"></app-home>
+<app-posts /> -->
+<router-outlet />
 <app-footer></app-footer>

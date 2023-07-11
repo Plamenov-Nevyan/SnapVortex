@@ -1,0 +1,4 @@
+.site-main {
+    display: grid;
+    grid-template-columns: repeat(3, 20% 50% 30%);
+}

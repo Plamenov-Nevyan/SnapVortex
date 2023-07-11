@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   showModal: boolean = false
-  constructor(){ }
+  constructor(){ console.log(this.showModal)}
 
   onShowModal(){
     this.showModal = true

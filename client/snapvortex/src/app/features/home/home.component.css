@@ -1,0 +1,176 @@
+.parallax {
+    background-image: url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtZXJhJTIwaW4lMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+    background-position: center;
+    min-height: 50vh;
+    background-attachment: fixed;
+}
+
+                                        /* First site advert section */
+
+.advert-1{
+    min-height: 10vh;
+    color: #fff;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    background: cornflowerblue;
+}
+
+.advert-1 p {
+    color: black;
+}
+
+.advert-1 .text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+.advert-1 .text-container {
+    flex: 1 1 50%;
+    clip-path: polygon(0 0, 59% 0%, 100% 100%, 0 100%);
+    background-color: purple;
+    min-height: 100%;
+    justify-content: center;
+}
+
+.advert-1 .text-container h1 {
+    color: azure;
+    text-shadow: 0 0 1em azure;
+}
+
+.advert-1 .text-container p {
+    color: cornflowerblue;
+    text-shadow: 0 0 1em cornflowerblue;
+}
+
+.advert-1 .images-container {
+    display: flex;
+    gap: 1em;
+    overflow: hidden;
+    align-items: stretch;
+    min-height: 100%;
+    flex-wrap: nowrap;
+    flex: 1 1 50%;
+    justify-content: center;
+    padding: 2em;
+}
+
+.advert-1 .images-container .image-1 {
+    flex: 1 1 33%;
+    display: flex;
+    border-radius: .6em;
+    overflow: hidden;
+    transform: rotate(-13deg);
+    box-shadow: -27px -12px 23px -25px rgba(219,219,219,1);
+}
+.advert-1 .images-container .image-2 {
+    flex: 1 1 33%;
+    display: flex;
+    border-radius: .6em;
+    overflow: hidden;
+    box-shadow: 4px -10px 32px 11px rgba(219,219,219,1);
+}
+.advert-1 .images-container .image-3 {
+    flex: 1 1 33%;
+    display: flex;
+    border-radius: .6em;
+    overflow: hidden;
+    transform: rotate(13deg);
+    box-shadow: 26px -31px 23px -25px rgba(219,219,219,1);
+}
+
+.advert-1 .images-container img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+
+                                    /* Second site advert section */
+.advert-2{
+    min-height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    background: cornflowerblue;
+}
+
+.advert-2 .text-container, .advert-2 .images-container {
+    flex: 1 1 50%;
+}
+
+.advert-2 .text-container {
+    background: purple;
+    clip-path: polygon(0 0, 100% 0%, 20% 100%, 0 100%);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.advert-2 .text-container h1 {
+    color: azure;
+    text-shadow: 0 0 1em azure;
+}
+
+.advert-2 .text-container p {
+    color: cornflowerblue;
+    text-shadow: 0 0 1em cornflowerblue;
+}
+
+.advert-2 .images-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 1em 1em 0;
+}
+
+.advert-2 .images-container .image-1 {
+    height: 100%;
+    width: 100%;
+    border-radius: .6em;
+    overflow: hidden;
+    --mask:
+    radial-gradient(138.80px at 50% calc(100% - 188.10px),#000 99%,#0000 101%) calc(50% - 132px) 0/264px 100%,
+    radial-gradient(138.80px at 50% calc(100% + 122.10px),#0000 99%,#000 101%) 50% calc(100% - 66px)/264px 100% repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+}
+
+.advert-2 .images-container .image-1 img {
+    width: 100%;
+    height: 100%;
+}
+
+                                        /* Third site advert section */
+
+.advert-3{
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background-image: url('https://images.unsplash.com/photo-1460518451285-97b6aa326961?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+    height: 70vh;
+    position: relative;
+}
+
+.advert-3::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .3;
+    position: absolute;
+}
+.advert-3 .text-container {
+    z-index: 1;
+}
+.advert-3 .text-container h1 {
+    color: azure;
+    font-weight: bold;
+    text-shadow: 0 0 1em azure;
+}

@@ -1,0 +1,25 @@
+.header-nav {
+    flex: 1 1 50%;
+}
+
+.header-nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2em;
+}
+
+.header-nav ul li {
+    padding: .8em;
+    border-radius: .6em;
+    cursor: pointer;
+}
+
+.header-nav ul li:hover {
+    background: rgb(70, 103, 164);
+}
+
+.header-nav ul li a {
+    color: azure;
+    text-shadow: 0 0 1em azure;
+    cursor: pointer;
+}

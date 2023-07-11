@@ -1,0 +1,17 @@
+li {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+li .contact-img {
+    flex: 0 1 10%;
+    max-height: 2em;
+    border-radius: 3em;
+    overflow: hidden;
+}
+
+li .contact-img img {
+    width: 100%;
+    height: 100%;
+}

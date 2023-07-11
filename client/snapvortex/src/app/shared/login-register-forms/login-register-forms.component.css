@@ -1,0 +1,36 @@
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3em 1em;
+}
+
+.action-chooser {
+    display: flex;
+    gap: 0.4em;
+}
+
+.action-chooser .action-divider {
+    flex: 1 1 30%;
+    background: lightgray;
+    align-self: stretch;
+    width: 0.2em;
+}
+
+.action-chooser span, form fieldset label {
+    font-size: clamp(1rem, 1.8rem, 2.3rem);
+    padding: .5em;
+}
+
+.action-chooser span.active {
+    background-color: whitesmoke;
+    cursor: pointer;
+    border-radius: .4em;
+}
+
+.action-chooser span:hover {
+ background-color: whitesmoke;
+ cursor: pointer;
+ border-radius: .4em;
+}

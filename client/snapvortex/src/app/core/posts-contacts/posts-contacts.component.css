@@ -1,0 +1,27 @@
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 2em;
+}
+
+.contacts .line-divider {
+    height: 0.2em;
+    width: 100%;
+    background: lightgray
+}
+
+.contacts .contacts-container {
+    max-height: 30em;
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.contacts-container .contacts-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}

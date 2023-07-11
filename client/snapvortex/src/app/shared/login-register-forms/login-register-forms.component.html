@@ -1,0 +1,14 @@
+<div  class="form-wrapper">
+    <div class="action-chooser" *ngIf="activeAction === 'login'">
+        <span (click)="onActionChange('login')" class="active">Login</span>
+        <div class="action-divider"></div>
+        <span (click)="onActionChange('register')">Register</span>
+    </div>
+    <div class="action-chooser" *ngIf="activeAction === 'register'">
+        <span (click)="onActionChange('login')">Login</span>
+        <div class="action-divider"></div>
+        <span (click)="onActionChange('register')" class="active">Register</span>
+    </div>
+    <app-register-form *ngIf="activeAction === 'register'"  (showTac)="onShowTac()"/>
+    <app-login-form *ngIf="activeAction === 'login'"   (showTac)="onShowTac()"/>
+</div>
