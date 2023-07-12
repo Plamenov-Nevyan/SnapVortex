@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,12 +6,5 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  @Input() showModal: boolean = false
-  @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>()
   constructor(){ }
-
-  onCloseModal(){
-    this.closeModal.emit(true)
-    this.showModal = false
-  }
 }
