@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Session } from 'src/app/types/Session';
+import { SessionStorageService } from 'src/app/session-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +10,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   showModal: boolean = false
-  constructor(){ console.log(this.showModal)}
+ 
+
+  constructor(){}
 
   onShowModal(){
     this.showModal = true

@@ -1,4 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ChangeDetectorRef, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { Session } from 'src/app/types/Session';
+import { SessionStorageService } from 'src/app/session-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,12 +9,11 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.css', './headerAuthorized.component.css']
 })
 export class HeaderComponent {
- authorized: boolean = false
+  get authorized(): Session | null{return this.sessionServices.session}
  showProfOptions: boolean = false
  showNotifications: boolean = false
  @Output() showModal: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor(){}
-
+  constructor(private sessionServices: SessionStorageService, private router: Router){}
   onProfOptions(){
     this.showProfOptions ? this.showProfOptions = false : this.showProfOptions = true
   }
@@ -20,7 +22,6 @@ export class HeaderComponent {
   }
 
   onShowModal(event: boolean){
-    console.log(event)
     this.showModal.emit(true)
   }
 }

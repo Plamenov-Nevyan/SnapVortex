@@ -13,7 +13,7 @@ export class LoginRegisterFormsComponent {
   showErrorForTac:boolean = false
   showPassword: boolean = false
 
-  constructor(){ }
+  constructor(){ console.log(this.authAction)}
 
   onActionChange(event: string){
     this.authAction = event

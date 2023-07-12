@@ -1,4 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Session } from 'src/app/types/Session';
+import { SessionStorageService } from 'src/app/session-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,13 +10,21 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent {
 
-  @Input() authorized: boolean = false
+  @Input() authorized: Session | null = null
   @Input() showProfOptions: boolean = false
   @Output() showModal: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor(){}
+  @Output() logout: EventEmitter<boolean> = new EventEmitter<boolean>()
+  constructor( private sessionServices: SessionStorageService, private router: Router){console.log(this.authorized)}
+
+
 
   onShowModal(event: MouseEvent){
     event.preventDefault()
     this.showModal.emit(true)
   }
+
+  onLogout(){
+    this.sessionServices.removeFromStorage()
+    this.router.navigate(['/'])
+ }
 }
