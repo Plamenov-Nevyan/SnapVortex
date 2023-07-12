@@ -1,9 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component,Output, EventEmitter } from '@angular/core';
 import { AuthServicesService } from '../auth-services.service';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'src/app/session-storage.service';
-import { Session } from 'src/app/types/Session';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register-form',

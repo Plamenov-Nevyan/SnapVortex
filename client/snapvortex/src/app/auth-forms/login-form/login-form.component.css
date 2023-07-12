@@ -38,3 +38,17 @@ form fieldset input {
 form fieldset input:focus {
     background-color: whitesmoke;
 }
+
+.log-form .password {
+    gap: .4em;
+}
+
+.log-form .password input {
+    flex: 1 1 80%;
+}
+
+.log-form .password svg {
+    width: 2em;
+    fill: orangered;
+    cursor: pointer;
+}

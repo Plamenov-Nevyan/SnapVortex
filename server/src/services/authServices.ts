@@ -26,6 +26,7 @@ const checkIfUserExists = (email:string) => UserSchema.exists({email}).exec()
 
 export const loginUser = async (userData: User) => {
     let user = await UserSchema.findOne({email: userData.email})
+    console.log(user)
     if(user){
         let isPassCorrect = await bcryptjs.compare(userData.password, user?.password)
         if(isPassCorrect){

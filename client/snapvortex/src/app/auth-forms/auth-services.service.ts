@@ -23,4 +23,12 @@ endpoints  = {
     return this.http.post<Session>(`${baseUrl}${this.endpoints.register}`, JSON.stringify(userData), {headers})
   }
 
+  loginUser(userData: User): Observable<Session>{
+    const {baseUrl} = environment
+    const headers= {
+      'Content-Type':'application/json'
+    }
+    return this.http.post<Session>(`${baseUrl}${this.endpoints.login}`, JSON.stringify(userData), {headers})
+  }
+
 }
