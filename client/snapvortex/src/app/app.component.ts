@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Session } from 'src/app/types/Session';
 import { SessionStorageService } from 'src/app/session-storage.service';
 import { Router } from '@angular/router';
+import { ModalInteractionsService } from './modal-interactions.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showModal: boolean = false
+  get showModal(): boolean{return this.modalInteractions.showModalGet}
+  get action(): string {return this.modalInteractions.actionGet}
  
 
-  constructor(){}
-
-  onShowModal(){
-    this.showModal = true
-  }
-
-  onCloseModal(){
-    this.showModal = false
-  }
+  constructor(private modalInteractions: ModalInteractionsService){}
 }

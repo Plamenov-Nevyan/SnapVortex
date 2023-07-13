@@ -2,6 +2,7 @@ import { Component,Output, EventEmitter } from '@angular/core';
 import { AuthServicesService } from '../auth-services.service';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'src/app/session-storage.service';
+import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 
 @Component({
   selector: 'app-register-form',
@@ -22,7 +23,7 @@ export class RegisterFormComponent {
     confPassword: ''
   }
 
-  constructor(private authServices: AuthServicesService, private sessionServices: SessionStorageService, private router: Router ){}
+  constructor(private modalInteraction: ModalInteractionsService, private authServices: AuthServicesService, private sessionServices: SessionStorageService, private router: Router ){}
 
   onCheckTac(){
     if(this.tacChecked){
@@ -57,6 +58,7 @@ export class RegisterFormComponent {
           console.log(errMessage)
         },
         complete: () => {
+          this.modalInteraction.onCloseModal()
           this.router.navigate(['/posts'])
         }
       })

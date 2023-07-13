@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 
 @Component({
   selector: 'app-modal-dialog',
@@ -8,10 +9,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ModalDialogComponent {
  @Input() action: string = ''
  @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor(){ console.log(this.action)}
+  constructor(private modalInteraction: ModalInteractionsService){ }
 
   onCloseModal(){
-    this.closeModal.emit(true)
+    this.modalInteraction.onCloseModal()
   }
 
   onShowTac(){

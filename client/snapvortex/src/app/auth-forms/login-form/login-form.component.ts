@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthServicesService } from '../auth-services.service';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'src/app/session-storage.service';
+import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +18,7 @@ export class LoginFormComponent {
     password: '',
   }
 
-  constructor(private authServices: AuthServicesService, private sessionServices: SessionStorageService, private router: Router){}
+  constructor(private modalInteraction: ModalInteractionsService, private authServices: AuthServicesService, private sessionServices: SessionStorageService, private router: Router){}
 
   onShowPassword(){
     this.showPassword ? this.showPassword = false : this.showPassword = true
@@ -33,6 +34,7 @@ export class LoginFormComponent {
           console.log(errMessage)
         },
         complete: () => {
+          this.modalInteraction.onCloseModal()
           this.router.navigate(['/posts'])
         }
       })
