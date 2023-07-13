@@ -1,9 +1,30 @@
 <nav *ngIf="!authorized" class="header-nav">
     <ul>
-        <li><a href="">About</a></li>
-        <li><a routerLink="/contacts">Contacts</a></li>
-        <li><a href="">FAQ</a></li>
+        <li><a 
+                href=""
+                routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact:true}"
+                >
+                About
+            </a>
+        </li>
+        <li><a
+                routerLink="/contacts"
+                routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact:true}"
+                >
+                Contacts
+            </a>
+        </li>
         <li (click)="onShowModal($event)" ><a href="#">Login/Register</a></li>
+        <li><a  
+                routerLink="/home" 
+                routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact:true}"
+                >
+                Home
+            </a>
+        </li>
     </ul>
 </nav>
 

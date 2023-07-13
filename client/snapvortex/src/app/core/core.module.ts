@@ -8,6 +8,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { SharedModule } from '../shared/shared.module';
 import { PostsContactsHeaderComponent } from './posts-contacts-header/posts-contacts-header.component';
 import { PostsContactsLiItemComponent } from './posts-contacts-li-item/posts-contacts-li-item.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -27,6 +28,7 @@ import { PostsContactsLiItemComponent } from './posts-contacts-li-item/posts-con
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule
   ],
   exports: [
     NavbarComponent,

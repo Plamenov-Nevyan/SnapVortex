@@ -8,18 +8,16 @@
     gap: 2em;
 }
 
-.header-nav ul li {
-    padding: .8em;
-    border-radius: .6em;
-    cursor: pointer;
-}
-
-.header-nav ul li:hover {
-    background: rgb(70, 103, 164);
-}
 
 .header-nav ul li a {
+    border-radius: .6em;
+    cursor: pointer;
+    padding: 0.8em;
     color: azure;
     text-shadow: 0 0 1em azure;
     cursor: pointer;
+}
+
+.header-nav ul li a:hover, .header-nav ul li a.active {
+    background: rgb(70, 103, 164);
 }
