@@ -1,7 +1,7 @@
 <nav *ngIf="!authorized" class="header-nav">
     <ul>
         <li><a href="">About</a></li>
-        <li><a href="">Contacts</a></li>
+        <li><a routerLink="/contacts">Contacts</a></li>
         <li><a href="">FAQ</a></li>
         <li (click)="onShowModal($event)" ><a href="#">Login/Register</a></li>
     </ul>

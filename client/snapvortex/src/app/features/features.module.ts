@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
+import { ContactsOwnerComponent } from './contacts-owner/contacts-owner.component';
 
 
 
@@ -14,7 +15,8 @@ import { SharedModule } from '../shared/shared.module';
     PostsComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContactsOwnerComponent
   ],
   imports: [
     CommonModule,

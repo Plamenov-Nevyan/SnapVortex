@@ -1,0 +1,122 @@
+
+
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 80vh;
+    background-color: burlywood;
+}
+
+.wrapper .side-info {
+    flex: 1 1 53%;
+    padding: 1em;
+    background: cornflowerblue;
+    display: flex;
+    align-items: center;
+    clip-path: polygon(0 0, 100% 0%, 45% 100%, 0 100%);
+}
+
+.wrapper .side-info .side-info-list {
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.wrapper .side-info .side-info-list li {
+    display: flex;
+    gap: 0.6em;
+    align-items: center;
+}
+
+.wrapper .side-info .side-info-list li:nth-child(1) svg {
+    fill: greenyellow;
+}
+
+.wrapper .side-info .side-info-list li:nth-child(2) svg {
+    fill: darkorange;
+}
+
+.wrapper .side-info .side-info-list li:nth-child(3) svg {
+    fill: blue;
+}
+
+.wrapper .side-info .side-info-list li:nth-child(4) svg {
+    fill: rgb(7, 173, 228) ;
+}
+
+.wrapper .side-info .side-info-list li:nth-child(5) svg {
+    fill: red ;
+}
+
+.wrapper .side-info .side-info-list li p {
+    color: rgb(92, 39, 146);
+    font-weight: bold;
+}
+
+.wrapper .side-info .side-info-list li svg {
+    max-width: 3em;
+}
+
+.wrapper .email-form-container {
+    display: flex;
+    flex: 1 1 50%;
+    background-color: rebeccapurple;
+    align-items: center;
+    justify-content: flex-end;
+    clip-path: polygon(100% 0, 0 0, 100% 190%);
+}
+
+.wrapper .email-form-container form {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.wrapper .email-form-container form fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.wrapper .email-form-container form fieldset label {
+    text-align: center;
+    font-size: clamp(1.3rem, 1.7rem, 1.9rem);
+    color: cornflowerblue;
+}
+
+.wrapper .email-form-container form fieldset input, 
+.wrapper .email-form-container form fieldset select, 
+.wrapper .email-form-container form fieldset textarea {
+    padding: .5em 1em;
+    border: none;
+    border-radius: .6em;
+    box-shadow: 1px 2px 20px 0px rgba(219, 216, 216, 0.4);
+    background-color: rgb(223, 222, 222);
+    outline: none;
+}
+
+.wrapper .email-form-container form fieldset input:focus, 
+.wrapper .email-form-container form fieldset select:focus, 
+.wrapper .email-form-container form fieldset textarea:focus {
+    background-color: whitesmoke;
+} 
+
+.wrapper .email-form-container form fieldset textarea {
+    min-height: 8em;
+}
+
+.wrapper .email-form-container form .send-btn {
+    border: none;
+    outline: none;
+    border-radius: .6em;
+    box-shadow: 1px 2px 20px 0px rgba(219, 216, 216, 0.4);
+    background-color: rgb(223, 222, 222);
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.wrapper .email-form-container form .send-btn:hover {
+    background-color: whitesmoke;
+}

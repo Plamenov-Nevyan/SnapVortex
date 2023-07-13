@@ -1,0 +1,2 @@
+Add server, basic Auth system with persisting users and redirect to posts 
+after successful login/register
