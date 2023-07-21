@@ -1,0 +1,91 @@
+.profile-main {
+    display: flex;
+    gap: 1em;
+    margin-top: .6em;
+}
+
+.left-part {
+    flex: 1 1 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.right-part {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.about {
+    background: white;
+    border-radius: .6em;
+}
+
+.about .about-unavailable{
+    display:  flex;
+    align-items: center;
+    padding: 1em;
+}
+
+.about .about-unavailable > p {
+    flex: 1 1 70%;
+}
+.about > .about-unavailable > button {
+    flex: 1 1 30%;
+    padding: .3em 1em;
+    border: none;
+    outline: none;
+    color: azure;
+    background-color: cornflowerblue;
+    border-radius: .7em;
+}
+
+.info-list {
+    background: white;
+    border-radius: .6em;
+    list-style-type: none;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.info-list li {
+
+}
+
+.info-list li > div{
+    display: flex;
+    align-items: center;
+}
+
+.info-list li > div p{
+    flex: 1 1 70%;
+}
+
+.info-list li > div button{
+    flex: 1 1 30%;
+    padding: .3em 1em;
+    border: none;
+    outline: none;
+    color: azure;
+    background-color: cornflowerblue;
+    border-radius: .7em;
+}
+
+.edit-btn {
+    transition: ease-in-out .2s;
+    cursor: pointer;
+}
+
+.about div .edit-btn:hover {
+    background-color: azure;
+    color: cornflowerblue;
+}
+
+.info-list li div .edit-btn:hover {
+    background-color: azure;
+    color: cornflowerblue;
+}

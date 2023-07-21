@@ -7,6 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { ContactsOwnerComponent } from './contacts-owner/contacts-owner.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,18 +18,21 @@ import { ContactsOwnerComponent } from './contacts-owner/contacts-owner.componen
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    ContactsOwnerComponent
+    ContactsOwnerComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     PostsComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent
   ]
 })
 export class FeaturesModule { }

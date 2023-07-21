@@ -8,6 +8,8 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
 import { ShortcutsListItemComponent } from './shortcuts-list-item/shortcuts-list-item.component';
 import { PostArticleComponent } from './post-article/post-article.component';
 import { AuthFormsModule } from '../auth-forms/auth-forms.module';
+import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
+import { CoverPictureComponent } from './cover-picture/cover-picture.component';
 
 
 
@@ -19,7 +21,9 @@ import { AuthFormsModule } from '../auth-forms/auth-forms.module';
     ShortcutsListComponent,
     TermsAndConditionsComponent,
     ShortcutsListItemComponent,
-    PostArticleComponent
+    PostArticleComponent,
+    ProfilePictureComponent,
+    CoverPictureComponent
     
   ],
   imports: [
@@ -34,7 +38,9 @@ import { AuthFormsModule } from '../auth-forms/auth-forms.module';
     TermsAndConditionsComponent,
     ShortcutsListItemComponent,
     CreatePostHeaderComponent,
-    PostArticleComponent
+    PostArticleComponent,
+    CoverPictureComponent,
+    ProfilePictureComponent
   ]
 })
 export class SharedModule { }

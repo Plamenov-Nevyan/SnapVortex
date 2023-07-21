@@ -85,3 +85,24 @@ form fieldset input {
 form fieldset input:focus {
     background-color: whitesmoke;
 }
+
+.gender-select p {
+    flex: 1 1 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.gender-select .select-male {
+    margin-right: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.gender-select .select-female {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-create-post-header',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-post-header.component.css']
 })
 export class CreatePostHeaderComponent {
+  @Input() profilePicture: string = ''
+ 
+  constructor(){ console.log(this.profilePicture)}
 
 }

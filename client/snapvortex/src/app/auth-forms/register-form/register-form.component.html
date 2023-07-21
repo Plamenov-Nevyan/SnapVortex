@@ -92,6 +92,17 @@
       (change)="onFormDataChange($event)"
     />
   </fieldset>
+  <fieldset class="gender-select">
+    <p>Gender</p>
+    <div class="select-male">
+      <label for="male">Male</label>
+      <input type="radio" id="male" name="gender" (change)="onFormDataChange($event)" />
+    </div>
+    <div class="select-female">
+      <label for="female">Female</label>
+      <input type="radio" id="female" name="gender" (change)="onFormDataChange($event)" />
+    </div>
+  </fieldset>
   <p *ngIf="showErrorForTac">
     You have to agree with our Terms and Conditions to register!
   </p>

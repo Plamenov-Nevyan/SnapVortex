@@ -1,20 +1,36 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Session } from 'src/app/types/Session';
 import { SessionStorageService } from 'src/app/session-storage.service';
 import { Router } from '@angular/router';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { ProfileService } from '../profile.service';
+import { User } from 'src/app/types/User';
+import { UserInitValues } from 'src/app/types/typesInitValues';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css', './headerAuthorized.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   get authorized(): Session | null{return this.sessionServices.session}
- showProfOptions: boolean = false
- showNotifications: boolean = false
+  showProfOptions: boolean = false
+  showNotifications: boolean = false
+  user: User = UserInitValues
 
-  constructor(private sessionServices: SessionStorageService, private router: Router, private modalInteractions: ModalInteractionsService){}
+  constructor(
+      private sessionServices: SessionStorageService,
+      private router: Router,
+      private modalInteractions: ModalInteractionsService,
+      private profileServices: ProfileService
+  ){}
+
+  ngOnInit(): void {
+    this.profileServices.getProfileData().subscribe({
+      next:(userData) => this.user = {...userData}
+    })
+  }
+
   onProfOptions(){
     this.showProfOptions ? this.showProfOptions = false : this.showProfOptions = true
   }

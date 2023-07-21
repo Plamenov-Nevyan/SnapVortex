@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import {HttpClient} from "@angular/common/http"
-import { User } from '../types/User';
+import { User, UserLoginData, UserRegisterData } from '../types/User';
 import { Observable } from 'rxjs';
 import { Session } from '../types/Session';
 
@@ -15,7 +15,7 @@ endpoints  = {
 }
   constructor( private http: HttpClient) { }
 
-  registerUser(userData: User): Observable<Session>{
+  registerUser(userData: UserRegisterData): Observable<Session>{
     const {baseUrl} = environment
     const headers= {
       'Content-Type':'application/json'
@@ -23,7 +23,7 @@ endpoints  = {
     return this.http.post<Session>(`${baseUrl}${this.endpoints.register}`, JSON.stringify(userData), {headers})
   }
 
-  loginUser(userData: User): Observable<Session>{
+  loginUser(userData: UserLoginData): Observable<Session>{
     const {baseUrl} = environment
     const headers= {
       'Content-Type':'application/json'

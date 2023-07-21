@@ -1,0 +1,44 @@
+<div class="profile-main">
+    <div class="left-part">
+        <div class="about">
+            <p *ngIf="user.about.description">
+                {{user.about.description}}
+            </p>
+            <div class="about-unavailable">
+                <p>You have no description added yet</p>
+                <button class="edit-btn">Add Description</button>
+            </div>
+        </div>
+        <div class="profile-info">
+            <ul class="info-list">
+                <li>
+                    <p *ngIf="user.about.adress">{{user.about.adress}}</p>
+                    <div class="address-unavailable">
+                        <p>You have no address added yet</p>
+                        <button class="edit-btn">Add address</button>
+                    </div>
+                </li>
+                <li>
+                    <p *ngIf="user.about.workplace">{{user.about.workplace}}</p>
+                    <div class="workplace-unavailable">
+                        <p>You have no workplace added yet</p>
+                        <button class="edit-btn">Add workplace</button>
+                    </div>
+                </li>
+                <li>
+                    <p *ngIf="user.about.personalWebsite"><a>{{user.about.personalWebsite}}</a></p>
+                    <div class="personalWebsite-unavailable">
+                        <p>You have no personal website added yet</p>
+                        <button class="edit-btn">Add personal website</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-part">
+        <app-create-post-header [profilePicture]="user.profilePicture"/>
+        <div class="wall">
+            <app-post-article />
+        </div>
+    </div>
+</div>

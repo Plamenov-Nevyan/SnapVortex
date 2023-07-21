@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PostsContactsHeaderComponent } from './posts-contacts-header/posts-contacts-header.component';
 import { PostsContactsLiItemComponent } from './posts-contacts-li-item/posts-contacts-li-item.component';
 import { RouterModule } from '@angular/router';
+import { ProfileMainComponent } from './profile-main/profile-main.component';
 
 
 
@@ -23,12 +24,13 @@ import { RouterModule } from '@angular/router';
     PostsContactsHeaderComponent,
     PostsContactsLiItemComponent,
     PostsContactsHeaderComponent,
-    PostsContactsLiItemComponent
+    PostsContactsLiItemComponent,
+    ProfileMainComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     NavbarComponent,
@@ -37,7 +39,8 @@ import { RouterModule } from '@angular/router';
     PostsShortcutsComponent,
     PostsWallComponent,
     PostsContactsHeaderComponent,
-    PostsContactsLiItemComponent
+    PostsContactsLiItemComponent,
+    ProfileMainComponent
   ]
 })
 export class CoreModule { }

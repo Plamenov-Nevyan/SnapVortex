@@ -20,4 +20,7 @@ export class SessionStorageService {
   removeFromStorage(){
     sessionStorage.removeItem('session')
   }
+  getUserId(){
+    return this.session ? this.session.id : null
+  }
 }

@@ -1,0 +1,29 @@
+<div class="container m-0">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fb-profile-block">
+                <app-cover-picture [picture] = "user.coverPicture"/>
+                <app-profile-picture [picture] = "user.profilePicture" />
+                <div class="profile-name bg-light">
+                    <h2 class="text-dark">{{user.username}}</h2>
+                </div>
+                
+                <div class="fb-profile-block-menu">
+                    <div class="block-menu d-flex">
+                        <ul>
+                            <li><a href="#">Posts</a></li>
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Groups</a></li>
+                            <li><a href="#">Pages</a></li>
+                            <li><a href="#">Photos</a></li>
+                        </ul>
+                        <ul class="tools-list ms-auto">
+                            <li><a class="edit-profile">Edit Profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-profile-main [user]="user"/>
+</div>

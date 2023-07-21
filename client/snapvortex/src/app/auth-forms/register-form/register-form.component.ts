@@ -20,7 +20,8 @@ export class RegisterFormComponent {
     username: '',
     email: '',
     password: '',
-    confPassword: ''
+    confPassword: '',
+    gender: ''
   }
 
   constructor(private modalInteraction: ModalInteractionsService, private authServices: AuthServicesService, private sessionServices: SessionStorageService, private router: Router ){}
@@ -50,6 +51,7 @@ export class RegisterFormComponent {
   onRegister(event: MouseEvent){
     event.preventDefault()
     if(this.formData.password !== this.formData.confPassword){return}
+    Reflect.deleteProperty(this.formData, 'confPassword')
       this.authServices.registerUser(this.formData).subscribe({
         next: (session) => {
           this.sessionServices.addToStorage(session)
@@ -68,7 +70,7 @@ export class RegisterFormComponent {
     if(event.target instanceof HTMLInputElement){
       this.formData = {
         ...this.formData,
-        [event.target.name] : event.target.value
+        [event.target.name] : event.target.type === 'radio' ? event.target.id : event.target.value
       }
     }
   }

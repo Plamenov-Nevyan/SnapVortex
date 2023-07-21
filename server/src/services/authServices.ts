@@ -60,5 +60,15 @@ export const createSession = (
         email,
         id,
         accessToken
-    }
+    } 
+}
+
+
+export const getProfileData = async (id: string): Promise<User> => {
+    let user = await UserSchema.findById(id).select('-password')
+if(user){
+    return user
+}else {
+    throw {message: `We weren/'t able to retrieve your profile..`}
+}
 }

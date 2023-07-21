@@ -23,6 +23,7 @@ interface dotEnvConfig {
     JWT_SECRET : string;
     SALT_ROUNDS : number;
     MONGO_URI : string;
+    
     SERVER_PORT : number;
     EmailVerificationKey:string
     GMAIL_EMAIL : string

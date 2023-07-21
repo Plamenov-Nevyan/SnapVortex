@@ -1,0 +1,12 @@
+.cover-container{
+    background: #1E90FF;
+    background: -webkit-radial-gradient(bottom, #73D6F5 12%, #1E90FF);
+    background: radial-gradient(at bottom, #73D6F5 12%, #1E90FF)
+}
+.fb-profile-block-thumb{
+  display: block;
+  height: 315px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+}

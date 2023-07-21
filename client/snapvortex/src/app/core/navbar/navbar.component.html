@@ -30,7 +30,7 @@
 
 <nav *ngIf="authorized" class="header-nav-authorized">
     <ul *ngIf="showProfOptions">
-        <li><a href="">My Profile</a></li>
+        <li><a routerLink="/profile">My Profile</a></li>
         <li><a href="#" (click)="onLogout()">Logout</a></li>
     </ul>
 </nav>
