@@ -3,6 +3,7 @@
       <span class="close" (click)="onCloseModal()">&times;</span>
       <app-login-register-forms [authAction]="action" (showTac)="onShowTac()"/>
     </div>
+
     <div *ngIf="action === 'view-tac'" class="modal-content-tac">
       <div class="icons">
         <span class="close" (click)="onCloseModal()">&times;</span>
@@ -11,5 +12,10 @@
         </span>     
       </div>
       <app-terms-and-conditions *ngIf="action === 'view-tac'" />
+    </div>
+
+    <div *ngIf="action.startsWith('edit')" class="modal-content">
+      <span class="close" (click)="onCloseModal()">&times;</span>
+      <app-edit-section [editFormToShow]="action.split('-')[1]"/>
     </div>
   </div>

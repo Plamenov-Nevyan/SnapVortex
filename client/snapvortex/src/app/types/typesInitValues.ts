@@ -4,9 +4,12 @@ export let UserInitValues = {
     password: '',
     about: {
         workplace: '',
-        adress: '',
+        address: '',
         description: '',
-        personalWebsite: ''
+        personalWebsite: {
+            url: '',
+            preview: ''
+        }
     },
     profilePicture: '',
     coverPicture: '',

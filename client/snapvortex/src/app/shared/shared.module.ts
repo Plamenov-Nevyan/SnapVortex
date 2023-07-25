@@ -10,6 +10,7 @@ import { PostArticleComponent } from './post-article/post-article.component';
 import { AuthFormsModule } from '../auth-forms/auth-forms.module';
 import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
 import { CoverPictureComponent } from './cover-picture/cover-picture.component';
+import { EditProfileModule } from '../edit-profile/edit-profile.module';
 
 
 
@@ -28,7 +29,8 @@ import { CoverPictureComponent } from './cover-picture/cover-picture.component';
   ],
   imports: [
     CommonModule,
-    AuthFormsModule
+    AuthFormsModule,
+    EditProfileModule
   ],
   exports: [
     CreatePostHeaderComponent,

@@ -1,0 +1,16 @@
+<div class="fields-wrapper">
+    <h5>Add your personal website..</h5>
+    <form class="website-form">
+        <fieldset>
+            <label for="link">URL Link:</label>
+            <input (change)="onFormDataChange($event)" type="text" id="url" name="url" class="url-input" value={{url}}/>
+        </fieldset>
+        <fieldset>
+            <label for="preview">Preview image:</label>
+            <input (change)="onFormDataChange($event)" type="file" id="preview" name="preview" class="preview-input" />
+        </fieldset>
+        <div class="preview-image">
+            <img *ngIf="previewImageUrl" src={{previewImageUrl}} />
+        </div>
+    </form>
+</div>

@@ -89,3 +89,16 @@
     background-color: azure;
     color: cornflowerblue;
 }
+
+.info-list li:last-child {
+    max-width: 100%;
+    max-height: 20em;
+    width: 100%;
+}
+
+.info-list li:last-child img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 17em;
+}

@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   get authorized(): Session | null{return this.sessionServices.session}
   showProfOptions: boolean = false
   showNotifications: boolean = false
-  user: User = UserInitValues
+  user: User = this.profileServices.profileDataGet
 
   constructor(
       private sessionServices: SessionStorageService,
@@ -26,9 +26,7 @@ export class HeaderComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.profileServices.getProfileData().subscribe({
-      next:(userData) => this.user = {...userData}
-    })
+    this.profileServices.getProfileData()
   }
 
   onProfOptions(){
@@ -39,6 +37,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onShowModal(event: boolean){
-    this.modalInteractions.onShowModal('register')
+    this.modalInteractions.onShowModal('login')
   }
 }

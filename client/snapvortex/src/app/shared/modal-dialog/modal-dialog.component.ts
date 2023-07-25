@@ -9,7 +9,7 @@ import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 export class ModalDialogComponent {
  @Input() action: string = ''
  @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor(private modalInteraction: ModalInteractionsService){ }
+  constructor(private modalInteraction: ModalInteractionsService){console.log(this.action) }
 
   onCloseModal(){
     this.modalInteraction.onCloseModal()

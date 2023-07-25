@@ -1,9 +1,11 @@
 import UserSchema from "../models/User"
 import bcryptjs from "bcryptjs"
 import jsonwebtoken from "jsonwebtoken"
-import { User } from "../types/User"
+import { User, UserAboutData } from "../types/User"
 import env from "../config/envConfig"
 import { Types } from "mongoose"
+import { FileProps } from "../types/FileProps"
+const uploadFile = require('../utils/googleUpload')
 
 export const registerUser = async (userData : User) => {
    let isUserExisting = await checkIfUserExists(userData.email)
@@ -71,4 +73,51 @@ if(user){
 }else {
     throw {message: `We weren/'t able to retrieve your profile..`}
 }
+}
+
+
+export const updateProfileData = async (userData: UserAboutData, id: string, preview: FileProps | undefined) => {
+ if(preview){
+    uploadFile(preview)
+    .then(async (resp: any) => {      
+        try{      // to fix type later ! 
+        userData.personalWebsite.preview = `https://drive.google.com/uc?export=view&id=${resp.data.id}`
+        let user = await UserSchema.findOne({_id: id})
+        if(user instanceof UserSchema){
+            console.log(user)
+            user.set({
+                'about': {
+                    description: userData.description ? userData.description : user.about.description,
+                    address: userData.address ? userData.address : user.about.address,
+                    workplace: userData.workplace ? userData.workplace : user.about.workplace,
+                    personalWebsite: {
+                        url: userData.personalWebsite.url ? userData.personalWebsite.url : user.about.personalWebsite.url,
+                        preview: userData.personalWebsite.preview
+                    }
+                }
+            })
+            await user.save()    
+         }
+        }catch(err){
+        }
+    })
+    .catch((err: Error) =>{ throw err})
+ } else {
+    let user = await UserSchema.findOne({_id: id})
+    if(user instanceof UserSchema){
+        user.set({
+            'about': {
+                description: userData.description ? userData.description : user.about.description,
+                address: userData.address ? userData.address : user.about.address,
+                workplace: userData.workplace ? userData.workplace : user.about.workplace,
+                personalWebsite: {
+                    url: userData.personalWebsite.url ? userData.personalWebsite.url : user.about.personalWebsite.url,
+                    preview: user.about.personalWebsite.preview
+                }
+            }
+        })
+        await user.save()
+    }
+ }
+ return await UserSchema.findById(id).select('-password')
 }

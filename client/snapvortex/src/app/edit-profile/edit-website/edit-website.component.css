@@ -1,0 +1,38 @@
+.website-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.website-form fieldset {
+    display: flex;
+    gap: 2em;
+    width: 100%;
+}
+
+.website-form fieldset input {
+    flex: 1 1 40%;
+    border-radius: 0.3em;
+    outline: none;
+    padding: .3em .6em;
+}
+
+.website-form fieldset input:focus {
+    background-color: lightgray;
+    border: none;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 20em;
+    width: 100%;
+}
+
+.preview-image img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 17em;
+}

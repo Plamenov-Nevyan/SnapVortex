@@ -9,12 +9,10 @@ import { UserInitValues } from 'src/app/types/typesInitValues';
   styleUrls: ['./posts-wall.component.css']
 })
 export class PostsWallComponent implements OnInit {
-  user: User = UserInitValues
+  user: User = this.profileServices.profileDataGet
   constructor(private profileServices: ProfileService){}
 
   ngOnInit(): void {
-      this.profileServices.getProfileData().subscribe({
-        next: (userData) => this.user = {...userData}
-      })
+      this.profileServices.getProfileData()
   }
 }

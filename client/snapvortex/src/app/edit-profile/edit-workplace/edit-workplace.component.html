@@ -1,0 +1,13 @@
+<div class="fields-wrapper">
+    <h5>Add current workplace..</h5>
+    <form class="workplace-form">
+        <fieldset>
+            <label for="companyName">Company Name:</label>
+            <input (change)="onFormDataChange($event)" type="text" id="companyName" name="companyName" class="companyName-input" value={{companyName}} />
+        </fieldset>
+        <fieldset>
+            <label for="position">Position:</label>
+            <input (change)="onFormDataChange($event)" type="text" id="position" name="position" class="position-input" value={{position}} />
+        </fieldset>
+    </form>
+</div>

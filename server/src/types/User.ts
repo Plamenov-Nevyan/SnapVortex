@@ -7,9 +7,12 @@ export interface User {
     password: string,
     about: {
         workplace: string,
-        adress: string,
+        address: string,
         description: string,
-        personalWebsite: string
+        personalWebsite: {
+            url: string,
+            preview: Blob | null | string 
+        }
     },
     profilePicture: string,
     coverPicture: string,
@@ -21,4 +24,14 @@ export interface User {
     pagesFollowed: ObjectId[],
     photos: string[], 
     gender: string
+}
+
+export interface UserAboutData {
+    workplace: string,
+    address: string,
+    description: string,
+    personalWebsite: {
+        url: string,
+        preview: Blob | null | string
+    }
 }

@@ -4,32 +4,36 @@
             <p *ngIf="user.about.description">
                 {{user.about.description}}
             </p>
-            <div class="about-unavailable">
+            <div *ngIf="!user.about.description" class="about-unavailable">
                 <p>You have no description added yet</p>
-                <button class="edit-btn">Add Description</button>
+                <button class="edit-btn" (click)="onAddDescription()">Add Description</button>
             </div>
         </div>
         <div class="profile-info">
             <ul class="info-list">
                 <li>
-                    <p *ngIf="user.about.adress">{{user.about.adress}}</p>
-                    <div class="address-unavailable">
+                    <p *ngIf="user.about.address">{{user.about.address}}</p>
+                    <div *ngIf="!user.about.address" class="address-unavailable">
                         <p>You have no address added yet</p>
-                        <button class="edit-btn">Add address</button>
+                        <button class="edit-btn" (click)="onAddAddress()">Add address</button>
                     </div>
                 </li>
                 <li>
                     <p *ngIf="user.about.workplace">{{user.about.workplace}}</p>
-                    <div class="workplace-unavailable">
+                    <div *ngIf="!user.about.workplace" class="workplace-unavailable">
                         <p>You have no workplace added yet</p>
-                        <button class="edit-btn">Add workplace</button>
+                        <button class="edit-btn" (click)="onAddWorkplace()">Add workplace</button>
                     </div>
                 </li>
                 <li>
-                    <p *ngIf="user.about.personalWebsite"><a>{{user.about.personalWebsite}}</a></p>
-                    <div class="personalWebsite-unavailable">
+                    <div>
+                    <p *ngIf="user.about.personalWebsite.url"><a>{{user.about.personalWebsite.url}}</a></p>
+                    <img *ngIf="user.about.personalWebsite.preview" src={{user.about.personalWebsite.preview}} />
+                    </div>
+
+                    <div *ngIf="!user.about.personalWebsite.url" class="personalWebsite-unavailable">
                         <p>You have no personal website added yet</p>
-                        <button class="edit-btn">Add personal website</button>
+                        <button class="edit-btn" (click)="onAddWebsite()">Add personal website</button>
                     </div>
                 </li>
             </ul>

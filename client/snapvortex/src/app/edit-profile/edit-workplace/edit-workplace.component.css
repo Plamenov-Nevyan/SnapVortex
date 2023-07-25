@@ -1,0 +1,25 @@
+.workplace-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.workplace-form fieldset {
+    display: flex;
+    gap: 2em;
+    width: 100%;
+}
+
+.workplace-form fieldset input {
+    flex: 1 1 40%;
+    border-radius: 0.3em;
+    outline: none;
+    padding: .3em .6em;
+}
+
+.workplace-form fieldset input:focus {
+    background-color: lightgray;
+    border: none;
+}

@@ -1,6 +1,9 @@
 import express, {Express, Request, Response, NextFunction} from "express" 
 const router = express.Router()
-import {registerUser,loginUser, createSession, getProfileData} from "../services/authServices" 
+import multer, {Multer} from "multer"
+const storage = multer.memoryStorage()
+const upload = multer({storage: storage})
+import {registerUser,loginUser, createSession, getProfileData, updateProfileData} from "../services/authServices" 
 import { Session } from "../types/Session"
 import { User } from "../types/User"
 
@@ -27,6 +30,18 @@ router.get('/profile/:id', (req: Request, res: Response) => {
   getProfileData(req.params.id)
   .then((profileData: User) => res.json(profileData))
   .catch(err => res.status(err.status || 400).json({message: err.message}))
+})
+
+router.post('/profile/update/:id', upload.single('preview'), async (req: Request, res: Response) => {
+  try{
+    let user = await updateProfileData(JSON.parse(req.body.editData), req.params.id, req.file)
+    res.json(user)
+  }catch(err){
+    console.log(err)
+  }
+  // updateProfileData(req.body, req.params.id, req.file)
+  // .then((profileData: User) => res.json(profileData))
+  // .catch(err => res.status(err.status || 400).json({message: err.message}))
 })
 
 

@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <header class="edit-header">
+        <h3>Edit your Profile</h3>
+    </header>
+    <div class="main">
+        <div class="options">
+            <ul class="options-list">
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="description" 
+                    [ngClass]="{'active': editFormToShow === 'description'}"
+                >
+                        Add Description
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="address"
+                    [ngClass]="{'active': editFormToShow === 'address'}"
+                    >
+                        Add Address
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="workplace"
+                    [ngClass]="{'active': editFormToShow === 'workplace'}"
+                >
+                        Add Workplace
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="personalWebsite"
+                    [ngClass]="{'active': editFormToShow === 'personalWebsite'}"
+                >
+                        Add Personal Website
+                </li>
+            </ul>
+        </div>
+        <div class="forms">
+            <p *ngIf="editFormToShow === 'profile'">Select an option to edit on the lefthand menu.</p>
+            <app-edit-description (descriptionChange)="onFormDataChange($event)" [description] = "editData.description" *ngIf="editFormToShow === 'description'" />
+            <app-edit-address (addressChange)="onFormDataChange($event)"  [city] = "editData.city" [country] = "editData.country" *ngIf="editFormToShow === 'address'" />
+            <app-edit-workplace (workplaceChange)="onFormDataChange($event)"  [companyName] = "editData.companyName" [position]="editData.position" *ngIf="editFormToShow === 'workplace'" />
+            <app-edit-website (websiteChange)="onFormDataChange($event)" [previewImageUrl] = "previewImageUrl"  [url] = "editData.url" *ngIf="editFormToShow === 'personalWebsite'" />
+        </div>
+        <div class="actions">
+            <button (click)="onEdit()">Save Changes</button>
+            <button (click)="onCancelEdit()">Cancel</button>
+        </div>
+    </div>
+</div>

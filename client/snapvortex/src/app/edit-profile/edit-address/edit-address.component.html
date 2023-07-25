@@ -1,0 +1,13 @@
+<div class="fields-wrapper">
+    <h5>Add a current place of residence..</h5>
+    <form class="address-form">
+        <fieldset>
+            <label for="city">City:</label>
+            <input (change)="onFormDataChange($event)" type="text" id="city" name="city" class="city-input" value={{city}} />
+        </fieldset>
+        <fieldset>
+            <label for="country">Country:</label>
+            <input (change)="onFormDataChange($event)" type="text" id="country" name="country" class="country-input" value={{country}} />
+        </fieldset>
+    </form>
+</div>

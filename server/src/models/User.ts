@@ -7,9 +7,12 @@ const userSchema = new Schema<User>({
     password: {type : String, required : true},
     about: {
         workplace: {type: String, default: ''},
-        adress: {type: String, default: ''},
+        address: {type: String, default: ''},
         description: {type: String, default: ''},
-        personalWebsite: {type: String, default: ''}
+        personalWebsite: {
+            url: {type: String, default: ''},
+            preview: {type: String, default: ''}
+        }
     },
     profilePicture: {type: String, default: function(){
         if(this.gender === 'male'){

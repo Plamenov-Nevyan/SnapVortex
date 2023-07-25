@@ -1,4 +1,5 @@
 import { Post } from "./Post"
+// import {FileProps} from './FileProps'
 
 export interface User {
     username: string,
@@ -6,9 +7,12 @@ export interface User {
     password: string,
     about: {
         workplace: string,
-        adress: string,
+        address: string,
         description: string,
-        personalWebsite: string
+        personalWebsite: {
+            url: string,
+            preview: string
+        }
     },
     profilePicture: string,
     coverPicture: string,
@@ -35,6 +39,17 @@ export interface UserLoginData {
     password: string,
 }
 
-export interface ProfileMainInfo {
-        
+export interface UserEditData {
+    name: string,
+    value: string | File | null
+}
+
+export interface UserAboutData {
+    workplace: string,
+    address: string,
+    description: string,
+    personalWebsite: {
+        url: string,
+        preview: Blob | null
+    }
 }
