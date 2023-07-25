@@ -61,7 +61,7 @@
     transition: ease-in-out .2s;
   }
 
-  .block-menu ul li a:hover {
+  .block-menu ul li a:hover, .block-menu ul li a.active {
     background-color: azure;
     color: #4b4f56 ;
   }

@@ -11,15 +11,15 @@
                 <div class="fb-profile-block-menu">
                     <div class="block-menu d-flex">
                         <ul>
-                            <li><a href="#">Posts</a></li>
-                            <li><a href="#">Friends</a></li>
-                            <li><a href="#">Groups</a></li>
-                            <li><a href="#">Pages</a></li>
-                            <li><a href="#">Photos</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="posts" [ngClass]="{'active': activeTab === 'posts'}">Posts</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="friends" [ngClass]="{'active': activeTab === 'friends'}">Friends</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="groups" [ngClass]="{'active': activeTab === 'groups'}">Groups</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="pages" [ngClass]="{'active': activeTab === 'pages'}">Pages</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="photos" [ngClass]="{'active': activeTab === 'photos'}">Photos</a></li>
                         </ul>
-                        <ul class="tools-list ms-auto">
-                            <li><a class="edit-profile" (click)="onEdit($event)">Edit Profile</a></li>
-                        </ul>
+                        <!-- <ul class="tools-list ms-auto">
+                            <li><a class="edit-profile">Edit Profile</a></li>
+                        </ul> -->
                     </div>
                 </div>
             </div>

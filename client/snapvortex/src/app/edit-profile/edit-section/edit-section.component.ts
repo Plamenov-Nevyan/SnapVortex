@@ -59,6 +59,6 @@ export class EditSectionComponent {
           preview: this.editData.preview
         }
     })
-    
+    this.modalInteraction.onCloseModal()
   }
 }

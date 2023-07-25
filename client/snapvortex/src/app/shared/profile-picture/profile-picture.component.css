@@ -9,6 +9,9 @@
     width: 160px;
     background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
     z-index:9;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .profile-img img {
   background-color: #fff;
@@ -17,4 +20,34 @@
   height:158px;
   padding: 5px;
   width:158px;
+  border: none;
+}
+
+#profilePicture {
+  position: absolute;
+  bottom: 0;
+  left: -4.1em;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.profile-img svg {
+  max-width: 1.8em;
+  position: absolute;
+  bottom: 0em;
+  right: 1.6em;
+  cursor: pointer;
+  fill: azure;
+  display: block;
+  padding: 0.5em;
+  background: cornflowerblue;
+  border-radius: 29%;
+}
+
+.profile-img:hover {
+  & svg {
+    background-color: azure;
+    fill: cornflowerblue;
+  }
 }

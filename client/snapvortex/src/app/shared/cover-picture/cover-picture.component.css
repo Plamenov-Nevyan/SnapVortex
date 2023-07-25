@@ -10,3 +10,79 @@
   position: relative;
   text-decoration: none;
 }
+
+.settings {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 3em;
+  padding: 0.3em;
+  background: azure;
+  border-radius: 20%;
+  cursor: pointer;
+}
+
+.settings-active {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 3em;
+  padding: 0.3em;
+  border-radius: 20%;
+  cursor: pointer;
+  background-color: lightgreen;
+  & svg {
+    fill: rgb(80, 87, 87);
+  }
+}
+
+.settings svg {
+  max-width: 3em;
+  fill: limegreen;
+  cursor: pointer;
+}
+
+.settings:hover {
+  background-color: lightgreen;
+  & svg {
+    fill: rgb(80, 87, 87);
+  }
+}
+
+.options {
+    position: absolute;
+    right: 0.5em;
+    top: 3.6em;
+    background: white;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.options ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0;
+}
+
+.options ul li {
+  cursor: pointer;
+  font-weight: 500;
+  padding: .3em .5em;
+  border-radius: .5em;
+}
+
+.options ul li:hover {
+  background-color: cornflowerblue;
+  color: azure;
+}
+
+.upload-cover-pic {
+  position: relative;
+}
+
+.upload-cover-pic input {
+  position: absolute;
+  opacity: 0;
+}

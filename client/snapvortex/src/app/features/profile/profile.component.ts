@@ -10,7 +10,8 @@ import { ModalInteractionsService } from 'src/app/modal-interactions.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User = this.profileServices.profileDataGet
+  get user(): User{ return this.profileServices.profileDataGet}
+  activeTab: string = 'posts'
 
   constructor(private profileServices: ProfileService, private modalInteractionServices: ModalInteractionsService){}
 
@@ -21,5 +22,12 @@ export class ProfileComponent implements OnInit {
   onEdit(event: MouseEvent){
     event.preventDefault()
     this.modalInteractionServices.onShowModal('edit-profile')
+  }
+
+  onSelectTab(event: MouseEvent){
+    event.preventDefault()
+    if(event.target instanceof HTMLAnchorElement){
+      this.activeTab = event.target.id
+    }
   }
 }

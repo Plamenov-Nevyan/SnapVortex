@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   get authorized(): Session | null{return this.sessionServices.session}
   showProfOptions: boolean = false
   showNotifications: boolean = false
-  user: User = this.profileServices.profileDataGet
+  get user():User{return this.profileServices.profileDataGet}
 
   constructor(
       private sessionServices: SessionStorageService,

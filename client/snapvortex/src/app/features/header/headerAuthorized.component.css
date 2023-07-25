@@ -73,7 +73,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    min-height: 30vh;
+    min-height: 10vh;
     padding: 1em;
 }
 
