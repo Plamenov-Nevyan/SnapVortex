@@ -20,7 +20,7 @@ const pageSchema = new Schema<Page>({
     coverPicture: {type: String, default: `https://drive.google.com/uc?export=view&id=1fRcB9w3mm_6MYPiIT_BlPDf4T8Mhzac7`},
     about: {
         description: String,
-        adress: ''
+        address: ''
     }
 }, {timestamps: true})
 

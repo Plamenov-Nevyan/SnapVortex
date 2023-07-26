@@ -12,6 +12,8 @@ import { ModalInteractionsService } from './modal-interactions.service';
 export class AppComponent {
   get showModal(): boolean{return this.modalInteractions.showModalGet}
   get action(): string {return this.modalInteractions.actionGet}
+  get imgChangeEvent():any {return this.modalInteractions.imgChangeEventGet}
+  get uploadFor():string{return this.modalInteractions.uploadForGet}
  
 
   constructor(private modalInteractions: ModalInteractionsService){}

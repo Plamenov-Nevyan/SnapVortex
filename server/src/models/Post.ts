@@ -12,7 +12,7 @@ const postSchema = new Schema<Post>({
     comments: [
         {
             type : Types.ObjectId,
-            ref: 'User'
+            ref: 'Comment'
         }
     ],
     shares: [

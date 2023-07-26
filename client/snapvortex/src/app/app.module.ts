@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     FeaturesModule,
-    SharedModule
+    SharedModule,
+    ImageCropperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

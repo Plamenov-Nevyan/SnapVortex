@@ -11,6 +11,8 @@ import { AuthFormsModule } from '../auth-forms/auth-forms.module';
 import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
 import { CoverPictureComponent } from './cover-picture/cover-picture.component';
 import { EditProfileModule } from '../edit-profile/edit-profile.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImgCropSectionComponent } from './img-crop-section/img-crop-section.component';
 
 
 
@@ -24,13 +26,15 @@ import { EditProfileModule } from '../edit-profile/edit-profile.module';
     ShortcutsListItemComponent,
     PostArticleComponent,
     ProfilePictureComponent,
-    CoverPictureComponent
+    CoverPictureComponent,
+    ImgCropSectionComponent
     
   ],
   imports: [
     CommonModule,
     AuthFormsModule,
-    EditProfileModule
+    EditProfileModule,
+    ImageCropperModule
   ],
   exports: [
     CreatePostHeaderComponent,

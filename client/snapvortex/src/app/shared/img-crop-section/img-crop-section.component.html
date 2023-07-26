@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <image-cropper
+        [imageChangedEvent]="imgChangeEvent"
+        [aspectRatio]="4/4"
+        [maintainAspectRatio]="true"
+        [resizeToWidth]="256"
+        format="png"
+        (imageCropped)="cropImg($event)"
+        (imageLoaded)="imgLoaded()"
+        (cropperReady)="initCropper()"
+        (loadImageFailed)="imgFailed()"
+        class="cropper"
+    >
+
+    </image-cropper>
+    <div class="preview">
+        <img [src]="croppedImagePreview" />
+    </div>
+    <div class="buttons">
+        <button>Confirm</button>
+        <button>Cancel</button>
+    </div>
+</div>

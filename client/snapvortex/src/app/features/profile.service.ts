@@ -13,7 +13,8 @@ export class ProfileService {
 
   endpoints = {
     GET_PROFILE_DATA: '/profile/',
-    UPDATE_PROFILE_DATA: '/profile/update/'
+    UPDATE_PROFILE_DATA: '/profile/update/',
+    UPDATE_PROFILE_PICTURE: '/profile/profile-picture/'
   }
 
   constructor(private http: HttpClient, private sessionServices: SessionStorageService) { }
@@ -32,16 +33,12 @@ export class ProfileService {
     const {baseUrl} = environment
      this.http.get<User>(`${baseUrl}${this.endpoints.GET_PROFILE_DATA}${this.sessionServices.getUserId()}`).subscribe({
       next: (data) => {
-        console.log(this.currentProfileData)
         this.profileDataSet = data}
     })
   }
 
   updateProfileData(updateData: UserAboutData): void{
     const {baseUrl} = environment
-    const headers = {
-      'Content-Type': 'application/json'
-    }
 
     let formData = new FormData()
     if(updateData.personalWebsite.preview instanceof Blob){
@@ -54,8 +51,23 @@ export class ProfileService {
       ).subscribe({
         next: (data) => {
           this.profileDataSet = data 
-          console.log(data)
         }
       })
   }
+
+  updateProfilePicture(file: File){
+    const {baseUrl} = environment
+    let formData = new FormData()
+    formData.append('profilePicture', file)
+    this.http.post<string>(
+      `${baseUrl}${this.endpoints.UPDATE_PROFILE_PICTURE}${this.sessionServices.getUserId()}`,
+      formData
+    ).subscribe({
+      next:(newPicture) => {
+        this.profileDataSet = {...this.profileDataGet, profilePicture: newPicture}
+      } 
+    })
+  }
 }
+
+

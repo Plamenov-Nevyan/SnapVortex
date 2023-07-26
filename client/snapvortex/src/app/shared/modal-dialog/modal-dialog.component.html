@@ -18,4 +18,9 @@
       <span class="close" (click)="onCloseModal()">&times;</span>
       <app-edit-section [editFormToShow]="action.split('-')[1]"/>
     </div>
+
+    <div *ngIf="action === 'image-cropper'" class="modal-content">
+      <span class="close" (click)="onCloseModal()">&times;</span>
+        <app-img-crop-section [imgChangeEvent] = "imgChangeEvent" [uploadFor]="uploadFor" />
+    </div>
   </div>

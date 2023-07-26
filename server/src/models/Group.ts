@@ -15,11 +15,12 @@ const groupSchema = new Schema<Group>({
             ref: 'Post'
         }
     ],
-    about: {type: String},
+    description: {type: String},
     isPrivate: {type: Boolean},
     profilePicture: {type: String, default: 'https://drive.google.com/uc?export=view&id=1sOf42R3Whb67TScx1zBaasLXRz7dEOcB'},
     coverPicture: {type: String, default: `https://drive.google.com/uc?export=view&id=1fRcB9w3mm_6MYPiIT_BlPDf4T8Mhzac7`},
-    rules: []
+    rules: [],
+    name: {type: String},
 }, {timestamps: true})
 
 const GroupSchema = model<Group>('GroupSchema', groupSchema)

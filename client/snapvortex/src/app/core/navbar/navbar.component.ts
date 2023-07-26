@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Session } from 'src/app/types/Session';
 import { SessionStorageService } from 'src/app/session-storage.service';
+import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +15,7 @@ export class NavbarComponent {
   @Input() showProfOptions: boolean = false
   @Output() showModal: EventEmitter<boolean> = new EventEmitter<boolean>()
   @Output() logout: EventEmitter<boolean> = new EventEmitter<boolean>()
-  constructor( private sessionServices: SessionStorageService, private router: Router){console.log(this.authorized)}
+  constructor( private sessionServices: SessionStorageService, private router: Router, private modalInteraction: ModalInteractionsService){console.log(this.authorized)}
 
 
 
@@ -26,5 +27,12 @@ export class NavbarComponent {
   onLogout(){
     this.sessionServices.removeFromStorage()
     this.router.navigate(['/'])
+ }
+
+ onCreate(event: MouseEvent){
+  event.preventDefault()
+  if(event.target instanceof HTMLAnchorElement){
+    event.target.id === 'create-page' ? this.modalInteraction.onShowModal('create-page') : this.modalInteraction.onShowModal('create-group')
+  }
  }
 }

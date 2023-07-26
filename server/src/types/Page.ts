@@ -8,7 +8,7 @@ export interface Page {
     coverPicture: string,
     about: {
         description: string,
-        adress: string
+        address: string
     },
     postsCreated: ObjectId[],
     createdAt: string

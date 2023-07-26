@@ -121,3 +121,7 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
  }
  return await UserSchema.findById(id).select('-password')
 }
+
+export const updateProfilePicture = async (picture:FileProps, id:string) => {
+    uploadFile(picture)
+}
