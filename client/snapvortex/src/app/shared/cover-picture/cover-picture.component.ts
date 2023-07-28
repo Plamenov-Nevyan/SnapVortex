@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { SessionStorageService } from 'src/app/session-storage.service';
 
 @Component({
   selector: 'app-cover-picture',
@@ -11,7 +12,7 @@ export class CoverPictureComponent {
 
   @Input() picture: string = ''
   
-  constructor(private modalInteraction: ModalInteractionsService){
+  constructor(private modalInteraction: ModalInteractionsService, private sessionServices: SessionStorageService){
 
   }
 
@@ -24,5 +25,9 @@ export class CoverPictureComponent {
     event.preventDefault()
     this.modalInteraction.onShowModal('edit-profile')
     this.onShowHideOptions()
+  }
+
+  onUploadCoverPic(event: any){
+    this.modalInteraction.onShowCropper({imgChangeEvent: event, uploadFor: 'coverPicture', id: this.sessionServices.getUserId()})
   }
 }

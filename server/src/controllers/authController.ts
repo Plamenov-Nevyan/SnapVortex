@@ -3,7 +3,7 @@ const router = express.Router()
 import multer, {Multer} from "multer"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
-import {registerUser,loginUser, createSession, getProfileData, updateProfileData, updateProfilePicture} from "../services/authServices" 
+import {registerUser,loginUser, createSession, getProfileData, updateProfileData, updateProfilePicture, updateCoverPicture} from "../services/authServices" 
 import { Session } from "../types/Session"
 import { User } from "../types/User"
 
@@ -48,6 +48,15 @@ router.post('/profile/profile-picture/:id', upload.single('profilePicture'), asy
   try{
     let profilePicture = await updateProfilePicture(req.file, req.params.id)
     res.json(profilePicture)
+  }catch(err){
+    console.log(err)
+  }
+})
+
+router.post('/profile/cover-picture/:id', upload.single('coverPicture'), async(req: Request, res: Response) => {
+  try{
+    let coverPicture = await updateCoverPicture(req.file, req.params.id)
+    res.json(coverPicture)
   }catch(err){
     console.log(err)
   }

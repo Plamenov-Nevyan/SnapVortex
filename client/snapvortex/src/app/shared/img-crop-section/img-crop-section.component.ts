@@ -39,12 +39,18 @@ export class ImgCropSectionComponent {
 
   }
 
+  closeCropper(){
+    this.modalInteractions.onCloseModal()
+  }
+
   updateProfilePicture(){
     this.profileServices.updateProfilePicture(this.file)
     this.modalInteractions.onCloseModal()
   }
 
-  closeCropper(){
+  updateCoverPicture(){
+    this.profileServices.updateCoverPicture(this.file)
     this.modalInteractions.onCloseModal()
   }
+
 }

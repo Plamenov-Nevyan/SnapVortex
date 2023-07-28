@@ -17,7 +17,8 @@
         <img [src]="croppedImagePreview" />
     </div>
     <div class="buttons">
-        <button (click)="updateProfilePicture()">Confirm</button>
+        <button *ngIf="imgCropperData.uploadFor === 'profilePicture'" (click)="updateProfilePicture()">Confirm</button>
+        <button *ngIf="imgCropperData.uploadFor === 'coverPicture'" (click)="updateCoverPicture()">Confirm</button>
         <button (click)="closeCropper()">Cancel</button>
     </div>
 </div>

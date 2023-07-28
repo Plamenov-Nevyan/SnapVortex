@@ -132,8 +132,16 @@ export const updateProfilePicture = async (picture:FileProps | undefined, id:str
         await user.save()
         return user.profilePicture
     }
-    // .then(async (resp: any) => {
-    //     await UserSchema.findOneAndUpdate({_id: id}, {profilePicture: `https://drive.google.com/uc?export=view&id=${resp.data.id}`})
-    // })
-    // return UserSchema.findById(id, {profilePicture: 1})
+}
+
+export const updateCoverPicture = async (picture:FileProps | undefined, id:string) => {
+    let [resp, user] = await Promise.all([
+        await uploadFile(picture),
+        await UserSchema.findById(id)
+    ])
+    if(user instanceof UserSchema){
+        user.coverPicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
+        await user.save()
+        return user.coverPicture
+    }
 }

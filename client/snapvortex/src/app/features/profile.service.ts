@@ -14,7 +14,8 @@ export class ProfileService {
   endpoints = {
     GET_PROFILE_DATA: '/profile/',
     UPDATE_PROFILE_DATA: '/profile/update/',
-    UPDATE_PROFILE_PICTURE: '/profile/profile-picture/'
+    UPDATE_PROFILE_PICTURE: '/profile/profile-picture/',
+    UPDATE_COVER_PICTURE: '/profile/cover-picture/'
   }
 
   constructor(private http: HttpClient, private sessionServices: SessionStorageService) { }
@@ -66,7 +67,21 @@ export class ProfileService {
       next:(newPicture) => {
         console.log(newPicture)
         this.profileDataSet = {...this.currentProfileData, profilePicture: newPicture}
-        console.log(this.profileDataGet)
+      } 
+    })
+  }
+
+  updateCoverPicture(file: File){
+    const {baseUrl} = environment
+    let formData = new FormData()
+    formData.append('coverPicture', file)
+    this.http.post<string>(
+      `${baseUrl}${this.endpoints.UPDATE_COVER_PICTURE}${this.sessionServices.getUserId()}`,
+      formData
+    ).subscribe({
+      next:(newPicture) => {
+        console.log(newPicture)
+        this.profileDataSet = {...this.currentProfileData, coverPicture: newPicture}
       } 
     })
   }
