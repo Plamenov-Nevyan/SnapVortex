@@ -7,5 +7,6 @@ export interface Group {
     profilePicture: string,
     coverPicture: string,
     rules: string[],
-    name: string
+    name: string,
+    _id: string
 }

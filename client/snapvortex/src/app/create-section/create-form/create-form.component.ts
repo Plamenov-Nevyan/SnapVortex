@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { CreateGroupData } from 'src/app/types/CreateGroup';
+import { CreatePageData } from 'src/app/types/CreatePage';
 
 @Component({
   selector: 'app-create-form',
@@ -6,17 +8,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./create-form.component.css']
 })
 export class CreateFormComponent {
-  @Input() createAction: string = ''
-  createDataPage = {
-    name : '',
-    description: '',
-    address: ''
-  }
-  createDataGroup = {
-    name: '',
-    isPrivate: false,
-    description: '',
-    rule:'',
-    rules: []
+  @Input() action: string = ''
+
+  constructor(){
   }
 }

@@ -28,3 +28,30 @@ export let ImgCropperDataInitVals = {
     uploadFor: '',
     id: ''
 }
+
+export let createGroupInitVals = {
+    name: '',
+    isPrivate: false,
+    description: '',
+    rule:'',
+    rules: []
+  }
+
+export let createPageInitVals = {
+    name : '',
+    description: '',
+    address: ''
+  }
+
+export let groupInitValues = {
+    owner : '',
+    name: '',
+    description: '',
+    isPrivate: false,
+    postsCreated: [],
+    members: [],
+    profilePicture: '',
+    coverPicture: '',
+    rules: [],
+    _id: ''
+}

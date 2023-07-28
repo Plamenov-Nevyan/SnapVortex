@@ -1,6 +1,6 @@
 <div class="wrapper">
     <form class="create-form">
-
-        
+        <app-page-inputs *ngIf="action === 'create-page'"/>
+        <app-group-inputs *ngIf="action === 'create-group'"/>
     </form>
 </div>

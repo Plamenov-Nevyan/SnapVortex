@@ -13,7 +13,7 @@ import { CoverPictureComponent } from './cover-picture/cover-picture.component';
 import { EditProfileModule } from '../edit-profile/edit-profile.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImgCropSectionComponent } from './img-crop-section/img-crop-section.component';
-
+import { CreateSectionModule } from '../create-section/create-section.module';
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { ImgCropSectionComponent } from './img-crop-section/img-crop-section.com
     CommonModule,
     AuthFormsModule,
     EditProfileModule,
-    ImageCropperModule
+    ImageCropperModule,
+    CreateSectionModule
   ],
   exports: [
     CreatePostHeaderComponent,

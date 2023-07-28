@@ -8,9 +8,19 @@ import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { ContactsOwnerComponent } from './contacts-owner/contacts-owner.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: 'group/:id',
+    component: ProfileComponent
+  },
+];
 
 @NgModule({
   declarations: [
@@ -25,7 +35,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     CoreModule,
     SharedModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   exports: [
     PostsComponent,

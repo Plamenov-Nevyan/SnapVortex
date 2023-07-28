@@ -1,16 +1,37 @@
 <fieldset>
     <label for="name">What will be the name of your page ?</label>
-    <input type="text" name="name" id="name" placeholder="Example: Woodcraft, Programming, etc..."/>
+    <input 
+        type="text" 
+        name="name" 
+        id="name"
+        placeholder="Example: Woodcraft, Programming, etc..."
+        [value]="createDataPage.name" 
+        (change)="onChange($event)"
+    />
 </fieldset>
 
 <fieldset>
     <label for="description">What will be your page about ?</label>
-    <textarea name="description" id="description">
+    <textarea 
+        name="description" 
+        id="description" 
+        (change)="onChange($event)"  
+        [value]="createDataPage.description" 
+    >
 
     </textarea>
 </fieldset>
 
 <fieldset>
     <label for="address">Do you have address? (Optional - For businesses and companies)</label>
-    <input type="text" name="address" id="address" />
+    <input 
+        type="text" 
+        name="address" 
+        id="address" 
+        (change)="onChange($event)"  
+        [value]="createDataPage.address" 
+    />
 </fieldset>
+
+<button>Create</button>
+<button>Cancel</button>

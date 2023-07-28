@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CreateFormComponent } from './create-form/create-form.component';
 import { PageInputsComponent } from './page-inputs/page-inputs.component';
 import { GroupInputsComponent } from './group-inputs/group-inputs.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,11 @@ import { GroupInputsComponent } from './group-inputs/group-inputs.component';
     GroupInputsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
+  ],
+  exports: [
+    CreateFormComponent
   ]
 })
 export class CreateSectionModule { }

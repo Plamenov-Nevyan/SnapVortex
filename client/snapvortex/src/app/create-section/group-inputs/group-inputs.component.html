@@ -1,24 +1,56 @@
 <fieldset>
     <label for="name">What will be your group's name?</label>
-    <input type="text" name="name" id="name" />
+    <input 
+        type="text"
+        name="name"
+        id="name"
+        (change)="onChange($event)"  
+        [value]="createDataGroup.name" 
+    />
 </fieldset>
 <fieldset>
     <label for="isPrivate">Do you want your group to be visible on the site? (You would still be able to invite others)</label>
-    <input type="checkbox" name="isPrivate" id="isPrivate" />
+    <input
+        type="checkbox" 
+        name="isPrivate" 
+        id="isPrivate" 
+        (change)="onChange($event)"  
+        [checked]="createDataGroup.isPrivate" 
+     />
 </fieldset>
 
 <fieldset>
     <label for="description">What will be your group about ?</label>
-    <textarea name="description" id="description">
+    <textarea 
+        name="description"
+        id="description"
+        (change)="onChange($event)"  
+        [value]="createDataGroup.description" 
+     >
 
     </textarea>
 </fieldset>
 
 <fieldset>
     <label for="rule">Add rules? (Optional)</label>
-    <input type="text" name="rule" id="rule" />
-    <button>
+    <input 
+        type="text"
+        name="rule"
+        id="rule"
+        (change)="onChange($event)"  
+        [value]="createDataGroup.rule" 
+    />
+    <button (click)="onAddRule($event)">
         +
     </button>
+    <div *ngIf="createDataGroup.rules.length > 0" >
+        <ul *ngFor="let rule of createDataGroup.rules">
+            <li>{{rule}}</li>
+        </ul>
+    </div>
 </fieldset>
+    
+
+<button (click)="onCreate($event)">Create</button>
+<button>Cancel</button>
 

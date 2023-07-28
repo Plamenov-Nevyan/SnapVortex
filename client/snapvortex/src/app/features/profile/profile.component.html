@@ -2,10 +2,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="fb-profile-block">
-                <app-cover-picture [picture] = "user.coverPicture"/>
-                <app-profile-picture [picture] = "user.profilePicture" />
+                <app-cover-picture *ngIf="isUser" [picture] = "user.coverPicture"/>
+                 <app-cover-picture *ngIf="isGroup" [picture] = "group.coverPicture"/>
+                <!-- <app-cover-picture *ngIf="isPage" [picture] = "page.coverPicture"/> -->
+
+                <app-profile-picture *ngIf="isUser" [picture] = "user.profilePicture"/>
+                 <app-profile-picture *ngIf="isGroup" [picture] = "group.profilePicture"/>
+                <!-- <app-profile-picture *ngIf="isPage" [picture] = "page.profilePicture"/> -->
+
                 <div class="profile-name bg-light">
-                    <h2 class="text-dark">{{user.username}}</h2>
+                    <h2 *ngIf="isUser" class="text-dark">{{user.username}}</h2>
+                    <h2 *ngIf="isGroup" class="text-dark">{{group.name}}</h2>
+                    <!-- <h2 *ngIf="isPage" class="text-dark">{{page.name}}</h2> -->
                 </div>
                 
                 <div class="fb-profile-block-menu">
@@ -25,5 +33,5 @@
             </div>
         </div>
     </div>
-    <app-profile-main [user]="user"/>
+    <!-- <app-profile-main [user]="user"/> -->
 </div>

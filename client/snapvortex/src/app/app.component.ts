@@ -16,5 +16,5 @@ export class AppComponent {
   get imgCropperData(): ImgCropperData {return this.modalInteractions.imgCropperDataGet}
  
 
-  constructor(private modalInteractions: ModalInteractionsService){}
+  constructor(private modalInteractions: ModalInteractionsService){  console.log(this.action)}
 }
