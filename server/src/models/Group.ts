@@ -1,8 +1,8 @@
-import {Schema, model, Types, ObjectId} from "mongoose"
+import mongoose, {Schema, model, Types, ObjectId} from "mongoose"
 import { Group } from "../types/Group"
 
 const groupSchema = new Schema<Group>({
-    owner: {type : Types.ObjectId, ref: 'User'},
+    owner: {type : mongoose.Schema.Types.ObjectId, ref: 'User'},
     members: [
         {
             type : Types.ObjectId,

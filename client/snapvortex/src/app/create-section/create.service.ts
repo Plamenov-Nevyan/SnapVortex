@@ -3,9 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { SessionStorageService } from '../session-storage.service';
 import { CreateGroupData } from '../types/CreateGroup';
 import { Group } from '../types/Group';
-import { groupInitValues } from '../types/typesInitValues';
+import { groupInitValues, pageInitValues } from '../types/typesInitValues';
 import { environment } from 'src/environments/environment.development';
 import {Observable} from 'rxjs'
+import { CreatePageData } from '../types/CreatePage';
+import { Page } from '../types/Page';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +15,12 @@ import {Observable} from 'rxjs'
 export class CreateService {
   userId:string | null = this.sessionServices.getUserId()
   private currentGroupData: Group = groupInitValues
+  private currentPageData: Page = pageInitValues
   endpoints = {
     GET_GROUP_DATA: '/groups/',
-    CREATE_GROUP : '/groups/create/'
+    CREATE_GROUP : '/groups/create/',
+    CREATE_PAGE: '/pages/create/',
+    GET_PAGE_DATA: '/pages/'
   }
 
   get currentGroupDataGet(){
@@ -26,7 +31,32 @@ export class CreateService {
     this.currentGroupData = val
   }
 
+  get currentPageDataGet(){
+    return this.currentPageData
+  }
+
+  set currentPageDataSet(val: Page){
+    this.currentPageData = val
+  }
+
   constructor( private http: HttpClient, private sessionServices: SessionStorageService) { }
+
+  onCreatePage(pageData: CreatePageData){
+    const {baseUrl} = environment
+    const headers = {'Content-Type': 'application/json'}
+
+    return this.http.post<Page>(`${baseUrl}${this.endpoints.CREATE_PAGE}${this.userId}`, pageData, {headers})
+  }
+
+  getPageData(pageId: string){
+    const {baseUrl} = environment
+
+    this.http.get<Page>(`${baseUrl}${this.endpoints.GET_PAGE_DATA}${pageId}`).subscribe({
+      next: (page: Page) => {
+        this.currentPageDataSet = page
+      }
+    })
+  }
 
   onCreateGroup(groupData: CreateGroupData): Observable<Group>{
     const {baseUrl} = environment

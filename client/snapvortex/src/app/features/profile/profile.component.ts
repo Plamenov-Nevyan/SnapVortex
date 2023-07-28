@@ -7,6 +7,7 @@ import { ImageCropperService } from 'src/app/image-cropper.service';
 import { ActivatedRoute } from '@angular/router';
 import { Group } from 'src/app/types/Group';
 import { CreateService } from 'src/app/create-section/create.service';
+import { Page } from 'src/app/types/Page';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,7 @@ import { CreateService } from 'src/app/create-section/create.service';
 export class ProfileComponent implements OnInit {
   get user(): User{ return this.profileServices.profileDataGet}
   get group(): Group {return this.createServices.currentGroupDataGet}
+  get page(): Page {return this.createServices.currentPageDataGet}
   activeTab: string = 'posts'
   isUser: boolean = false
   isPage: boolean = false
@@ -46,6 +48,8 @@ export class ProfileComponent implements OnInit {
         this.profileServices.getProfileData()
       }else if(this.isGroup){
         this.createServices.getGroupData(this.groupOrPageId)
+      }else if(this.isPage){
+        this.createServices.getPageData(this.groupOrPageId)
       }
   }
 

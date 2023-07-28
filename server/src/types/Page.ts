@@ -1,8 +1,8 @@
-import { ObjectId } from "mongoose";
+import { ObjectId, Types } from "mongoose";
 
 export interface Page {
-    owner: ObjectId,
-    followers: ObjectId[],
+    owner: Types.ObjectId,
+    followers: Types.ObjectId[],
     name: string,
     profilePicture: string,
     coverPicture: string,
@@ -10,6 +10,6 @@ export interface Page {
         description: string,
         address: string
     },
-    postsCreated: ObjectId[],
+    postsCreated: Types.ObjectId[],
     createdAt: string
 }

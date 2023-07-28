@@ -1,11 +1,11 @@
-import { ObjectId } from "mongoose";
+import { ObjectId, Types } from "mongoose";
 
 export interface Group {
-    owner: ObjectId,
+    owner: Types.ObjectId,
     description: string,
     isPrivate: boolean,
-    postsCreated: ObjectId[],
-    members: ObjectId[],
+    postsCreated: Types.ObjectId[],
+    members: Types.ObjectId[],
     profilePicture: string,
     coverPicture: string,
     rules: string[], 

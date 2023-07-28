@@ -9,5 +9,6 @@ export interface Page {
         address: string
     },
     postsCreated: string[],
-    createdAt: string
+    createdAt: string,
+    _id: string
 }

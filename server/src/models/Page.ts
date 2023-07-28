@@ -1,8 +1,8 @@
-import {Schema, model, Types, ObjectId} from "mongoose"
+import mongoose, {Schema, model, Types, ObjectId, mongo} from "mongoose"
 import { Page } from "../types/Page"
 
 const pageSchema = new Schema<Page>({
-    owner: {type : Types.ObjectId, ref: 'User'},
+    owner: {type : mongoose.Schema.Types.ObjectId, ref: 'User'},
     followers: [
         {
             type : Types.ObjectId,
@@ -20,7 +20,7 @@ const pageSchema = new Schema<Page>({
     coverPicture: {type: String, default: `https://drive.google.com/uc?export=view&id=1fRcB9w3mm_6MYPiIT_BlPDf4T8Mhzac7`},
     about: {
         description: String,
-        address: ''
+        address: String
     }
 }, {timestamps: true})
 

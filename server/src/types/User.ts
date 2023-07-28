@@ -1,4 +1,4 @@
-import { ObjectId } from "mongoose"
+import { ObjectId, Types } from "mongoose"
 import { Post } from "./Post"
 
 export interface User {
@@ -17,11 +17,14 @@ export interface User {
     profilePicture: string,
     coverPicture: string,
     createdPosts: Post[],
-    likedPosts: ObjectId[],
-    sharedPosts: ObjectId[],
-    commentedPosts: ObjectId[],
-    pagesOwned: ObjectId[],
-    pagesFollowed: ObjectId[],
+    likedPosts: Types.ObjectId[],
+    sharedPosts: Types.ObjectId[],
+    commentedPosts: Types.ObjectId[],
+    pagesOwned: Types.ObjectId[],
+    pagesFollowed: Types.ObjectId[],
+    groupsCreated: Types.ObjectId[],
+    groupsJoined: Types.ObjectId[],
+    friends: Types.ObjectId[],
     photos: string[], 
     gender: string
 }

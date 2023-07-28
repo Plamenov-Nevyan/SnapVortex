@@ -1,4 +1,4 @@
-import {Schema, model, Types, ObjectId} from "mongoose"
+import mongoose, {Schema, model, Types, ObjectId} from "mongoose"
 import { User } from "../types/User"
 
 const userSchema = new Schema<User>({
@@ -49,7 +49,7 @@ const userSchema = new Schema<User>({
     ],
     pagesOwned: [
         {
-            type : Types.ObjectId,
+            type : mongoose.Schema.Types.ObjectId,
             ref: 'Page'
         }
     ],
@@ -57,6 +57,26 @@ const userSchema = new Schema<User>({
         {
             type : Types.ObjectId,
             ref: 'Page'
+        }
+    ],
+
+    groupsCreated: [
+        {
+            type: Types.ObjectId,
+            ref: 'Group'
+        }
+    ],
+
+    groupsJoined: [
+        {
+            type: Types.ObjectId,
+            ref: 'Group'
+        }
+    ],
+    friends: [
+        {
+            type: Types.ObjectId,
+            ref: 'User'
         }
     ],
     photos: []

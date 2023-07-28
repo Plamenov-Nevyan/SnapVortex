@@ -55,3 +55,18 @@ export let groupInitValues = {
     rules: [],
     _id: ''
 }
+
+export let pageInitValues = {
+    owner: '',
+    followers: [],
+    name: '',
+    profilePicture: '',
+    coverPicture: '',
+    about: {
+        description: '',
+        address: ''
+    },
+    postsCreated: [],
+    createdAt: '',
+    _id: ''
+}

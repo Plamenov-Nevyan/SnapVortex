@@ -1,12 +1,12 @@
 import { Types, ObjectId } from "mongoose";
 
 export interface Post {
-    author: ObjectId,
-    likes: ObjectId[],
-    comments: ObjectId[],
-    shares: ObjectId[],
+    author: Types.ObjectId,
+    likes: Types.ObjectId[],
+    comments: Types.ObjectId[],
+    shares: Types.ObjectId[],
     text: string,
     image: string,
-    belongsToPage: ObjectId 
+    belongsToPage: Types.ObjectId 
     createdAt: string,
 }
