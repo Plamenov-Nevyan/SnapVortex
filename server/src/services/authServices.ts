@@ -122,6 +122,18 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
  return await UserSchema.findById(id).select('-password')
 }
 
-export const updateProfilePicture = async (picture:FileProps, id:string) => {
-    uploadFile(picture)
+export const updateProfilePicture = async (picture:FileProps | undefined, id:string) => {
+    let [resp, user] = await Promise.all([
+        await uploadFile(picture),
+        await UserSchema.findById(id)
+    ])
+    if(user instanceof UserSchema){
+        user.profilePicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
+        await user.save()
+        return user.profilePicture
+    }
+    // .then(async (resp: any) => {
+    //     await UserSchema.findOneAndUpdate({_id: id}, {profilePicture: `https://drive.google.com/uc?export=view&id=${resp.data.id}`})
+    // })
+    // return UserSchema.findById(id, {profilePicture: 1})
 }

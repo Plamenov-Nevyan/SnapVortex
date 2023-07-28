@@ -1,6 +1,9 @@
 import {Component , Input } from '@angular/core';
 import { ImageCroppedEvent} from 'ngx-image-cropper';
-import { ImageCropperService } from 'src/app/image-cropper.service';
+import { ImgCropperData } from 'src/app/types/FileProps';
+import { ImgCropperDataInitVals } from 'src/app/types/typesInitValues';
+import { ProfileService } from 'src/app/features/profile.service';
+import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 
 @Component({
   selector: 'app-img-crop-section',
@@ -8,21 +11,19 @@ import { ImageCropperService } from 'src/app/image-cropper.service';
   styleUrls: ['./img-crop-section.component.css']
 })
 export class ImgCropSectionComponent {
-  @Input() imgChangeEvent: any = ''
-  @Input() uploadFor: string = ''
+  @Input() imgCropperData: ImgCropperData = ImgCropperDataInitVals
   croppedImagePreview: string | null | undefined = ''
   file: any = ''
 
-  constructor(private imageCropperService: ImageCropperService) {
+  constructor(private profileServices: ProfileService, private modalInteractions: ModalInteractionsService) {
    
   }
 
   cropImg(event: ImageCroppedEvent){
     this.croppedImagePreview = event.objectUrl
-    const uncroppedImage: File = this.imgChangeEvent.target.files[0]
+    const uncroppedImage: File = this.imgCropperData.imgChangeEvent?.target.files[0]
     if(event.blob instanceof Blob){
       this.file = new File([event.blob], uncroppedImage.name,  {type: uncroppedImage.type})
-      this.imageCropperService.onSetCroppedImageData(this.file, this.uploadFor)
     }
   }
 
@@ -38,4 +39,12 @@ export class ImgCropSectionComponent {
 
   }
 
+  updateProfilePicture(){
+    this.profileServices.updateProfilePicture(this.file)
+    this.modalInteractions.onCloseModal()
+  }
+
+  closeCropper(){
+    this.modalInteractions.onCloseModal()
+  }
 }

@@ -1,6 +1,6 @@
 <div class="wrapper">
     <image-cropper
-        [imageChangedEvent]="imgChangeEvent"
+        [imageChangedEvent]="imgCropperData.imgChangeEvent"
         [aspectRatio]="4/4"
         [maintainAspectRatio]="true"
         [resizeToWidth]="256"
@@ -17,7 +17,7 @@
         <img [src]="croppedImagePreview" />
     </div>
     <div class="buttons">
-        <button>Confirm</button>
-        <button>Cancel</button>
+        <button (click)="updateProfilePicture()">Confirm</button>
+        <button (click)="closeCropper()">Cancel</button>
     </div>
 </div>

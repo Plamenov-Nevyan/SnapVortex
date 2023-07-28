@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { LoadedImage } from 'ngx-image-cropper';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { SessionStorageService } from 'src/app/session-storage.service';
 
 @Component({
   selector: 'app-profile-picture',
@@ -16,12 +17,13 @@ export class ProfilePictureComponent {
   
   constructor(
     private sanitizer: DomSanitizer,
-    private modalInteractions: ModalInteractionsService
+    private modalInteractions: ModalInteractionsService,
+    private sessionServices: SessionStorageService
   ) {
   }
 
   onSelectImage(event: any){
-      this.modalInteractions.onShowCropper(event, 'profilePicture')
+      this.modalInteractions.onShowCropper({imgChangeEvent: event, uploadFor: 'profilePicture', id: this.sessionServices.getUserId()})
   }
 
   // fileChangeEvent(event: any): void {

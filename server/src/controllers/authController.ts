@@ -46,8 +46,8 @@ router.post('/profile/update/:id', upload.single('preview'), async (req: Request
 
 router.post('/profile/profile-picture/:id', upload.single('profilePicture'), async(req: Request, res: Response) => {
   try{
-    let newPicture = await updateProfilePicture(req.file, req.params.id)
-    res.json(newPicture)
+    let profilePicture = await updateProfilePicture(req.file, req.params.id)
+    res.json(profilePicture)
   }catch(err){
     console.log(err)
   }

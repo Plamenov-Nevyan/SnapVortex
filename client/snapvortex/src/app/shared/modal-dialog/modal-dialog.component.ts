@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ImageCropperService } from 'src/app/image-cropper.service';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { ImgCropperData } from 'src/app/types/FileProps';
+import { ImgCropperDataInitVals } from 'src/app/types/typesInitValues';
 
 @Component({
   selector: 'app-modal-dialog',
@@ -9,9 +11,7 @@ import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 })
 export class ModalDialogComponent {
  @Input() action: string = ''
- @Input() imgChangeEvent: any = ''
- @Input() uploadFor: string = ''
- @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>()
+ @Input() imgCropperData: ImgCropperData = ImgCropperDataInitVals
  
   constructor(private modalInteraction:ModalInteractionsService){console.log(this.action) }
 

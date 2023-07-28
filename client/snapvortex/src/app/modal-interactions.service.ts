@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ImgCropperData } from './types/FileProps';
+import { ImgCropperDataInitVals } from './types/typesInitValues';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +8,7 @@ import { Injectable } from '@angular/core';
 export class ModalInteractionsService {
   private action:string = ''
   private showModalDialog: boolean = false
-  private imgChangeEvent: any = ''
-  private uploadFor: string = ''
+  private imgCropperData: ImgCropperData = ImgCropperDataInitVals
   // private croppedImage
 
   get showModalGet(): boolean { return this.showModalDialog}
@@ -20,14 +21,9 @@ export class ModalInteractionsService {
     this.action = val
   }
 
-  get imgChangeEventGet(): any {return this.imgChangeEvent}
-  set imgChangeEventSet(val:any){
-    this.imgChangeEvent = val
-  }
-
-  get uploadForGet(): any {return this.uploadFor}
-  set uploadForSet(val:any){
-    this.uploadFor = val
+  get imgCropperDataGet(): ImgCropperData {return this.imgCropperData}
+  set imgCropperDataSet(val: ImgCropperData){
+    this.imgCropperData = {...val}
   }
 
   constructor() { }
@@ -42,11 +38,10 @@ export class ModalInteractionsService {
     this.actionSet = action
   }
 
-  onShowCropper(file: any, uploadFor: string){
+  onShowCropper(cropperData: ImgCropperData){
     this.showModalSet = true
     this.actionSet = 'image-cropper'
-    this.imgChangeEventSet = file
-    this.uploadForSet = uploadFor
+    this.imgCropperDataSet = cropperData
   }
 
 }

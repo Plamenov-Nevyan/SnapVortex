@@ -21,6 +21,6 @@
 
     <div *ngIf="action === 'image-cropper'" class="modal-content">
       <span class="close" (click)="onCloseModal()">&times;</span>
-        <app-img-crop-section [imgChangeEvent] = "imgChangeEvent" [uploadFor]="uploadFor" />
+        <app-img-crop-section [imgCropperData]="imgCropperData"/>
     </div>
   </div>

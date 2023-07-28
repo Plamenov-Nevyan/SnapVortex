@@ -3,6 +3,7 @@ import { Session } from 'src/app/types/Session';
 import { SessionStorageService } from 'src/app/session-storage.service';
 import { Router } from '@angular/router';
 import { ModalInteractionsService } from './modal-interactions.service';
+import { ImgCropperData } from './types/FileProps';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,7 @@ import { ModalInteractionsService } from './modal-interactions.service';
 export class AppComponent {
   get showModal(): boolean{return this.modalInteractions.showModalGet}
   get action(): string {return this.modalInteractions.actionGet}
-  get imgChangeEvent():any {return this.modalInteractions.imgChangeEventGet}
-  get uploadFor():string{return this.modalInteractions.uploadForGet}
+  get imgCropperData(): ImgCropperData {return this.modalInteractions.imgCropperDataGet}
  
 
   constructor(private modalInteractions: ModalInteractionsService){}

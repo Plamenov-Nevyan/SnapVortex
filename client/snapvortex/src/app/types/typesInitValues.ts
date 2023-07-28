@@ -22,3 +22,9 @@ export let UserInitValues = {
     photos: [], 
     gender: ''
 }
+
+export let ImgCropperDataInitVals = {
+    imgChangeEvent: undefined,
+    uploadFor: '',
+    id: ''
+}

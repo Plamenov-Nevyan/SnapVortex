@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
  
 
   constructor(private profileServices: ProfileService, private modalInteractionServices: ModalInteractionsService, private imageCropperService: ImageCropperService){
+  console.log(this.user)
   }
 
   ngOnInit(): void {
