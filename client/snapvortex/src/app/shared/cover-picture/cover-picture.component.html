@@ -7,6 +7,8 @@
             <li (click)="onEdit($event)" *ngIf="profileType === 'user'">Edit Your Profile</li>
             <li (click)="onEdit($event)" *ngIf="profileType === 'group'">Edit Group Profile</li>
             <li (click)="onEdit($event)" *ngIf="profileType === 'page'">Edit Page Profile</li>
+            <li *ngIf="profileType === 'group'">Invite someone to join</li>
+            <li *ngIf="profileType === 'page'">Invite someone to follow</li>
             <li class="upload-cover-pic">
                 <input type="file" id="coverPicture" name="coverPicture" (change)="onUploadCoverPic($event)" />
                     Upload cover picture

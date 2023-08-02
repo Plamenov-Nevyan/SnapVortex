@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CreateService } from 'src/app/create-section/create.service';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { SessionStorageService } from 'src/app/session-storage.service';
 
@@ -13,7 +14,11 @@ export class CoverPictureComponent {
   @Input() picture: string = ''
   @Input() profileType: string = ''
   
-  constructor(private modalInteraction: ModalInteractionsService, private sessionServices: SessionStorageService){
+  constructor(
+    private modalInteraction: ModalInteractionsService, 
+    private sessionServices: SessionStorageService,
+    private createServices: CreateService
+    ){
 
   }
 
@@ -35,6 +40,20 @@ export class CoverPictureComponent {
   }
 
   onUploadCoverPic(event: any){
-    this.modalInteraction.onShowCropper({imgChangeEvent: event, uploadFor: 'coverPicture', id: this.sessionServices.getUserId()})
+    if(this.profileType === 'user'){
+      this.modalInteraction.onShowCropper({
+        imgChangeEvent: event, 
+        uploadFor: 'coverPicture', 
+        id: this.sessionServices.getUserId(),
+        profileType: 'user'
+      })
+    }else if(this.profileType === 'group'){
+      this.modalInteraction.onShowCropper({
+        imgChangeEvent: event, 
+        uploadFor: 'coverPicture', 
+        id: this.createServices.currentGroupDataGet._id,
+        profileType: 'group'
+      })
+    }
   }
 }

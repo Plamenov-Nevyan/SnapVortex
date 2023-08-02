@@ -29,7 +29,8 @@ export let UserInitValues = {
 export let ImgCropperDataInitVals = {
     imgChangeEvent: undefined,
     uploadFor: '',
-    id: ''
+    id: '',
+    profileType: ''
 }
 
 export let createGroupInitVals = {

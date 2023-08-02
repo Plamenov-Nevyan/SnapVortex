@@ -10,5 +10,6 @@
   export interface ImgCropperData {
     imgChangeEvent: any,
     uploadFor: string,
-    id: string | null
+    id: string | null,
+    profileType: string
   }

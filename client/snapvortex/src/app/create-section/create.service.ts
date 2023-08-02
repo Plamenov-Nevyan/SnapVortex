@@ -20,8 +20,9 @@ export class CreateService {
     GET_GROUP_DATA: '/groups/',
     CREATE_GROUP : '/groups/create/',
     EDIT_GROUP_DATA: '/groups/edit/',
+    UPDATE_GROUP_COVER_PIC: '/groups/cover-picture/',
     CREATE_PAGE: '/pages/create/',
-    GET_PAGE_DATA: '/pages/'
+    GET_PAGE_DATA: '/pages/',
   }
 
   get currentGroupDataGet(){
@@ -82,9 +83,24 @@ export class CreateService {
 
     this.http.post<Group>(`${baseUrl}${this.endpoints.EDIT_GROUP_DATA}${this.currentGroupData._id}`, editData, {headers}).subscribe({
       next: (updatedGroupData: Group) => {
-        console.log(updatedGroupData)
         this.currentGroupDataSet = updatedGroupData
       }
     })
   }
+
+  updateGroupCoverPicture(file: File){
+    const {baseUrl} = environment
+    let formData = new FormData()
+    formData.append('coverPicture', file)
+    this.http.post<string>(
+      `${baseUrl}${this.endpoints.UPDATE_GROUP_COVER_PIC}${this.currentGroupData._id}`,
+      formData
+    ).subscribe({
+      next:(newPicture) => {
+        this.currentGroupDataSet = {...this.currentGroupData, coverPicture: newPicture}
+      } 
+    })
+  }
 }
+
+

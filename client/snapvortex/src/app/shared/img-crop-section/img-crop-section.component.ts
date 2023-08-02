@@ -4,6 +4,7 @@ import { ImgCropperData } from 'src/app/types/FileProps';
 import { ImgCropperDataInitVals } from 'src/app/types/typesInitValues';
 import { ProfileService } from 'src/app/features/profile.service';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { CreateService } from 'src/app/create-section/create.service';
 
 @Component({
   selector: 'app-img-crop-section',
@@ -15,7 +16,11 @@ export class ImgCropSectionComponent {
   croppedImagePreview: string | null | undefined = ''
   file: any = ''
 
-  constructor(private profileServices: ProfileService, private modalInteractions: ModalInteractionsService) {
+  constructor(
+    private profileServices: ProfileService, 
+    private modalInteractions: ModalInteractionsService,
+    private createServices: CreateService
+    ) {
    
   }
 
@@ -49,7 +54,11 @@ export class ImgCropSectionComponent {
   }
 
   updateCoverPicture(){
-    this.profileServices.updateCoverPicture(this.file)
+    if(this.imgCropperData.profileType === 'user'){
+      this.profileServices.updateCoverPicture(this.file)
+    }else if(this.imgCropperData.profileType === 'group'){
+      this.createServices.updateGroupCoverPicture(this.file)
+    }
     this.modalInteractions.onCloseModal()
   }
 

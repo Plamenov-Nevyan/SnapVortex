@@ -11,6 +11,7 @@ import { SessionStorageService } from 'src/app/session-storage.service';
   styleUrls: ['./profile-picture.component.css']
 })
 export class ProfilePictureComponent {
+  @Input() profileType: string = ''
   @Input() picture: string = ''
   // imageChangedEvent: any = '';
   // croppedImage: any = '';
@@ -23,7 +24,19 @@ export class ProfilePictureComponent {
   }
 
   onSelectImage(event: any){
-      this.modalInteractions.onShowCropper({imgChangeEvent: event, uploadFor: 'profilePicture', id: this.sessionServices.getUserId()})
+     if(this.profileType === 'user'){
+      this.modalInteractions.onShowCropper({
+        imgChangeEvent: event, uploadFor: 'profilePicture', 
+        id: this.sessionServices.getUserId(),
+        profileType: 'user'
+      })
+     }else if(this.profileType === 'group'){
+      this.modalInteractions.onShowCropper({
+        imgChangeEvent: event, uploadFor: 'profilePicture', 
+        id: this.sessionServices.getUserId(),
+        profileType: 'group'
+      })
+     }
   }
 
   // fileChangeEvent(event: any): void {
