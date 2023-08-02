@@ -1,3 +1,5 @@
+import { Group } from "./Group"
+import { Page } from "./Page"
 import { Post } from "./Post"
 // import {FileProps} from './FileProps'
 
@@ -17,11 +19,14 @@ export interface User {
     profilePicture: string,
     coverPicture: string,
     createdPosts: Post[],
-    likedPosts: string[],
-    sharedPosts: string[],
-    commentedPosts: string[],
-    pagesOwned: string[],
-    pagesFollowed: string[],
+    likedPosts: Post[],
+    sharedPosts: Post[],
+    commentedPosts: Post[],
+    pagesOwned: Page[],
+    pagesFollowed: Page[],
+    groupsCreated: Group[],
+    groupsJoined: Group[],
+    friends: User[],
     photos: string[], 
     gender: string
 }

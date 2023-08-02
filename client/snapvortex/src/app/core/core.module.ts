@@ -10,6 +10,8 @@ import { PostsContactsHeaderComponent } from './posts-contacts-header/posts-cont
 import { PostsContactsLiItemComponent } from './posts-contacts-li-item/posts-contacts-li-item.component';
 import { RouterModule } from '@angular/router';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
+import { UserProfileComponent } from './profile-main/user-profile/user-profile.component';
+import { GroupProfileComponent } from './profile-main/group-profile/group-profile.component';
 
 
 
@@ -25,7 +27,9 @@ import { ProfileMainComponent } from './profile-main/profile-main.component';
     PostsContactsLiItemComponent,
     PostsContactsHeaderComponent,
     PostsContactsLiItemComponent,
-    ProfileMainComponent
+    ProfileMainComponent,
+    UserProfileComponent,
+    GroupProfileComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,70 @@
+<div class="wrapper">
+    <header class="edit-header">
+        <h3>Edit your Group</h3>
+    </header>
+    <div class="main">
+        <div class="options">
+            <ul class="options-list">
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="description" 
+                    [ngClass]="{'active': editFormToShow === 'description'}"
+                >
+                        Add/Edit Description
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="name"
+                    [ngClass]="{'active': editFormToShow === 'name'}"
+                    >
+                        Edit Name
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="rules"
+                    [ngClass]="{'active': editFormToShow === 'rules'}"
+                >
+                        Add/Edit Rules
+                </li>
+                <li 
+                (click)="onChooseForm($event)" 
+                id="privacy"
+                [ngClass]="{'active': editFormToShow === 'privacy'}"
+                 >
+                    Set Group Privacy
+                </li>
+            </ul>
+        </div>
+        <div class="forms">
+            <p *ngIf="editFormToShow === 'profile'">Select an option to edit on the lefthand menu.</p>
+            <app-edit-group-description 
+            *ngIf="editFormToShow === 'description'"
+            [description]="editData.description"
+            (changeDescription)="onFormDataChange($event)" 
+            />
+            <app-edit-group-name 
+            *ngIf="editFormToShow === 'name'"
+            [name] = "editData.name"
+            (changeName)="onFormDataChange($event)"
+            />
+            <app-edit-group-rules 
+            *ngIf="editFormToShow === 'rules'"
+            [rule]="editData.rule"
+            [rules]="editData.rules"
+            (addRule)="onAddRule($event)"
+            (changeRule)="onFormDataChange($event)"
+            (removeRule)="onRemoveRule($event)"
+            />
+            <app-edit-group-privacy
+            *ngIf="editFormToShow === 'privacy'"
+            [isPrivate]="editData.isPrivate"
+            [currentPrivacy]="currentPrivacy"
+            (changePrivacy)="onFormDataChange($event)"
+            />
+        </div>
+        <div class="actions">
+            <button (click)="onEdit()">Save Changes</button>
+            <button (click)="onCancelEdit()">Cancel</button>
+        </div>
+    </div>
+</div>

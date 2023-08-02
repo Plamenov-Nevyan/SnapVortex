@@ -23,3 +23,8 @@ export const getGroupProfile = async (groupId: string) => {
     let group = await GroupSchema.findById(groupId)
     return group
 }
+
+export const editGroupData = async (editData: Group, groupId: string) => {
+    let group = await GroupSchema.findByIdAndUpdate(groupId, editData, {new: true})
+    return group
+}

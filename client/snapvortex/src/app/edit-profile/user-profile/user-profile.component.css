@@ -1,0 +1,99 @@
+.wrapper {
+    background-color: #dfd4d480;
+    border-radius: .6em;
+    box-shadow: 1px 3px 24px 7px rgba(223,212,212,1);
+}
+
+.edit-header {
+    padding: 1em;
+}
+
+.edit-header h3 {
+    text-align: center;
+    font-weight: 700;
+}
+
+.main {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.options {
+    flex: 1 1 30%;
+    padding: 1em;
+    background-color: white;
+    border-radius: .5em;
+}
+
+.options .options-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.options .options-list li {
+    font-weight: 500;
+    cursor: pointer;
+    padding: .3em 1em;
+}
+
+.forms {
+    flex: 1 1 60%;
+    padding: 1em;
+    background-color: white;
+    border-radius: .5em;
+}
+
+.actions {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    align-items: center;
+    min-height: 4em;
+}
+
+.actions button:nth-child(1) {
+    flex: 0 1 30%;
+    padding: 0.3em 1em;
+    border: none;
+    outline: none;
+    background: #6495ed;
+    color: azure;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 0.5em;
+    box-shadow: 1px 3px 23px -2px rgba(100,149,237,1);
+    transition: ease-in-out .2s;
+}
+
+.actions button:nth-child(1):hover, .actions button:nth-child(2):hover {
+    color: black;
+    background-color: lightgrey;
+    box-shadow: initial;
+}
+
+.actions button:nth-child(2) {
+    flex: 0 1 30%;
+    padding: 0.3em 1em;
+    border: none;
+    outline: none;
+    background: #f0ffff;
+    color: cornflowerblue;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 0.5em;
+    box-shadow: 1px 3px 23px -2px rgba(240,255,255,1);
+    transition: ease-in-out .2s;
+}
+
+.active {
+    background-color: cornflowerblue;
+    color: azure;
+    box-shadow: 1px 3px 23px -2px rgba(100,149,237,1);
+    border-radius: 0.5em;
+}

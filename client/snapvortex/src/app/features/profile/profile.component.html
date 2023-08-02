@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="fb-profile-block">
-                <app-cover-picture *ngIf="isUser" [picture] = "user.coverPicture"/>
-                 <app-cover-picture *ngIf="isGroup" [picture] = "group.coverPicture"/>
-                <app-cover-picture *ngIf="isPage" [picture] = "page.coverPicture"/>
+                <app-cover-picture *ngIf="isUser" [picture] = "user.coverPicture" [profileType]="'user'"/>
+                 <app-cover-picture *ngIf="isGroup" [picture] = "group.coverPicture" [profileType]="'group'"/>
+                <app-cover-picture *ngIf="isPage" [picture] = "page.coverPicture" [profileType]="'page'"/>
 
                 <app-profile-picture *ngIf="isUser" [picture] = "user.profilePicture"/>
                  <app-profile-picture *ngIf="isGroup" [picture] = "group.profilePicture"/>
@@ -18,20 +18,23 @@
                 
                 <div class="fb-profile-block-menu">
                     <div class="block-menu d-flex">
-                        <ul>
+                        <ul *ngIf="isUser">
                             <li><a href="#" (click)="onSelectTab($event)" id="posts" [ngClass]="{'active': activeTab === 'posts'}">Posts</a></li>
                             <li><a href="#" (click)="onSelectTab($event)" id="friends" [ngClass]="{'active': activeTab === 'friends'}">Friends</a></li>
                             <li><a href="#" (click)="onSelectTab($event)" id="groups" [ngClass]="{'active': activeTab === 'groups'}">Groups</a></li>
                             <li><a href="#" (click)="onSelectTab($event)" id="pages" [ngClass]="{'active': activeTab === 'pages'}">Pages</a></li>
                             <li><a href="#" (click)="onSelectTab($event)" id="photos" [ngClass]="{'active': activeTab === 'photos'}">Photos</a></li>
                         </ul>
-                        <!-- <ul class="tools-list ms-auto">
-                            <li><a class="edit-profile">Edit Profile</a></li>
-                        </ul> -->
+                        <ul *ngIf="isGroup">
+                            <li><a href="#" (click)="onSelectTab($event)" id="posts" [ngClass]="{'active': activeTab === 'posts'}">Posts</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="members" [ngClass]="{'active': activeTab === 'members'}">Members</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="rules" [ngClass]="{'active': activeTab === 'rules'}">Rules</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="photos" [ngClass]="{'active': activeTab === 'photos'}">Photos</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <app-profile-main [user]="user"/> -->
+    <app-profile-main [user]="user" [page]="page" [group]="group" [profileType]="profileType"/>
 </div>

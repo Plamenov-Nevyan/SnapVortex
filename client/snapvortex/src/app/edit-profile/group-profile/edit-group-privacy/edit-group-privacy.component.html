@@ -1,0 +1,18 @@
+<div class="fields-wrapper">
+    <h5>Edit your group's privacy...</h5>
+    <form class="privacy-form">
+        <fieldset>
+            <label for="isPrivate">Should your group be private ?</label>
+            <input 
+                (change)="onFormDataChange($event)" 
+                type="checkbox" 
+                id="isPrivate" 
+                name="isPrivate"
+                class="isPrivate-input"
+                [checked]="isPrivate" 
+            />
+        </fieldset>
+        <p *ngIf="currentPrivacy">Current status: <span class="private">Private</span></p>
+        <p *ngIf="!currentPrivacy">Current status: <span class="public" >Public</span></p>
+    </form>
+</div>

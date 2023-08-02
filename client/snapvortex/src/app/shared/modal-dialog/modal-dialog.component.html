@@ -14,10 +14,24 @@
       <app-terms-and-conditions *ngIf="action === 'view-tac'" />
     </div>
 
-    <div *ngIf="action.startsWith('edit')" class="modal-content">
+    <div *ngIf="action.startsWith('edit') && action.includes('user')" class="modal-content">
       <span class="close" (click)="onCloseModal()">&times;</span>
-      <app-edit-section [editFormToShow]="action.split('-')[1]"/>
+      <app-user-profile [editFormToShow]="action.split('-')[2]"/>
     </div>
+    <div>
+
+   
+    <div *ngIf="action.startsWith('edit') && action.includes('group')" class="modal-content">
+      <span class="close" (click)="onCloseModal()">&times;</span>
+      <app-group-profile [editFormToShow]="action.split('-')[2]"/>
+    </div>
+    <div>
+
+      <div *ngIf="action.startsWith('edit') && action.includes('page')" class="modal-content">
+        <span class="close" (click)="onCloseModal()">&times;</span>
+        <!-- <app-page-profile [editFormToShow]="action.split('-')[2]"/> -->
+      </div>
+      <div>
 
     <div *ngIf="action === 'image-cropper'" class="modal-content">
       <span class="close" (click)="onCloseModal()">&times;</span>

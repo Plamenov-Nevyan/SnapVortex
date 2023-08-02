@@ -1,0 +1,25 @@
+<div class="fields-wrapper">
+    <h5>Add or remove rules for your group...</h5>
+    <form class="rule-form">
+        <fieldset>
+            <label for="rule">Name:</label>
+            <input 
+                (change)="onFormDataChange($event)" 
+                type="text" 
+                id="rule" 
+                name="rule"
+                class="rule-input"
+                value={{rule}} 
+            />
+            <button (click)="onAddRule($event)">Add rule</button>
+        </fieldset>
+    </form>
+    <div *ngIf="rules.length > 0" class="current-rules">
+        <ul>
+            <li *ngFor="let rule of rules">
+                <p>{{rule}}</p>
+                <button (click)="onRemoveRule($event)" id={{rule}}>Remove rule</button>
+            </li>
+        </ul>
+    </div>
+</div>

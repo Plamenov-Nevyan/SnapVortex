@@ -1,6 +1,9 @@
+import { Post } from "./Post"
+import { User } from "./User"
+
 export interface Page {
     owner: string,
-    followers: string[],
+    followers: User[],
     name: string,
     profilePicture: string,
     coverPicture: string,
@@ -8,7 +11,7 @@ export interface Page {
         description: string,
         address: string
     },
-    postsCreated: string[],
+    postsCreated: Post[],
     createdAt: string,
     _id: string
 }

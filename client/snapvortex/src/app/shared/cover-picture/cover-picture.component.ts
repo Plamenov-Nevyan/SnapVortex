@@ -11,6 +11,7 @@ export class CoverPictureComponent {
   showOptions:boolean = false
 
   @Input() picture: string = ''
+  @Input() profileType: string = ''
   
   constructor(private modalInteraction: ModalInteractionsService, private sessionServices: SessionStorageService){
 
@@ -23,7 +24,13 @@ export class CoverPictureComponent {
 
   onEdit(event: MouseEvent){
     event.preventDefault()
-    this.modalInteraction.onShowModal('edit-profile')
+    if(this.profileType === 'user'){
+      this.modalInteraction.onShowModal('edit-user-profile')
+    }else if(this.profileType === 'group'){
+      this.modalInteraction.onShowModal('edit-group-profile')
+    }else {
+      this.modalInteraction.onShowModal('edit-page-profile')
+    }
     this.onShowHideOptions()
   }
 

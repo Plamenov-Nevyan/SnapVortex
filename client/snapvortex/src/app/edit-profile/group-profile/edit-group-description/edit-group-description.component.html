@@ -1,0 +1,16 @@
+<div class="fields-wrapper">
+    <h5>Add a description for your group...</h5>
+    <form class="description-form">
+        <fieldset>
+            <label for="description">Description:</label>
+            <textarea 
+                (change)="onFormDataChange($event)" 
+                id="description" 
+                name="description"
+                class="description-textarea"
+                value={{description}} 
+            >
+            </textarea>
+        </fieldset>
+    </form>
+</div>

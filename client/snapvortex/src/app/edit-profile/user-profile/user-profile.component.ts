@@ -4,11 +4,11 @@ import { UserEditData } from 'src/app/types/User';
 import { ProfileService } from 'src/app/features/profile.service';
 
 @Component({
-  selector: 'app-edit-section',
-  templateUrl: './edit-section.component.html',
-  styleUrls: ['./edit-section.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class EditSectionComponent {
+export class UserProfileComponent {
   @Input() editFormToShow: string = ''
   editData = {
       description: '',

@@ -1,0 +1,70 @@
+.fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+fieldset input {
+    flex: 1 1 60%;
+    border-radius: 0.5em;
+    background: rgb(231, 229, 229);
+    border: beige;
+    align-items: center;
+    padding: .5em;
+}
+
+fieldset button {
+    flex: 0 1 30%;
+    margin-left: auto;
+    padding: 0.5em;
+    border: 0;
+    background: aquamarine;
+    border-radius: 0.5em;
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
+fieldset button:hover {
+    background-color: rgb(92, 185, 154);
+    color: azure;
+}
+
+.current-rules ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.6em;
+}
+
+.current-rules ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.3em;
+    background: silver;
+    border-radius: 0.5em;
+}
+
+.current-rules ul li p {
+    margin: 0;
+}
+
+.current-rules ul li button {
+    padding: 0 0.3em;
+    border-radius: 0.4em;
+    border: navajowhite;
+    background: indianred;
+    color: azure;
+}
+
+.current-rules ul li button:hover {
+    background-color: rgb(168, 180, 180);
+    color: indianred;
+}

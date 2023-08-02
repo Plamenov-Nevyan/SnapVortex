@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SessionStorageService } from '../session-storage.service';
 import { CreateGroupData } from '../types/CreateGroup';
-import { Group } from '../types/Group';
+import { Group, GroupEditData } from '../types/Group';
 import { groupInitValues, pageInitValues } from '../types/typesInitValues';
 import { environment } from 'src/environments/environment.development';
 import {Observable} from 'rxjs'
@@ -19,6 +19,7 @@ export class CreateService {
   endpoints = {
     GET_GROUP_DATA: '/groups/',
     CREATE_GROUP : '/groups/create/',
+    EDIT_GROUP_DATA: '/groups/edit/',
     CREATE_PAGE: '/pages/create/',
     GET_PAGE_DATA: '/pages/'
   }
@@ -75,4 +76,15 @@ export class CreateService {
     })
   }
 
+  editGroup(editData: CreateGroupData){
+    const {baseUrl} = environment
+    const headers = {'Content-Type': 'application/json'}
+
+    this.http.post<Group>(`${baseUrl}${this.endpoints.EDIT_GROUP_DATA}${this.currentGroupData._id}`, editData, {headers}).subscribe({
+      next: (updatedGroupData: Group) => {
+        console.log(updatedGroupData)
+        this.currentGroupDataSet = updatedGroupData
+      }
+    })
+  }
 }

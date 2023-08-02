@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   isPage: boolean = false
   isGroup: boolean = false
   groupOrPageId: string = ''
+  profileType: string = ''
 
   constructor(
     private profileServices: ProfileService, 
@@ -46,10 +47,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
       if(this.isUser){
         this.profileServices.getProfileData()
+        this.profileType = 'user'
       }else if(this.isGroup){
         this.createServices.getGroupData(this.groupOrPageId)
+        this.profileType = 'group'
       }else if(this.isPage){
         this.createServices.getPageData(this.groupOrPageId)
+        this.profileType = 'page'
       }
   }
 

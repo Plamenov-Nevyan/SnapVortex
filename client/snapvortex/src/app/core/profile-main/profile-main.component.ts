@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { Group } from 'src/app/types/Group';
+import { Page } from 'src/app/types/Page';
 import { User } from 'src/app/types/User';
-import { UserInitValues } from 'src/app/types/typesInitValues';
-import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { UserInitValues, groupInitValues, pageInitValues } from 'src/app/types/typesInitValues';
+
 
 @Component({
   selector: 'app-profile-main',
@@ -9,20 +11,12 @@ import { ModalInteractionsService } from 'src/app/modal-interactions.service';
   styleUrls: ['./profile-main.component.css']
 })
 export class ProfileMainComponent {
+  @Input() page: Page = pageInitValues
+  @Input() group: Group = groupInitValues
+  @Input() profileType: string = ''
   @Input() user: User = UserInitValues
 
-  constructor(private modalInteraction: ModalInteractionsService){}
+  constructor(){}
   
-  onAddDescription(){
-    this.modalInteraction.onShowModal('edit-description')
-  }
-  onAddAddress(){
-    this.modalInteraction.onShowModal('edit-address')
-  }
-  onAddWorkplace(){
-    this.modalInteraction.onShowModal('edit-workplace')
-  }
-  onAddWebsite(){
-    this.modalInteraction.onShowModal('edit-personalWebsite')
-  }
+
 }

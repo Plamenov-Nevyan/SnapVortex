@@ -19,6 +19,9 @@ export let UserInitValues = {
     commentedPosts: [],
     pagesOwned: [],
     pagesFollowed: [],
+    groupsCreated: [],
+    groupsJoined: [],
+    friends: [],
     photos: [], 
     gender: ''
 }

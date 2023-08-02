@@ -1,0 +1,16 @@
+<div class="fields-wrapper">
+    <h5>Edit your group's name...</h5>
+    <form class="name-form">
+        <fieldset>
+            <label for="name">Name:</label>
+            <input 
+                (change)="onFormDataChange($event)" 
+                type="text" 
+                id="name" 
+                name="name"
+                class="name-input"
+                value={{name}} 
+            />
+        </fieldset>
+    </form>
+</div>
