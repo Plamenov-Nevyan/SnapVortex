@@ -1,7 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { LoadedImage } from 'ngx-image-cropper';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { CreateService } from 'src/app/create-section/create.service';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { SessionStorageService } from 'src/app/session-storage.service';
@@ -14,12 +11,9 @@ import { SessionStorageService } from 'src/app/session-storage.service';
 export class ProfilePictureComponent {
   @Input() profileType: string = ''
   @Input() picture: string = ''
-  // imageChangedEvent: any = '';
-  // croppedImage: any = '';
   
   constructor(
-    private sanitizer: DomSanitizer,
-    private modalInteractions: ModalInteractionsService,
+    private modalInteraction: ModalInteractionsService,
     private sessionServices: SessionStorageService,
     private createServices: CreateService
   ) {
@@ -27,37 +21,26 @@ export class ProfilePictureComponent {
 
   onSelectImage(event: any){
      if(this.profileType === 'user'){
-      this.modalInteractions.onShowCropper({
-        imgChangeEvent: event, uploadFor: 'profilePicture', 
+      this.modalInteraction.onShowCropper({
+        imgChangeEvent: event, 
+        uploadFor: 'profilePicture', 
         id: this.sessionServices.getUserId(),
         profileType: 'user'
       })
      }else if(this.profileType === 'group'){
-      this.modalInteractions.onShowCropper({
-        imgChangeEvent: event, uploadFor: 'profilePicture', 
+      this.modalInteraction.onShowCropper({
+        imgChangeEvent: event, 
+        uploadFor: 'profilePicture', 
         id: this.createServices.currentGroupDataGet._id,
         profileType: 'group'
       })
-     }
+     }else if(this.profileType === 'page'){
+      this.modalInteraction.onShowCropper({
+        imgChangeEvent: event, 
+        uploadFor: 'profilePicture', 
+        id: this.createServices.currentPageDataGet._id,
+        profileType: 'page'
+      })
+    }
   }
-
-  // fileChangeEvent(event: any): void {
-  //     this.imageChangedEvent = event;
-  // }
-  // imageCropped(event: ImageCroppedEvent) {
-  //   if(event instanceof String){
-  //     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
-  //   }
-  //   // event.blob can be used to upload the cropped image
-  // }
-  // imageLoaded(image: LoadedImage) {
-  //     // show cropper
-  // }
-  // cropperReady() {
-  //     // cropper ready
-  // }
-  // loadImageFailed() {
-  //     // show message
-  // }
-  
 }

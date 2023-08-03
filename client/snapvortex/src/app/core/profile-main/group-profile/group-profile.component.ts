@@ -15,18 +15,7 @@ export class GroupProfileComponent {
   constructor(private modalInteraction: ModalInteractionsService) {
     
   }
-
-  
   onAddDescription(){
     this.modalInteraction.onShowModal('edit-group-description')
-  }
-  onAddAddress(){
-    this.modalInteraction.onShowModal('edit-group-address')
-  }
-  onAddWorkplace(){
-    this.modalInteraction.onShowModal('edit-group-workplace')
-  }
-  onAddWebsite(){
-    this.modalInteraction.onShowModal('edit-group-personalWebsite')
   }
 }

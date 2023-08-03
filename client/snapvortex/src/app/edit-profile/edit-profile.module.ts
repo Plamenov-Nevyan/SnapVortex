@@ -10,6 +10,10 @@ import { EditGroupDescriptionComponent } from './group-profile/edit-group-descri
 import { EditGroupNameComponent } from './group-profile/edit-group-name/edit-group-name.component';
 import { EditGroupRulesComponent } from './group-profile/edit-group-rules/edit-group-rules.component';
 import { EditGroupPrivacyComponent } from './group-profile/edit-group-privacy/edit-group-privacy.component';
+import { PageProfileComponent } from './page-profile/page-profile.component';
+import { EditPageDescriptionComponent } from './page-profile/edit-page-description/edit-page-description.component';
+import { EditPageNameComponent } from './page-profile/edit-page-name/edit-page-name.component';
+import { EditPageAddressComponent } from './page-profile/edit-page-address/edit-page-address.component';
 
 
 
@@ -25,14 +29,19 @@ import { EditGroupPrivacyComponent } from './group-profile/edit-group-privacy/ed
    EditGroupDescriptionComponent,
    EditGroupNameComponent,
    EditGroupRulesComponent,
-   EditGroupPrivacyComponent
+   EditGroupPrivacyComponent,
+   PageProfileComponent,
+   EditPageDescriptionComponent,
+   EditPageNameComponent,
+   EditPageAddressComponent
   ],
   imports: [
     CommonModule,
   ],
   exports: [
     UserProfileComponent,
-    GroupProfileComponent
+    GroupProfileComponent,
+    PageProfileComponent
   ]
 })
 export class EditProfileModule { }

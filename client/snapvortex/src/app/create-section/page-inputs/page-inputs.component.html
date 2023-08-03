@@ -23,13 +23,22 @@
 </fieldset>
 
 <fieldset>
-    <label for="address">Do you have address? (Optional - For businesses and companies)</label>
+    <p>Do you have address? (Optional - For businesses and companies)</p>
+    <label for="city">City:</label>
     <input 
         type="text" 
-        name="address" 
-        id="address" 
+        name="city" 
+        id="city" 
         (change)="onChange($event)"  
-        [value]="createDataPage.address" 
+        [value]="createDataPage.city" 
+    />
+    <label for="country">Country:</label>
+    <input 
+        type="text" 
+        name="country" 
+        id="country" 
+        (change)="onChange($event)"  
+        [value]="createDataPage.country" 
     />
 </fieldset>
 

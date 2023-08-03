@@ -66,10 +66,8 @@ export let pageInitValues = {
     name: '',
     profilePicture: '',
     coverPicture: '',
-    about: {
-        description: '',
-        address: ''
-    },
+    description: '',
+    address: '',
     postsCreated: [],
     createdAt: '',
     _id: ''

@@ -7,11 +7,18 @@ export interface Page {
     name: string,
     profilePicture: string,
     coverPicture: string,
-    about: {
-        description: string,
-        address: string
-    },
+    description: string,
+    address: string
     postsCreated: Post[],
     createdAt: string,
     _id: string
+}
+
+export interface PageEditData {
+    name: string,
+    value: string,
+}
+
+export interface PageEditDataFiltered {
+    [k:string]: string | string[]
 }

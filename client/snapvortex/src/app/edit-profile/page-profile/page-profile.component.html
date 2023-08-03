@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <header class="edit-header">
+        <h3>Edit your Page</h3>
+    </header>
+    <div class="main">
+        <div class="options">
+            <ul class="options-list">
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="description" 
+                    [ngClass]="{'active': editFormToShow === 'description'}"
+                >
+                        Add/Edit Description
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="name"
+                    [ngClass]="{'active': editFormToShow === 'name'}"
+                    >
+                        Edit Name
+                </li>
+                <li 
+                    (click)="onChooseForm($event)" 
+                    id="address"
+                    [ngClass]="{'active': editFormToShow === 'address'}"
+                >
+                        Add/Edit Address
+                </li>
+            </ul>
+        </div>
+        <div class="forms">
+            <p *ngIf="editFormToShow === 'profile'">Select an option to edit on the lefthand menu.</p>
+            <app-edit-page-description 
+            *ngIf="editFormToShow === 'description'"
+            [description]="editData.description"
+            (changeDescription)="onFormDataChange($event)" 
+            />
+            <app-edit-page-name 
+            *ngIf="editFormToShow === 'name'"
+            [name] = "editData.name"
+            (changeName)="onFormDataChange($event)"
+            />
+            <app-edit-page-address 
+            *ngIf="editFormToShow === 'address'"
+            [city]="editData.city"
+            [country]="editData.country"
+            (changeAddress)="onFormDataChange($event)"
+            />
+        </div>
+        <div class="actions">
+            <button (click)="onEdit()">Save Changes</button>
+            <button (click)="onCancelEdit()">Cancel</button>
+        </div>
+    </div>
+</div>
+

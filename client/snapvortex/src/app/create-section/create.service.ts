@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SessionStorageService } from '../session-storage.service';
 import { CreateGroupData } from '../types/CreateGroup';
-import { Group, GroupEditData } from '../types/Group';
+import { Group, GroupEditData, GroupEditDataFiltered } from '../types/Group';
 import { groupInitValues, pageInitValues } from '../types/typesInitValues';
 import { environment } from 'src/environments/environment.development';
 import {Observable} from 'rxjs'
 import { CreatePageData } from '../types/CreatePage';
-import { Page } from '../types/Page';
+import { Page, PageEditDataFiltered } from '../types/Page';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,9 @@ export class CreateService {
     UPDATE_GROUP_PROFILE_PIC: '/groups/profile-picture/',
     CREATE_PAGE: '/pages/create/',
     GET_PAGE_DATA: '/pages/',
+    EDIT_PAGE_DATA: '/pages/edit/',
+    UPDATE_PAGE_COVER_PIC: '/pages/cover-picture/',
+    UPDATE_PAGE_PROFILE_PIC: '/pages/profile-picture/'
   }
 
   get currentGroupDataGet(){
@@ -61,6 +64,46 @@ export class CreateService {
     })
   }
 
+  editPage(editData: PageEditDataFiltered){
+    const {baseUrl} = environment
+    const headers = {'Content-Type': 'application/json'}
+
+    this.http.post<Page>(`${baseUrl}${this.endpoints.EDIT_PAGE_DATA}${this.currentPageData._id}`, editData, {headers}).subscribe({
+      next: (updatedPageData: Page) => {
+        this.currentPageDataSet = updatedPageData
+      }
+    })
+  }
+
+  updatePageCoverPicture(file: File){
+    const {baseUrl} = environment
+    let formData = new FormData()
+    formData.append('coverPicture', file)
+    this.http.post<string>(
+      `${baseUrl}${this.endpoints.UPDATE_PAGE_COVER_PIC}${this.currentPageData._id}`,
+      formData
+    ).subscribe({
+      next:(newPicture) => {
+        this.currentPageDataSet = {...this.currentPageData, coverPicture: newPicture}
+      } 
+    })
+  }
+
+  updatePageProfilePicture(file: File){
+    const {baseUrl} = environment
+    let formData = new FormData()
+    formData.append('profilePicture', file)
+    this.http.post<string>(
+      `${baseUrl}${this.endpoints.UPDATE_PAGE_PROFILE_PIC}${this.currentPageData._id}`,
+      formData
+    ).subscribe({
+      next:(newPicture) => {
+        this.currentPageDataSet = {...this.currentPageData, profilePicture: newPicture}
+      } 
+    })
+  }
+
+
   onCreateGroup(groupData: CreateGroupData): Observable<Group>{
     const {baseUrl} = environment
     const headers = {'Content-Type': 'application/json'}
@@ -78,7 +121,7 @@ export class CreateService {
     })
   }
 
-  editGroup(editData: CreateGroupData){
+  editGroup(editData: GroupEditDataFiltered){
     const {baseUrl} = environment
     const headers = {'Content-Type': 'application/json'}
 

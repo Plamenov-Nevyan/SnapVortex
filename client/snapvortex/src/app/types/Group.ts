@@ -18,3 +18,6 @@ export interface GroupEditData {
     name: string,
     value: string | boolean
 }
+export interface GroupEditDataFiltered {
+    [k:string]: string | string[]
+}

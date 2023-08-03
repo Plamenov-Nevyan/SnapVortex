@@ -6,10 +6,8 @@ export interface Page {
     name: string,
     profilePicture: string,
     coverPicture: string,
-    about: {
-        description: string,
-        address: string
-    },
+    description: string,
+    address: string,
     postsCreated: Types.ObjectId[],
     createdAt: string
 }

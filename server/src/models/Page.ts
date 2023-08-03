@@ -18,10 +18,8 @@ const pageSchema = new Schema<Page>({
     name: {type: String},
     profilePicture: {type: String,  default: 'https://drive.google.com/uc?export=view&id=1sRA2JfKq8o_4Fwp96vrqMFPx9pSCGXVV'},
     coverPicture: {type: String, default: `https://drive.google.com/uc?export=view&id=1fRcB9w3mm_6MYPiIT_BlPDf4T8Mhzac7`},
-    about: {
-        description: String,
-        address: String
-    }
+    description: {type: String, default: ''},
+    address: {type: String, default: ''}
 }, {timestamps: true})
 
 const PageSchema = model<Page>('PageSchema', pageSchema)

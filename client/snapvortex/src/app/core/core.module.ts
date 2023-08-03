@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { UserProfileComponent } from './profile-main/user-profile/user-profile.component';
 import { GroupProfileComponent } from './profile-main/group-profile/group-profile.component';
+import { PageProfileComponent } from './profile-main/page-profile/page-profile.component';
 
 
 
@@ -29,7 +30,8 @@ import { GroupProfileComponent } from './profile-main/group-profile/group-profil
     PostsContactsLiItemComponent,
     ProfileMainComponent,
     UserProfileComponent,
-    GroupProfileComponent
+    GroupProfileComponent,
+    PageProfileComponent
   ],
   imports: [
     CommonModule,

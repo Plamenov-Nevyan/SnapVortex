@@ -54,6 +54,13 @@ export class CoverPictureComponent {
         id: this.createServices.currentGroupDataGet._id,
         profileType: 'group'
       })
+    }else if(this.profileType === 'page'){
+      this.modalInteraction.onShowCropper({
+        imgChangeEvent: event, 
+        uploadFor: 'coverPicture', 
+        id: this.createServices.currentPageDataGet._id,
+        profileType: 'page'
+      })
     }
   }
 }

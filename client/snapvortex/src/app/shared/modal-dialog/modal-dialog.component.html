@@ -29,7 +29,7 @@
 
       <div *ngIf="action.startsWith('edit') && action.includes('page')" class="modal-content">
         <span class="close" (click)="onCloseModal()">&times;</span>
-        <!-- <app-page-profile [editFormToShow]="action.split('-')[2]"/> -->
+        <app-page-profile [editFormToShow]="action.split('-')[2]"/>
       </div>
       <div>
 

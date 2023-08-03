@@ -1,0 +1,11 @@
+textarea {
+    width: 100%;
+    min-height: 10em;
+    border-radius: .5em;
+}
+
+textarea:focus {
+    border: none;
+    background-color: lightgray;
+    outline: none;
+}

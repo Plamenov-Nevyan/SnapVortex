@@ -15,7 +15,9 @@ export class PageInputsComponent {
   createDataPage: CreatePageData = {
     name : '',
     description: '',
-    address: ''
+    address: '',
+    city: '',
+    country: ''
   }
 
   constructor(
@@ -32,6 +34,11 @@ onChange(event: Event){
 
   onCreate(event: MouseEvent){
     event.preventDefault()
+    if(this.createDataPage.city && this.createDataPage.country){
+      this.createDataPage.address = this.createDataPage.city + ', ' + this.createDataPage.country 
+    }
+    Reflect.deleteProperty(this.createDataPage, 'city')
+    Reflect.deleteProperty(this.createDataPage, 'country')
     this.createServices.onCreatePage(this.createDataPage).subscribe({
       next: (newPage: Page) => {
         this.modalInteractions.onCloseModal()

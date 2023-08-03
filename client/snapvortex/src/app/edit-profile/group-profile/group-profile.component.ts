@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { CreateService } from 'src/app/create-section/create.service';
-import { GroupEditData } from 'src/app/types/Group';
+import { GroupEditData, GroupEditDataFiltered } from 'src/app/types/Group';
 import { CreateGroupData } from 'src/app/types/CreateGroup';
 
 @Component({
@@ -20,8 +20,6 @@ export class GroupProfileComponent {
       isPrivate: this.currentPrivacy ,
       name: ''
   }
-
-  previewImageUrl: string = ''
 
   constructor(private modalInteraction: ModalInteractionsService, private createServices: CreateService){
 
@@ -45,7 +43,10 @@ export class GroupProfileComponent {
   }
   onEdit(){
     Reflect.deleteProperty(this.editData, 'rule')
-    this.createServices.editGroup(this.editData)
+    let filteredData: GroupEditDataFiltered = Object.fromEntries(Object.entries(this.editData).filter(
+      ([_, v]) => v != '' || v.length > 0 || typeof v === 'boolean')
+      )
+    this.createServices.editGroup(filteredData)
 
     this.modalInteraction.onCloseModal()
   }
