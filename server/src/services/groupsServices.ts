@@ -1,41 +1,41 @@
 import { ObjectId, Types } from "mongoose"
-import GroupSchema from "../models/Group"
-import UserSchema from "../models/User"
-import { Group } from "../types/Group"
-import { group } from "console"
+import Group from "../models/Group"
+import User from "../models/User"
+import { GroupInterface } from "../types/Group"
 import { FileProps } from "../types/FileProps"
 const uploadFile = require('../utils/googleUpload')
 
-export const createGroup = async (groupData: Group, userId:unknown) => {
+export const createGroup = async (groupData: GroupInterface, userId:unknown) => {
     let [isGroupExisting, user] = await Promise.all([
-        GroupSchema.findOne({name: groupData.name}),
-        UserSchema.findById(userId)
+        Group.findOne({name: groupData.name}),
+        User.findById(userId)
     ])
     if(!isGroupExisting){
         groupData.owner = userId as Types.ObjectId
-       let newGroup = await GroupSchema.create({...groupData})
+       let newGroup = await Group.create({...groupData})
        user?.groupsCreated.push(newGroup._id)
        await user?.save()
+       newGroup = await newGroup.populate('members')
        return newGroup
     }
 }
 
 export const getGroupProfile = async (groupId: string) => {
-    let group = await GroupSchema.findById(groupId)
+    let group = await Group.findById(groupId)
     return group
 }
 
-export const editGroupData = async (editData: Group, groupId: string) => {
-    let group = await GroupSchema.findByIdAndUpdate(groupId, editData, {new: true})
+export const editGroupData = async (editData: GroupInterface, groupId: string) => {
+    let group = await Group.findByIdAndUpdate(groupId, editData, {new: true})
     return group
 }
 
 export const updateCoverPicture = async (picture: FileProps | undefined, groupId: string) => {
     let [resp, group] = await Promise.all([
         await uploadFile(picture),
-        await GroupSchema.findById(groupId)
+        await Group.findById(groupId)
     ])
-    if(group instanceof GroupSchema){
+    if(group instanceof Group){
         group.coverPicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
         await group.save()
         return group.coverPicture
@@ -45,9 +45,9 @@ export const updateCoverPicture = async (picture: FileProps | undefined, groupId
 export const updateProfilePicture = async (picture: FileProps | undefined, groupId: string) => {
     let [resp, group] = await Promise.all([
         await uploadFile(picture),
-        await GroupSchema.findById(groupId)
+        await Group.findById(groupId)
     ])
-    if(group instanceof GroupSchema){
+    if(group instanceof Group){
         group.profilePicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
         await group.save()
         return group.profilePicture

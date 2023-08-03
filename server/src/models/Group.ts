@@ -1,7 +1,7 @@
 import mongoose, {Schema, model, Types, ObjectId} from "mongoose"
-import { Group } from "../types/Group"
+import { GroupInterface } from "../types/Group"
 
-const groupSchema = new Schema<Group>({
+const groupSchema = new Schema<GroupInterface>({
     owner: {type : mongoose.Schema.Types.ObjectId, ref: 'User'},
     members: [
         {
@@ -23,5 +23,5 @@ const groupSchema = new Schema<Group>({
     name: {type: String},
 }, {timestamps: true})
 
-const GroupSchema = model<Group>('GroupSchema', groupSchema)
-export default GroupSchema
+const Group = model<GroupInterface>('Group', groupSchema)
+export default Group

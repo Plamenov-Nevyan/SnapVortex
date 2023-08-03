@@ -11,6 +11,7 @@ import { SessionStorageService } from 'src/app/session-storage.service';
 export class ProfilePictureComponent {
   @Input() profileType: string = ''
   @Input() picture: string = ''
+  @Input() isOwner: boolean = false
   
   constructor(
     private modalInteraction: ModalInteractionsService,

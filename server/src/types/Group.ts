@@ -1,6 +1,6 @@
 import { ObjectId, Types } from "mongoose";
 
-export interface Group {
+export interface GroupInterface {
     owner: Types.ObjectId,
     description: string,
     isPrivate: boolean,

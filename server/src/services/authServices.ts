@@ -1,19 +1,19 @@
-import UserSchema from "../models/User"
 import bcryptjs from "bcryptjs"
 import jsonwebtoken from "jsonwebtoken"
-import { User, UserAboutData } from "../types/User"
+import { UserInterface, UserAboutData } from "../types/User"
 import env from "../config/envConfig"
 import { Types } from "mongoose"
 import { FileProps } from "../types/FileProps"
 const uploadFile = require('../utils/googleUpload')
+import User from "../models/User"
 
-export const registerUser = async (userData : User) => {
+export const registerUser = async (userData : UserInterface) => {
    let isUserExisting = await checkIfUserExists(userData.email)
    if(!isUserExisting){
     try{
     let hash = await bcryptjs.hash(userData.password, env.SALT_ROUNDS)
     userData.password = hash
-    return UserSchema.create({
+    return User.create({
         ...userData
     })
      }catch(err){
@@ -24,10 +24,10 @@ export const registerUser = async (userData : User) => {
    }
 }
 
-const checkIfUserExists = (email:string) => UserSchema.exists({email}).exec() 
+const checkIfUserExists = (email:string) => User.exists({email}).exec() 
 
-export const loginUser = async (userData: User) => {
-    let user = await UserSchema.findOne({email: userData.email})
+export const loginUser = async (userData: UserInterface) => {
+    let user = await User.findOne({email: userData.email})
     console.log(user)
     if(user){
         let isPassCorrect = await bcryptjs.compare(userData.password, user?.password)
@@ -66,8 +66,17 @@ export const createSession = (
 }
 
 
-export const getProfileData = async (id: string): Promise<User> => {
-    let user = await UserSchema.findById(id).select('-password')
+export const getProfileData = async (id: string): Promise<UserInterface> => {
+    let user = await User.findById(id).select('-password')
+    .populate('groupsJoined')
+    .populate('groupsCreated')
+    .populate('pagesFollowed')
+    .populate('pagesOwned')
+    .populate('friends')
+    .exec()
+    // .populate('sharedPosts')
+    // .populate('createdPosts')
+    console.log(user)
 if(user){
     return user
 }else {
@@ -82,8 +91,8 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
     .then(async (resp: any) => {      
         try{      // to fix type later ! 
         userData.personalWebsite.preview = `https://drive.google.com/uc?export=view&id=${resp.data.id}`
-        let user = await UserSchema.findOne({_id: id})
-        if(user instanceof UserSchema){
+        let user = await User.findOne({_id: id})
+        if(user instanceof User){
             console.log(user)
             user.set({
                 'about': {
@@ -103,8 +112,8 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
     })
     .catch((err: Error) =>{ throw err})
  } else {
-    let user = await UserSchema.findOne({_id: id})
-    if(user instanceof UserSchema){
+    let user = await User.findOne({_id: id})
+    if(user instanceof User){
         user.set({
             'about': {
                 description: userData.description ? userData.description : user.about.description,
@@ -119,15 +128,16 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
         await user.save()
     }
  }
- return await UserSchema.findById(id).select('-password')
+ return await User.findById(id)
+ .select("-password -groupsJoined -groupsCreated -pagesFollowed -pagesOwned -friends -postsCreated")
 }
 
 export const updateProfilePicture = async (picture:FileProps | undefined, id:string) => {
     let [resp, user] = await Promise.all([
         await uploadFile(picture),
-        await UserSchema.findById(id)
+        await User.findById(id)
     ])
-    if(user instanceof UserSchema){
+    if(user instanceof User){
         user.profilePicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
         await user.save()
         return user.profilePicture
@@ -137,9 +147,9 @@ export const updateProfilePicture = async (picture:FileProps | undefined, id:str
 export const updateCoverPicture = async (picture:FileProps | undefined, id:string) => {
     let [resp, user] = await Promise.all([
         await uploadFile(picture),
-        await UserSchema.findById(id)
+        await User.findById(id)
     ])
-    if(user instanceof UserSchema){
+    if(user instanceof User){
         user.coverPicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
         await user.save()
         return user.coverPicture

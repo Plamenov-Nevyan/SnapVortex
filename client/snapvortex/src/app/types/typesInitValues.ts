@@ -23,7 +23,8 @@ export let UserInitValues = {
     groupsJoined: [],
     friends: [],
     photos: [], 
-    gender: ''
+    gender: '',
+    _id: ''
 }
 
 export let ImgCropperDataInitVals = {

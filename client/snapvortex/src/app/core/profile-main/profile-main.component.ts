@@ -15,6 +15,10 @@ export class ProfileMainComponent {
   @Input() group: Group = groupInitValues
   @Input() profileType: string = ''
   @Input() user: User = UserInitValues
+  @Input() activeTab:string = ''
+  @Input() isOwner:boolean = false
+  @Input() isMember:boolean = false
+  @Input() isFollower:boolean = false
 
   constructor(){}
   

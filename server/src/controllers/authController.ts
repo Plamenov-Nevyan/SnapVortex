@@ -5,7 +5,7 @@ const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 import {registerUser,loginUser, createSession, getProfileData, updateProfileData, updateProfilePicture, updateCoverPicture} from "../services/authServices" 
 import { Session } from "../types/Session"
-import { User } from "../types/User"
+import { UserInterface } from "../types/User"
 
 router.post('/register', (req: Request, res: Response) => {
   registerUser(req.body)
@@ -28,7 +28,7 @@ router.post('/login', (req: Request, res: Response) => {
 
 router.get('/profile/:id', (req: Request, res: Response) => {
   getProfileData(req.params.id)
-  .then((profileData: User) => res.json(profileData))
+  .then((profileData: UserInterface) => res.json(profileData))
   .catch(err => res.status(err.status || 400).json({message: err.message}))
 })
 

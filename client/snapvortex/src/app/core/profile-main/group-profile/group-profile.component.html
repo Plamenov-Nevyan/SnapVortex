@@ -1,6 +1,7 @@
 <div class="profile-main">    
-    <div class="left-part">
+    <div class="left-part" *ngIf="!group.isPrivate || isOwner || isMember">
         <div class="about">
+            <button *ngIf="!isOwner && !isMember">Send request to join</button>
             <div *ngIf="group.description">
                 <div class="info-header">
                     <h5>
@@ -12,21 +13,28 @@
                     {{group.description}}
                 </p>
             </div>
-            <div *ngIf="!group.description" class="about-unavailable">
+            <div *ngIf="!group.description && isOwner" class="about-unavailable">
                 <p>Your group have no description added yet</p>
                 <button class="edit-btn" (click)="onAddDescription()">Add Description</button>
             </div>
         </div>
-        <div *ngIf="group.members.length > 0" class="profile-info">
-            <ul *ngFor="let member of group.members" class="info-list">
-                    {{member.username}}
-            </ul>
-        </div>
     </div>
-    <div class="right-part">
-        <app-create-post-header [profilePicture]="user.profilePicture"/>
-        <div class="wall">
-            <app-post-article />
+    <div class="right-part" *ngIf="!group.isPrivate || isOwner || isMember">
+        <div *ngIf="activeTab === 'posts'">
+            <app-create-post-header [profilePicture]="user.profilePicture" *ngIf="isOwner || isMember"/>
+            <div class="wall">
+                <app-post-article />
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'members'">
+            <div class="wall">
+                <app-profile-items-list [items]="group.members" [itemsType]="'members'"/>
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'rules'">
+            <div class="wall">
+                <app-profile-items-list [items]="group.rules" [itemsType]="'rules'"/>
+            </div>
         </div>
     </div>
 </div>

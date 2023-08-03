@@ -13,6 +13,7 @@ export class CoverPictureComponent {
 
   @Input() picture: string = ''
   @Input() profileType: string = ''
+  @Input() isOwner: boolean = false
   
   constructor(
     private modalInteraction: ModalInteractionsService, 

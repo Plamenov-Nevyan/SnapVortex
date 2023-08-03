@@ -4,8 +4,6 @@ import multer, {Multer} from "multer"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 import { createPage, getPageProfile, editPageData, updateCoverPicture, updateProfilePicture } from "../services/pagesServices"
-import { Session } from "../types/Session"
-import { User } from "../types/User"
 
 router.post('/create/:userId', (req: Request, res:Response) => {
     createPage(req.body, req.params.userId)

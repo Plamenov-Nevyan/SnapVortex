@@ -12,6 +12,9 @@ import { UserInitValues, groupInitValues } from 'src/app/types/typesInitValues';
 export class GroupProfileComponent {
  @Input() group: Group = groupInitValues
  @Input() user: User = UserInitValues
+ @Input() activeTab: string = ''
+ @Input()isOwner:boolean = false
+ @Input()isMember:boolean = false
   constructor(private modalInteraction: ModalInteractionsService) {
     
   }

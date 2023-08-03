@@ -1,6 +1,6 @@
 import { ObjectId, Types } from "mongoose";
 
-export interface Page {
+export interface PageInterface {
     owner: Types.ObjectId,
     followers: Types.ObjectId[],
     name: string,

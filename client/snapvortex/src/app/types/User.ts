@@ -28,7 +28,8 @@ export interface User {
     groupsJoined: Group[],
     friends: User[],
     photos: string[], 
-    gender: string
+    gender: string,
+    _id: string
 }
 
 export interface UserRegisterData {

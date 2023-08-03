@@ -1,3 +1,22 @@
-<app-user-profile *ngIf="profileType === 'user'" [user]="user"/>
-<app-group-profile *ngIf="profileType === 'group'" [group]="group" [user]="user" />
-<app-page-profile *ngIf="profileType === 'page'" [page]="page" [user]="user" />
+<app-user-profile 
+    *ngIf="profileType === 'user'" 
+    [user]="user" 
+    [activeTab]="activeTab" 
+    [isOwner]="isOwner"
+/>
+<app-group-profile
+    *ngIf="profileType === 'group'" 
+    [group]="group"
+    [user]="user" 
+    [activeTab]="activeTab" 
+    [isOwner]="isOwner"
+    [isMember]="isMember"
+  />
+<app-page-profile 
+    *ngIf="profileType === 'page'"
+    [page]="page" 
+    [user]="user"
+    [activeTab]="activeTab"
+    [isOwner]="isOwner"
+    [isFollower]="isFollower"
+  />

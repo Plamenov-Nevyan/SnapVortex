@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Group } from 'src/app/types/Group';
 import { CreateService } from 'src/app/create-section/create.service';
 import { Page } from 'src/app/types/Page';
+import { SessionStorageService } from 'src/app/session-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,13 +25,18 @@ export class ProfileComponent implements OnInit {
   isGroup: boolean = false
   groupOrPageId: string = ''
   profileType: string = ''
+  isOwner: boolean = false
+  isMember:boolean = false
+  isFollower: boolean = false
+
 
   constructor(
     private profileServices: ProfileService, 
     private modalInteractionServices: ModalInteractionsService, 
     private imageCropperService: ImageCropperService,
     private activeRoute: ActivatedRoute,
-    private createServices: CreateService
+    private createServices: CreateService,
+    private sessionServices: SessionStorageService
     ){
     this.activeRoute.params.subscribe({
       next: () => {
@@ -48,12 +54,17 @@ export class ProfileComponent implements OnInit {
       if(this.isUser){
         this.profileServices.getProfileData()
         this.profileType = 'user'
+        this.isOwner = this.user._id === this.sessionServices.getUserId()
       }else if(this.isGroup){
         this.createServices.getGroupData(this.groupOrPageId)
         this.profileType = 'group'
+        this.isOwner = this.group.owner === this.sessionServices.getUserId()
+        this.isMember = this.group.members.some(member => member._id === this.sessionServices.getUserId())
       }else if(this.isPage){
         this.createServices.getPageData(this.groupOrPageId)
         this.profileType = 'page'
+        this.isOwner = this.page.owner === this.sessionServices.getUserId()
+        this.isFollower = this.page.followers.some(follower => follower._id === this.sessionServices.getUserId())
       }
   }
 

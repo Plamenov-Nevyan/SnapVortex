@@ -1,7 +1,7 @@
 import mongoose, {Schema, model, Types, ObjectId, mongo} from "mongoose"
-import { Page } from "../types/Page"
+import { PageInterface } from "../types/Page"
 
-const pageSchema = new Schema<Page>({
+const pageSchema = new Schema<PageInterface>({
     owner: {type : mongoose.Schema.Types.ObjectId, ref: 'User'},
     followers: [
         {
@@ -22,5 +22,5 @@ const pageSchema = new Schema<Page>({
     address: {type: String, default: ''}
 }, {timestamps: true})
 
-const PageSchema = model<Page>('PageSchema', pageSchema)
-export default PageSchema
+const Page = model<PageInterface>('Page', pageSchema)
+export default Page

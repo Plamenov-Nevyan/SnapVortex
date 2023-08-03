@@ -1,0 +1,59 @@
+<div class="wrapper">
+    <div class="stats">
+        <h3 *ngIf="itemsType === 'users'">Friends</h3>
+        <h3 *ngIf="itemsType === 'members'">Group Members</h3>
+        <h3 *ngIf="itemsType === 'followers'">Page Followers</h3>
+        <h3 *ngIf="itemsType === 'groups'">Groups Joined</h3>
+        <h3 *ngIf="itemsType === 'pages'">Pages Followed</h3>
+        <h3>{{items.length}}</h3>
+    </div>
+    <ul class="items-list" *ngIf="items.length > 0">
+        <li *ngFor="let item of items">
+            <div *ngIf="itemsType === 'groups'">
+                <a [routerLink]="'/group/' + item._id">
+                    <app-item-card [name]="item.name" [coverPicture]="item.coverPicture" [profilePicture]="item.profilePicture" />
+                </a>
+            </div>
+            <div *ngIf="itemsType === 'pages'">
+                <a [routerLink]="'/page/' + item._id">
+                    <app-item-card [name]="item.name" [coverPicture]="item.coverPicture" [profilePicture]="item.profilePicture" />
+                </a>
+            </div>
+            <div *ngIf="itemsType === 'users' || itemsType === 'members' || itemsType === 'followers'">
+                <a [routerLink]="'/profile/' + item._id">
+                    <app-item-card [name]="item.name" [coverPicture]="item.coverPicture" [profilePicture]="item.profilePicture" />
+                </a>
+            </div>
+            <p *ngIf="itemsType === 'rules'">
+                {{items.indexOf(item)}}. {{item}}
+            </p>
+        </li>
+    </ul>
+    <div class="line-divider">
+
+    </div>
+    <div *ngIf="itemsType !== 'users'" class="stats">
+        <h3 *ngIf="itemsType === 'groups'">Groups Created</h3>
+        <h3 *ngIf="itemsType === 'pages'">Pages Created</h3>
+        <h3>{{createdItems.length}}</h3>
+    </div>
+    <ul class="items-list" *ngIf="createdItems.length > 0">
+        <li  *ngFor="let item of createdItems">
+            <div *ngIf="itemsType === 'groups'">
+                <a [routerLink]="'/group/' + item._id">
+                    <app-item-card [name]="item.name" [coverPicture]="item.coverPicture" [profilePicture]="item.profilePicture" />
+                </a>
+            </div>
+            <div *ngIf="itemsType === 'pages'">
+                <a [routerLink]="'/page/' + item._id">
+                    <app-item-card [name]="item.name" [coverPicture]="item.coverPicture" [profilePicture]="item.profilePicture" />
+                </a>
+            </div>
+            <div *ngIf="itemsType === 'users'">
+                <a [routerLink]="'/profile/' + item._id">
+                    <app-item-card [name]="item.name" [coverPicture]="item.coverPicture" [profilePicture]="item.profilePicture" />
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,8 +1,8 @@
-import {Schema, model, Types, ObjectId} from "mongoose"
-import { Post } from "../types/Post"
+import mongoose, {Schema, model, Types, ObjectId} from "mongoose"
+import { PostInterface } from "../types/Post"
 
-const postSchema = new Schema<Post>({
-    author: {type : Types.ObjectId, ref: 'User'},
+const postSchema = new Schema<PostInterface>({
+    author: {type : mongoose.Schema.Types.ObjectId, ref: 'User'},
     likes: [
         {
             type : Types.ObjectId,
@@ -23,11 +23,12 @@ const postSchema = new Schema<Post>({
     ],
     text: {type: String},
     image: {type: String},
-    belongsToPage: {type: Types.ObjectId, ref: 'Page'}
+    belongsToPage: {type: mongoose.Schema.Types.ObjectId, ref: 'Page'},
+    belongsToGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group'}
 }, {timestamps: true})
 
-const PostSchema = model<Post>('PostSchema', postSchema)
-export default PostSchema
+const Post = model<PostInterface>('Post', postSchema)
+export default Post
 
 // author: string,
 // likes: string[],

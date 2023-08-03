@@ -14,6 +14,9 @@ import { EditProfileModule } from '../edit-profile/edit-profile.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImgCropSectionComponent } from './img-crop-section/img-crop-section.component';
 import { CreateSectionModule } from '../create-section/create-section.module';
+import { ProfileItemsListComponent } from './profile-items-list/profile-items-list.component';
+import { RouterModule } from '@angular/router';
+import { ItemCardComponent } from './profile-items-list/item-card/item-card.component';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { CreateSectionModule } from '../create-section/create-section.module';
     PostArticleComponent,
     ProfilePictureComponent,
     CoverPictureComponent,
-    ImgCropSectionComponent
+    ImgCropSectionComponent,
+    ProfileItemsListComponent,
+    ItemCardComponent
     
   ],
   imports: [
@@ -35,7 +40,8 @@ import { CreateSectionModule } from '../create-section/create-section.module';
     AuthFormsModule,
     EditProfileModule,
     ImageCropperModule,
-    CreateSectionModule
+    CreateSectionModule,
+    RouterModule
   ],
   exports: [
     CreatePostHeaderComponent,
@@ -47,7 +53,8 @@ import { CreateSectionModule } from '../create-section/create-section.module';
     CreatePostHeaderComponent,
     PostArticleComponent,
     CoverPictureComponent,
-    ProfilePictureComponent
+    ProfilePictureComponent,
+    ProfileItemsListComponent
   ]
 })
 export class SharedModule { }

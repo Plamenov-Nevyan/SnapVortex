@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
+import { SessionStorageService } from 'src/app/session-storage.service';
 import { User } from 'src/app/types/User';
 import { UserInitValues } from 'src/app/types/typesInitValues';
 
@@ -9,10 +10,11 @@ import { UserInitValues } from 'src/app/types/typesInitValues';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
-
+  @Input() activeTab: string = ''
   @Input() user: User = UserInitValues
+  @Input()isOwner:boolean = false
   
-  constructor(private modalInteraction: ModalInteractionsService) {
+  constructor(private modalInteraction: ModalInteractionsService, private sessionServices: SessionStorageService) {
 
   }
 

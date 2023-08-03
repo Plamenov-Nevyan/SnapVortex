@@ -1,7 +1,7 @@
 import { ObjectId, Types } from "mongoose"
-import { Post } from "./Post"
+import { PostInterface } from "./Post"
 
-export interface User {
+export interface UserInterface {
     username: string,
     email: string,
     password: string,
@@ -16,7 +16,7 @@ export interface User {
     },
     profilePicture: string,
     coverPicture: string,
-    createdPosts: Post[],
+    createdPosts: PostInterface[],
     likedPosts: Types.ObjectId[],
     sharedPosts: Types.ObjectId[],
     commentedPosts: Types.ObjectId[],

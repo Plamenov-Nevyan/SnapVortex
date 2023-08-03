@@ -14,7 +14,7 @@
             </div>
             <div *ngIf="!user.about.description" class="about-unavailable">
                 <p>You have no description added yet</p>
-                <button class="edit-btn" (click)="onAddDescription()">Add Description</button>
+                <button *ngIf="isOwner" class="edit-btn" (click)="onAddDescription()">Add Description</button>
             </div>
         </div>
         <div class="profile-info">
@@ -29,7 +29,7 @@
                         </div>
                         <p>{{user.about.address}}</p>
                     </div>
-                    <div *ngIf="!user.about.address" class="address-unavailable">
+                    <div *ngIf="!user.about.address && isOwner" class="address-unavailable">
                         <p>You have no address added yet</p>
                         <button class="edit-btn" (click)="onAddAddress()">Add address</button>
                     </div>
@@ -44,7 +44,7 @@
                         </div>
                         <p>{{user.about.workplace}}</p>
                     </div>
-                    <div *ngIf="!user.about.workplace" class="workplace-unavailable">
+                    <div *ngIf="!user.about.workplace && isOwner" class="workplace-unavailable">
                         <p>You have no workplace added yet</p>
                         <button class="edit-btn" (click)="onAddWorkplace()">Add workplace</button>
                     </div>
@@ -62,7 +62,7 @@
                             <img *ngIf="user.about.personalWebsite.preview" src={{user.about.personalWebsite.preview}} />
                         </div>
                     </div>
-                    <div *ngIf="!user.about.personalWebsite.url" class="personalWebsite-unavailable">
+                    <div *ngIf="!user.about.personalWebsite.url && isOwner" class="personalWebsite-unavailable">
                         <p>You have no personal website added yet</p>
                         <button class="edit-btn" (click)="onAddWebsite()">Add personal website</button>
                     </div>
@@ -71,9 +71,26 @@
         </div>
     </div>
     <div class="right-part">
-        <app-create-post-header [profilePicture]="user.profilePicture"/>
-        <div class="wall">
-            <app-post-article />
+        <div *ngIf="activeTab === 'posts'">
+            <app-create-post-header *ngIf="isOwner" [profilePicture]="user.profilePicture"/>
+            <div class="wall">
+                <app-post-article />
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'friends'">
+            <div class="wall">
+                <app-profile-items-list [items]="user.friends" [itemsType]="'users'"/>
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'groups'">
+            <div class="wall">
+                <app-profile-items-list [items]="user.groupsJoined" [createdItems]="user.groupsCreated" [itemsType]="'groups'"/>
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'pages'">
+            <div class="wall">
+                 <app-profile-items-list [items]="user.pagesFollowed" [createdItems]="user.pagesOwned" [itemsType]="'pages'"/>
+            </div>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 import mongoose, {Schema, model, Types, ObjectId} from "mongoose"
-import { User } from "../types/User"
+import { UserInterface } from "../types/User"
 
-const userSchema = new Schema<User>({
+const userSchema = new Schema<UserInterface>({
     username: {type : String, required : true},
     email: {type : String, required : true},
     password: {type : String, required : true},
@@ -82,8 +82,8 @@ const userSchema = new Schema<User>({
     photos: []
 }, {timestamps: true})
 
-const UserSchema = model<User>('UserSchema', userSchema)
-export default UserSchema
+const User = model<UserInterface>('User', userSchema)
+export default User
 
 // createdPosts: Post[],
 // likedPosts: ObjectId[],

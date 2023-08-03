@@ -1,6 +1,6 @@
 import { Types, ObjectId } from "mongoose";
 
-export interface Comment {
+export interface CommentInterface {
     author: ObjectId,
     likes: ObjectId[],
     replies: ObjectId[],
@@ -10,7 +10,7 @@ export interface Comment {
     createdAt: string,
 }
 
-export interface Reply {
+export interface ReplyInterface {
     author: ObjectId,
     likes: ObjectId[],
     belongsToComment: ObjectId,

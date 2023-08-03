@@ -4,8 +4,6 @@ import multer, {Multer} from "multer"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 import { createGroup, getGroupProfile, editGroupData, updateCoverPicture, updateProfilePicture } from "../services/groupsServices"
-import { Session } from "../types/Session"
-import { User } from "../types/User"
 
 router.post('/create/:userId', (req: Request, res:Response) => {
     createGroup(req.body, req.params.userId)

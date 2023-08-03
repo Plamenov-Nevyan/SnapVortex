@@ -12,6 +12,9 @@ import { UserInitValues, pageInitValues } from 'src/app/types/typesInitValues';
 export class PageProfileComponent {
  @Input() page: Page = pageInitValues
  @Input() user: User = UserInitValues
+ @Input() activeTab: string = ''
+ @Input()isOwner:boolean = false
+ @Input()isFollower:boolean = false
   constructor(private modalInteraction: ModalInteractionsService) {
     
   }

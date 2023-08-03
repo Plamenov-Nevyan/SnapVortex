@@ -1,7 +1,7 @@
 import {Schema, model, Types, ObjectId} from "mongoose"
-import { Reply } from "../types/CommentAndReply"
+import { ReplyInterface } from "../types/CommentAndReply"
 
-const replySchema = new Schema<Reply>({
+const replySchema = new Schema<ReplyInterface>({
     text: {type: String},
     image: {type: String},
     author: {type : Types.ObjectId, ref: 'User'},
@@ -14,5 +14,5 @@ const replySchema = new Schema<Reply>({
     belongsToComment: {type: Types.ObjectId, ref: 'Comment'}
 }, {timestamps: true})
 
-const ReplySchema = model<Reply>('ReplySchema', replySchema)
-export default ReplySchema
+const Reply = model<ReplyInterface>('Reply', replySchema)
+export default Reply

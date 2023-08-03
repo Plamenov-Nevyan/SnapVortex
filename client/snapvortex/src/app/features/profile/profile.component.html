@@ -2,13 +2,42 @@
     <div class="row">
         <div class="col-md-12">
             <div class="fb-profile-block">
-                <app-cover-picture *ngIf="isUser" [picture] = "user.coverPicture" [profileType]="'user'"/>
-                 <app-cover-picture *ngIf="isGroup" [picture] = "group.coverPicture" [profileType]="'group'"/>
-                <app-cover-picture *ngIf="isPage" [picture] = "page.coverPicture" [profileType]="'page'"/>
+                <app-cover-picture
+                 *ngIf="isUser" 
+                 [picture] = "user.coverPicture" 
+                 [profileType]="'user'"
+                 [isOwner]="isOwner"
+                 />
+                 <app-cover-picture
+                  *ngIf="isGroup" 
+                  [picture] = "group.coverPicture"
+                  [profileType]="'group'"
+                  [isOwner]="isOwner"
+                  />
+                <app-cover-picture 
+                *ngIf="isPage"
+                 [picture] = "page.coverPicture"
+                  [profileType]="'page'"
+                  [isOwner]="isOwner"
+                  />
 
-                <app-profile-picture *ngIf="isUser" [picture] = "user.profilePicture" [profileType]="'user'"/>
-                 <app-profile-picture *ngIf="isGroup" [picture] = "group.profilePicture" [profileType]="'group'"/>
-                <app-profile-picture *ngIf="isPage" [picture] = "page.profilePicture" [profileType]="'page'"/>
+                <app-profile-picture 
+                *ngIf="isUser" [picture] = "user.profilePicture" 
+                [profileType]="'user'"
+                [isOwner]="isOwner"
+                />
+                 <app-profile-picture 
+                 *ngIf="isGroup" 
+                 [picture] = "group.profilePicture" 
+                 [profileType]="'group'"
+                 [isOwner]="isOwner"
+                 />
+                <app-profile-picture 
+                *ngIf="isPage" 
+                [picture] = "page.profilePicture"
+                 [profileType]="'page'"
+                 [isOwner]="isOwner"
+                 />
 
                 <div class="profile-name bg-light">
                     <h2 *ngIf="isUser" class="text-dark">{{user.username}}</h2>
@@ -31,10 +60,24 @@
                             <li><a href="#" (click)="onSelectTab($event)" id="rules" [ngClass]="{'active': activeTab === 'rules'}">Rules</a></li>
                             <li><a href="#" (click)="onSelectTab($event)" id="photos" [ngClass]="{'active': activeTab === 'photos'}">Photos</a></li>
                         </ul>
+                        <ul *ngIf="isPage">
+                            <li><a href="#" (click)="onSelectTab($event)" id="posts" [ngClass]="{'active': activeTab === 'posts'}">Posts</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="followers" [ngClass]="{'active': activeTab === 'followers'}">Followers</a></li>
+                            <li><a href="#" (click)="onSelectTab($event)" id="photos" [ngClass]="{'active': activeTab === 'photos'}">Photos</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <app-profile-main [user]="user" [page]="page" [group]="group" [profileType]="profileType"/>
+    <app-profile-main 
+    [user]="user" 
+    [page]="page" 
+    [group]="group" 
+    [profileType]="profileType" 
+    [activeTab]="activeTab"
+    [isOwner]="isOwner"
+    [isMember]="isMember"
+    [isFollower]="isFollower"
+    />
 </div>
