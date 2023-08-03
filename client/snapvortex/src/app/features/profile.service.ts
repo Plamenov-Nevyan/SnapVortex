@@ -65,7 +65,6 @@ export class ProfileService {
       formData
     ).subscribe({
       next:(newPicture) => {
-        console.log(newPicture)
         this.profileDataSet = {...this.currentProfileData, profilePicture: newPicture}
       } 
     })

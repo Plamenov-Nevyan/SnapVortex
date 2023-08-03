@@ -21,6 +21,7 @@ export class CreateService {
     CREATE_GROUP : '/groups/create/',
     EDIT_GROUP_DATA: '/groups/edit/',
     UPDATE_GROUP_COVER_PIC: '/groups/cover-picture/',
+    UPDATE_GROUP_PROFILE_PIC: '/groups/profile-picture/',
     CREATE_PAGE: '/pages/create/',
     GET_PAGE_DATA: '/pages/',
   }
@@ -101,6 +102,21 @@ export class CreateService {
       } 
     })
   }
+
+  updateGroupProfilePicture(file: File){
+    const {baseUrl} = environment
+    let formData = new FormData()
+    formData.append('profilePicture', file)
+    this.http.post<string>(
+      `${baseUrl}${this.endpoints.UPDATE_GROUP_PROFILE_PIC}${this.currentGroupData._id}`,
+      formData
+    ).subscribe({
+      next:(newPicture) => {
+        this.currentGroupDataSet = {...this.currentGroupData, profilePicture: newPicture}
+      } 
+    })
+  }
+
 }
 
 

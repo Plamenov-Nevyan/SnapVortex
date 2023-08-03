@@ -3,7 +3,7 @@ const router = express.Router()
 import multer, {Multer} from "multer"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
-import { createGroup, getGroupProfile, editGroupData, updateCoverPicture } from "../services/groupsServices"
+import { createGroup, getGroupProfile, editGroupData, updateCoverPicture, updateProfilePicture } from "../services/groupsServices"
 import { Session } from "../types/Session"
 import { User } from "../types/User"
 
@@ -26,6 +26,15 @@ router.post('/cover-picture/:groupId', upload.single('coverPicture'), async (req
     try{
         let coverPicture = await updateCoverPicture(req.file, req.params.groupId)
         res.json(coverPicture)
+      }catch(err){
+        console.log(err)
+      }
+})
+
+router.post('/profile-picture/:groupId', upload.single('profilePicture'), async (req: Request, res:Response) => {
+    try{
+        let profilePicture = await updateProfilePicture(req.file, req.params.groupId)
+        res.json(profilePicture)
       }catch(err){
         console.log(err)
       }

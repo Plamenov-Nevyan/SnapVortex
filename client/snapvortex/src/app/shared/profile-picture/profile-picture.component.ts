@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadedImage } from 'ngx-image-cropper';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { CreateService } from 'src/app/create-section/create.service';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { SessionStorageService } from 'src/app/session-storage.service';
 
@@ -19,7 +20,8 @@ export class ProfilePictureComponent {
   constructor(
     private sanitizer: DomSanitizer,
     private modalInteractions: ModalInteractionsService,
-    private sessionServices: SessionStorageService
+    private sessionServices: SessionStorageService,
+    private createServices: CreateService
   ) {
   }
 
@@ -33,7 +35,7 @@ export class ProfilePictureComponent {
      }else if(this.profileType === 'group'){
       this.modalInteractions.onShowCropper({
         imgChangeEvent: event, uploadFor: 'profilePicture', 
-        id: this.sessionServices.getUserId(),
+        id: this.createServices.currentGroupDataGet._id,
         profileType: 'group'
       })
      }

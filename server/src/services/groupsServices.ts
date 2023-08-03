@@ -41,3 +41,15 @@ export const updateCoverPicture = async (picture: FileProps | undefined, groupId
         return group.coverPicture
     }
 }
+
+export const updateProfilePicture = async (picture: FileProps | undefined, groupId: string) => {
+    let [resp, group] = await Promise.all([
+        await uploadFile(picture),
+        await GroupSchema.findById(groupId)
+    ])
+    if(group instanceof GroupSchema){
+        group.profilePicture =  `https://drive.google.com/uc?export=view&id=${resp.data.id}`
+        await group.save()
+        return group.profilePicture
+    }
+}

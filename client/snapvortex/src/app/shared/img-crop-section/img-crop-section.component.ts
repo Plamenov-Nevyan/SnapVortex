@@ -49,7 +49,11 @@ export class ImgCropSectionComponent {
   }
 
   updateProfilePicture(){
-    this.profileServices.updateProfilePicture(this.file)
+    if(this.imgCropperData.profileType === 'user'){
+      this.profileServices.updateProfilePicture(this.file)
+    }else if(this.imgCropperData.profileType === 'group'){
+      this.createServices.updateGroupProfilePicture(this.file)
+    }
     this.modalInteractions.onCloseModal()
   }
 
