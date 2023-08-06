@@ -73,10 +73,9 @@ export const getProfileData = async (id: string): Promise<UserInterface> => {
     .populate('pagesFollowed')
     .populate('pagesOwned')
     .populate('friends')
+    .populate('sharedPosts')
+    .populate('createdPosts')
     .exec()
-    // .populate('sharedPosts')
-    // .populate('createdPosts')
-    console.log(user)
 if(user){
     return user
 }else {

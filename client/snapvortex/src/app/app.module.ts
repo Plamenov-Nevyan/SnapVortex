@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { SelectedFeelingDirective } from './shared/feeling-emojis/selected-feeling.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SelectedFeelingDirective
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     SharedModule,
     ImageCropperModule
   ],
-  providers: [],
+  providers: [SelectedFeelingDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,4 +7,15 @@ export interface Post {
     image: string,
     belongsToPage: string 
     createdAt: string,
+    _id: string
+}
+
+export interface PostCreateData {
+    text?: string
+    image?: File | null
+    feeling?: string
+}
+
+export interface PostEditData {
+    text: string
 }

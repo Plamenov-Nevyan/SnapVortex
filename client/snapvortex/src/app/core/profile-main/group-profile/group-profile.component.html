@@ -23,7 +23,7 @@
         <div *ngIf="activeTab === 'posts'">
             <app-create-post-header [profilePicture]="user.profilePicture" *ngIf="isOwner || isMember"/>
             <div class="wall">
-                <app-post-article />
+                <app-post-article *ngFor="let postArticle of postsData" [postArticle]="postArticle" />
             </div>
         </div>
         <div *ngIf="activeTab === 'members'">

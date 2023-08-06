@@ -1,0 +1,51 @@
+.feeling-emojis {
+    display: block;
+    width: 100%;
+}
+
+.feeling-emojis ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+}
+
+.feeling-emojis ul li {
+    flex: 0 1 30%;
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    padding: .3em;
+}
+
+.feeling-emojis ul li svg {
+    max-width: 3em;
+    max-height: 3em;
+}
+
+.feeling-emojis ul li:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
+    border-radius: .6em;
+}
+
+.text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text h5 {
+    padding: 0.2em;
+    border-radius: 50%;
+    cursor: pointer;
+    flex: 0 1 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text h5:hover {
+    background-color: antiquewhite;
+}

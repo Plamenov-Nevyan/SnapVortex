@@ -73,3 +73,15 @@ export let pageInitValues = {
     createdAt: '',
     _id: ''
 }
+
+export let postInitValues = {
+    author: '',
+    likes: [],
+    comments: [],
+    shares: [],
+    text: '',
+    image: '',
+    belongsToPage: '', 
+    createdAt: '',
+    _id: ''
+}

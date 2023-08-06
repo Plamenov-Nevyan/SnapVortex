@@ -20,7 +20,7 @@ export class CoverPictureComponent {
     private sessionServices: SessionStorageService,
     private createServices: CreateService
     ){
-
+      console.log(this.isOwner)
   }
 
   onShowHideOptions(){

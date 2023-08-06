@@ -3,6 +3,8 @@ import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { Page } from 'src/app/types/Page';
 import { User } from 'src/app/types/User';
 import { UserInitValues, pageInitValues } from 'src/app/types/typesInitValues';
+import { PostsService } from 'src/app/features/posts/posts.service';
+import { Post } from 'src/app/types/Post';
 
 @Component({
   selector: 'app-page-profile',
@@ -15,7 +17,8 @@ export class PageProfileComponent {
  @Input() activeTab: string = ''
  @Input()isOwner:boolean = false
  @Input()isFollower:boolean = false
-  constructor(private modalInteraction: ModalInteractionsService) {
+ get postsData(): Post[] { return this.postServices.currentPostsDataGet}
+  constructor(private modalInteraction: ModalInteractionsService, private postServices: PostsService) {
     
   }
   onAddDescription(){

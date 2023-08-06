@@ -11,3 +11,13 @@ export interface PostInterface {
     belongsToGroup: Types.ObjectId,
     createdAt: string,
 }
+
+export interface PostCreateData {
+    text?: string
+    image?: string
+    feeling?: string
+}
+
+export interface PostEditData {
+    text: string
+}

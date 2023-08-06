@@ -36,7 +36,7 @@
         <div *ngIf="activeTab === 'posts'">
             <app-create-post-header [profilePicture]="page.profilePicture"/>
             <div class="wall">
-                <app-post-article />
+                <app-post-article *ngFor="let postArticle of postsData" [postArticle]="postArticle" />
             </div>
         </div>
         <div *ngIf="activeTab === 'followers'">

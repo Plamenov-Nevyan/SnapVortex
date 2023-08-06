@@ -13,7 +13,7 @@ export class ModalDialogComponent {
  @Input() action: string = ''
  @Input() imgCropperData: ImgCropperData = ImgCropperDataInitVals
  
-  constructor(private modalInteraction:ModalInteractionsService){console.log(this.action) }
+  constructor(private modalInteraction:ModalInteractionsService){}
 
   onCloseModal(){
     this.modalInteraction.onCloseModal()

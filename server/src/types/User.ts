@@ -16,7 +16,7 @@ export interface UserInterface {
     },
     profilePicture: string,
     coverPicture: string,
-    createdPosts: PostInterface[],
+    createdPosts: Types.ObjectId[],
     likedPosts: Types.ObjectId[],
     sharedPosts: Types.ObjectId[],
     commentedPosts: Types.ObjectId[],

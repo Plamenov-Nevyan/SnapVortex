@@ -17,6 +17,9 @@ import { CreateSectionModule } from '../create-section/create-section.module';
 import { ProfileItemsListComponent } from './profile-items-list/profile-items-list.component';
 import { RouterModule } from '@angular/router';
 import { ItemCardComponent } from './profile-items-list/item-card/item-card.component';
+import { FeelingEmojisComponent } from './feeling-emojis/feeling-emojis.component';
+import { ConfirmationsComponent } from './confirmations/confirmations.component';
+import { DeleteConfirmationComponent } from './confirmations/delete-confirmation/delete-confirmation.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { ItemCardComponent } from './profile-items-list/item-card/item-card.comp
     CoverPictureComponent,
     ImgCropSectionComponent,
     ProfileItemsListComponent,
-    ItemCardComponent
+    ItemCardComponent,
+    FeelingEmojisComponent,
+    ConfirmationsComponent,
+    DeleteConfirmationComponent,
     
   ],
   imports: [

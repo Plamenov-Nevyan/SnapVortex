@@ -31,7 +31,7 @@ import { PageProfileComponent } from './profile-main/page-profile/page-profile.c
     ProfileMainComponent,
     UserProfileComponent,
     GroupProfileComponent,
-    PageProfileComponent
+    PageProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +46,7 @@ import { PageProfileComponent } from './profile-main/page-profile/page-profile.c
     PostsWallComponent,
     PostsContactsHeaderComponent,
     PostsContactsLiItemComponent,
-    ProfileMainComponent
+    ProfileMainComponent,
   ]
 })
 export class CoreModule { }

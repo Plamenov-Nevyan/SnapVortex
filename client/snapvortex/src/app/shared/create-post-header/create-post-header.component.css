@@ -81,3 +81,54 @@
 .feelings svg {
     fill: orange;
 }
+
+.feeling-container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: aliceblue;
+    border-radius: 0.5em;
+    box-shadow: 3px -1px 27px 0px rgba(194,194,194,1)
+}
+
+.emoji {
+    max-width: 3em;
+    max-height: 3em;
+}
+
+.feeling-container h5 {
+    background-color: antiquewhite;
+    padding: .5em;
+    border-radius: 50%;
+}
+
+.photo-preview {
+    display: flex;
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-preview img {
+    width: 100%;
+    height: auto;
+}
+
+.photo-preview h5 {
+    margin-left: auto;
+}
+
+.photo-preview h5 {
+    padding: 0.2em;
+    border-radius: 50%;
+    cursor: pointer;
+    flex: 0 1 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-preview h5:hover {
+    background-color: antiquewhite;
+}
