@@ -26,6 +26,7 @@ postEditData = {
   ngOnInit(): void {
     this.isOwner = this.user.pagesOwned.some(page => page.postsCreated.includes(this.postArticle)) || 
     this.user.createdPosts.some(post => post._id === this.postArticle._id)
+    // this.isOwner = this.postArticle.author
   }
 
   onInitEdit(){

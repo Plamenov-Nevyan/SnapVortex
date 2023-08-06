@@ -1,20 +1,22 @@
 import {Schema, model, Types, ObjectId} from "mongoose"
 import { CommentInterface } from "../types/CommentAndReply"
+import Reply from "./Reply"
+import User from "./User"
 
 const commentSchema = new Schema<CommentInterface>({
     text: {type: String},
     image: {type: String},
-    author: {type : Types.ObjectId, ref: 'User'},
+    author: {type : Types.ObjectId, ref: User},
     likes: [
         {
             type : Types.ObjectId,
-            ref: 'User'
+            ref: User
         }
     ],
     replies: [
         {
             type : Types.ObjectId,
-            ref: 'Reply'
+            ref: Reply
         }
     ],
     belongsToPost: {type: Types.ObjectId, ref: 'Post'}

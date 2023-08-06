@@ -75,7 +75,7 @@ const userSchema = new Schema<UserInterface>({
     ],
     friends: [
         {
-            type: Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
     ],

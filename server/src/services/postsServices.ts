@@ -3,32 +3,43 @@ import Post from "../models/Post"
 import User from "../models/User"
 import Page from "../models/Page"
 import { GroupInterface } from "../types/Group"
+import { UserInterface } from "../types/User"
 import { FileProps } from "../types/FileProps"
 import { PostCreateData, PostEditData, PostInterface } from "../types/Post"
 import Group from "../models/Group"
 const uploadFile = require('../utils/googleUpload')
 
 export const getPostsData = async (userId: string) => {
+  try{
     let user = await User.findById(userId)
     if(user instanceof User){
-        if(
-            user.createdPosts.length > 0 || 
-            user.likedPosts.length > 0 || 
-            user.sharedPosts.length > 0 ||
-            user.commentedPosts.length > 0
-        ){
-            await Promise.all([
-                user.populate('createdPosts'),
-                user.populate('likedPosts'),
-                user.populate('sharedPosts')
-            ])
-            return [...user.createdPosts, ...user.likedPosts, ...user.sharedPosts].sort(
-                (a: any, b: any) => a.createdAt - b.createdAt
-                )
-        }else {
-            return []
-        }
+        let posts = await Post.find({
+            $or:[
+                {author: user._id}, 
+                {author: {$in: user.friends}},
+                {belongsToPage : {$in : user.pagesFollowed}}, 
+                {belongsToPage: {$in: user.pagesOwned}},
+                {belongsToGroup: {$in: user.groupsJoined}}, 
+                {belongsToGroup: {$in: user.groupsCreated}}
+            ]
+        }).sort({createdAt: 1})
+        .populate('author')
+        .populate('belongsToPage')
+        .populate('belongsToGroup')
+        .populate('shares')
+        .populate('likes')
+        .populate({
+            path : 'comments',
+            populate: {
+                path: 'replies',
+                model: 'Reply'
+            }
+        })
+        return posts
     }
+  }catch(err){
+    console.log(err)
+  }
 } 
 
 export const createPost = async (
@@ -56,14 +67,20 @@ export const createPost = async (
                 author: poster._id
             })
             poster.createdPosts.push(newPost._id)
-            await poster.save()
+            await Promise.all([
+                poster.save(),
+                newPost.populate('author')
+            ])
         }else if(poster instanceof Page){
             newPost = await Post.create({
                 ...createData,
                 belongsToPage: poster._id
             })
             poster.postsCreated.push(newPost._id)
-            await poster.save()
+            await Promise.all([
+                poster.save(),
+                newPost.populate('belongsToPage')
+            ])
         }else if(group instanceof Group && poster instanceof User) {
             newPost = await Post.create({
                 ...createData,
@@ -73,7 +90,8 @@ export const createPost = async (
             poster.createdPosts.push(newPost._id)
             await Promise.all([
                 poster.save(),
-                group.save()
+                group.save(),
+                newPost.populate('belongsToGroup')
             ])
         }
         return newPost
