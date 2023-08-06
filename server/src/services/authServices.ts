@@ -28,7 +28,6 @@ const checkIfUserExists = (email:string) => User.exists({email}).exec()
 
 export const loginUser = async (userData: UserInterface) => {
     let user = await User.findOne({email: userData.email})
-    console.log(user)
     if(user){
         let isPassCorrect = await bcryptjs.compare(userData.password, user?.password)
         if(isPassCorrect){
@@ -77,6 +76,7 @@ export const getProfileData = async (id: string): Promise<UserInterface> => {
     .populate('createdPosts')
     .exec()
 if(user){
+    console.log(user)
     return user
 }else {
     throw {message: `We weren/'t able to retrieve your profile..`}

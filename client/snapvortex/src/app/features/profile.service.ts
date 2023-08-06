@@ -34,8 +34,8 @@ export class ProfileService {
     const {baseUrl} = environment
      this.http.get<User>(`${baseUrl}${this.endpoints.GET_PROFILE_DATA}${this.sessionServices.getUserId()}`).subscribe({
       next: (data) => {
-        console.log(data)
-        this.profileDataSet = data}
+        this.profileDataSet = data
+      }
     })
   }
 

@@ -1,7 +1,0 @@
-.groups-list{
-    list-style-type: none;
-}
-
-.groups-list li p {
-    font-size: clamp(1rem, 1.2rem, 1.8rem);
-} 

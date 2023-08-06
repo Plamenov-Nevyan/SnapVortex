@@ -19,7 +19,7 @@ export class PageInputsComponent {
     city: '',
     country: ''
   }
-
+ get currentPageData(): Page{return this.createServices.currentPageDataGet}
   constructor(
     private createServices: CreateService, 
     private modalInteractions:ModalInteractionsService, 
@@ -39,11 +39,8 @@ onChange(event: Event){
     }
     Reflect.deleteProperty(this.createDataPage, 'city')
     Reflect.deleteProperty(this.createDataPage, 'country')
-    this.createServices.onCreatePage(this.createDataPage).subscribe({
-      next: (newPage: Page) => {
-        this.modalInteractions.onCloseModal()
-        this.router.navigate(['/page', `${newPage._id}`])
-      }
-    })
+    this.createServices.onCreatePage(this.createDataPage)
+    this.modalInteractions.onCloseModal()
+    this.router.navigate(['/page', `${this.currentPageData._id}`])
   }
 }

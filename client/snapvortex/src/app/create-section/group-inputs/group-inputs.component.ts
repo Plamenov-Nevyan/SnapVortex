@@ -19,6 +19,8 @@ export class GroupInputsComponent {
     rule:'',
     rules: []
   }
+
+  get currentGroupData(): Group {return this.createServices.currentGroupDataGet}
   constructor(private createServices: CreateService, private modalInteractions:ModalInteractionsService, private router: Router){}
 
   onChange(event: Event){
@@ -49,11 +51,8 @@ export class GroupInputsComponent {
   onCreate(event: MouseEvent){
     event.preventDefault()
     Reflect.deleteProperty(this.createDataGroup, 'rule')
-    this.createServices.onCreateGroup(this.createDataGroup).subscribe({
-      next: (newGroup: Group) => {
-        this.modalInteractions.onCloseModal()
-        this.router.navigate(['/group', `${newGroup._id}`])
-      }
-    })
+    this.createServices.onCreateGroup(this.createDataGroup)
+    this.modalInteractions.onCloseModal()
+    this.router.navigate(['/group', `${this.currentGroupData._id}`])
   }
 }

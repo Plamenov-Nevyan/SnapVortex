@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import { CreatePostHeaderComponent } from './create-post-header/create-post-header.component';
-import { ShortcutsListComponent } from './shortcuts-list/shortcuts-list.component';
 import { LoginRegisterFormsComponent } from './login-register-forms/login-register-forms.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { ShortcutsListItemComponent } from './shortcuts-list-item/shortcuts-list-item.component';
@@ -27,7 +26,6 @@ import { DeleteConfirmationComponent } from './confirmations/delete-confirmation
     CreatePostHeaderComponent,
     LoginRegisterFormsComponent,
     ModalDialogComponent,
-    ShortcutsListComponent,
     TermsAndConditionsComponent,
     ShortcutsListItemComponent,
     PostArticleComponent,
@@ -53,7 +51,6 @@ import { DeleteConfirmationComponent } from './confirmations/delete-confirmation
     CreatePostHeaderComponent,
     LoginRegisterFormsComponent,
     ModalDialogComponent,
-    ShortcutsListComponent,
     TermsAndConditionsComponent,
     ShortcutsListItemComponent,
     CreatePostHeaderComponent,

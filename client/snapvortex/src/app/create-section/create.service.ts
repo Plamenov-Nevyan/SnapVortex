@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment.development';
 import {Observable} from 'rxjs'
 import { CreatePageData } from '../types/CreatePage';
 import { Page, PageEditDataFiltered } from '../types/Page';
+import { ProfileService } from '../features/profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -45,13 +46,18 @@ export class CreateService {
     this.currentPageData = val
   }
 
-  constructor( private http: HttpClient, private sessionServices: SessionStorageService) { }
+  constructor( private http: HttpClient, private sessionServices: SessionStorageService, private profileServices: ProfileService ) { }
 
   onCreatePage(pageData: CreatePageData){
     const {baseUrl} = environment
     const headers = {'Content-Type': 'application/json'}
 
-    return this.http.post<Page>(`${baseUrl}${this.endpoints.CREATE_PAGE}${this.userId}`, pageData, {headers})
+   this.http.post<Page>(`${baseUrl}${this.endpoints.CREATE_PAGE}${this.userId}`, pageData, {headers}).subscribe({
+    next: (newPage) => {
+      this.currentPageDataSet = newPage
+      this.profileServices.getProfileData()
+    }
+   })
   }
 
   getPageData(pageId: string){
@@ -71,6 +77,7 @@ export class CreateService {
     this.http.post<Page>(`${baseUrl}${this.endpoints.EDIT_PAGE_DATA}${this.currentPageData._id}`, editData, {headers}).subscribe({
       next: (updatedPageData: Page) => {
         this.currentPageDataSet = updatedPageData
+        this.profileServices.getProfileData()
       }
     })
   }
@@ -85,6 +92,7 @@ export class CreateService {
     ).subscribe({
       next:(newPicture) => {
         this.currentPageDataSet = {...this.currentPageData, coverPicture: newPicture}
+        this.profileServices.getProfileData()
       } 
     })
   }
@@ -99,16 +107,22 @@ export class CreateService {
     ).subscribe({
       next:(newPicture) => {
         this.currentPageDataSet = {...this.currentPageData, profilePicture: newPicture}
+        this.profileServices.getProfileData()
       } 
     })
   }
 
 
-  onCreateGroup(groupData: CreateGroupData): Observable<Group>{
+  onCreateGroup(groupData: CreateGroupData){
     const {baseUrl} = environment
     const headers = {'Content-Type': 'application/json'}
 
-    return this.http.post<Group>(`${baseUrl}${this.endpoints.CREATE_GROUP}${this.userId}`, groupData, {headers})
+   this.http.post<Group>(`${baseUrl}${this.endpoints.CREATE_GROUP}${this.userId}`, groupData, {headers}).subscribe({
+    next: (newGroup) => {
+      this.currentGroupDataSet = newGroup
+      this.profileServices.getProfileData()
+    }
+   })
   } 
 
   getGroupData(groupId: string) {
@@ -117,6 +131,7 @@ export class CreateService {
     this.http.get<Group>(`${baseUrl}${this.endpoints.GET_GROUP_DATA}${groupId}`).subscribe({
       next: (group: Group) => {
         this.currentGroupDataSet = group
+        this.profileServices.getProfileData()
       }
     })
   }
@@ -128,6 +143,7 @@ export class CreateService {
     this.http.post<Group>(`${baseUrl}${this.endpoints.EDIT_GROUP_DATA}${this.currentGroupData._id}`, editData, {headers}).subscribe({
       next: (updatedGroupData: Group) => {
         this.currentGroupDataSet = updatedGroupData
+        this.profileServices.getProfileData()
       }
     })
   }
@@ -142,6 +158,7 @@ export class CreateService {
     ).subscribe({
       next:(newPicture) => {
         this.currentGroupDataSet = {...this.currentGroupData, coverPicture: newPicture}
+        this.profileServices.getProfileData()
       } 
     })
   }
@@ -156,6 +173,7 @@ export class CreateService {
     ).subscribe({
       next:(newPicture) => {
         this.currentGroupDataSet = {...this.currentGroupData, profilePicture: newPicture}
+        this.profileServices.getProfileData()
       } 
     })
   }

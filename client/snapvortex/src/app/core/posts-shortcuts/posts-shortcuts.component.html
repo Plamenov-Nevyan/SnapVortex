@@ -6,9 +6,46 @@
     <div class="line-divider">
     
     </div>
-    <app-shortcuts-list />
+    <h4>My Groups</h4>
+
+    <div class="groups">
+        <ul *ngIf="profileData.groupsCreated.length > 0" class="groups-list">
+            <li *ngFor="let group of profileData.groupsCreated">
+                <a [routerLink]="'/group/' + group._id">
+                    <img src={{group.profilePicture}}>
+                    <p>{{group.name}}</p>
+                </a>
+            </li>
+        </ul>
+        <ul *ngIf="profileData.groupsJoined.length > 0" class="groups-list">
+            <li *ngFor="let group of profileData.groupsJoined">
+                <a [routerLink]="'/group/' + group._id">
+                    <img src={{group.profilePicture}}>
+                    <p>{{group.name}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="line-divider">
     
     </div>
-    <app-shortcuts-list />
+    <h4>My Pages</h4>
+    <div class="pages">
+        <ul *ngIf="profileData.pagesOwned.length > 0" class="pages-list">
+            <li *ngFor="let page of profileData.pagesOwned">
+                <a [routerLink]="'/page/' + page._id">
+                    <img src={{page.profilePicture}}>
+                    <p>{{page.name}}</p>
+                </a>
+            </li>
+        </ul>
+        <ul *ngIf="profileData.pagesFollowed.length > 0" class="pages-list">
+            <li *ngFor="let page of profileData.pagesFollowed">
+                <a [routerLink]="'/page/' + page._id">
+                    <img src={{page.profilePicture}}>
+                    <p>{{page.name}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
 </section>

@@ -18,6 +18,7 @@
     padding: .6em;
     cursor: pointer;
     border-radius: .6em;
+    align-items: center;
 }
 
 .shortcuts .back-home p {
@@ -25,10 +26,40 @@
 } 
 
 .shortcuts .back-home svg {
-    width: 1.8em;
+    max-width: 2em;
+    max-height: 2em;
     fill: slateblue;
 }
 
 .shortcuts .back-home:hover{
     background-color: lightgray;
+}
+
+.groups-list, .pages-list{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 0;
+}
+
+.groups-list li, .pages-list li{
+    padding: .6em;
+    border-radius: .6em;
+}
+
+.groups-list li:hover, .pages-list li:hover {
+    background-color: #dcdbdb;
+}
+
+.groups-list li a, .pages-list li a {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.groups-list li a img, .pages-list li a img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 50%;
 }
