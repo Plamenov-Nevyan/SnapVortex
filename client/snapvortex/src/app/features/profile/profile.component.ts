@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { User } from 'src/app/types/User';
-import { UserInitValues } from 'src/app/types/typesInitValues';
+import { UserInitValues, groupInitValues } from 'src/app/types/typesInitValues';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { ImageCropperService } from 'src/app/image-cropper.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,9 +15,9 @@ import { SessionStorageService } from 'src/app/session-storage.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  get user(): User{ return this.profileServices.profileDataGet}
+  user: User = UserInitValues
   otherUserProfile: User = UserInitValues
-  get group(): Group {return this.createServices.currentGroupDataGet}
+  group: Group = groupInitValues
   activeTab: string = 'posts'
   isUser: boolean = false
   isGroup: boolean = false
@@ -52,19 +52,29 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
       if(this.isUser){
-        this.profileServices.getProfileData()
         this.profileType = 'user'
-        this.isOwner = this.user._id === this.userFromRouteId
+        this.isOwner = this.sessionServices.getUserId() === this.userFromRouteId
         if(!this.isOwner){
           this.profileServices.getProfileDataForOtherUser(this.userFromRouteId).subscribe({
             next: (profileData) => this.otherUserProfile = {...profileData}
           })
+        }else {
+          this.profileServices.currentProfileData$.subscribe({
+            next: (profileData) => {
+              this.user = {...profileData}
+            }
+          })
         }
       }else if(this.isGroup){
         this.createServices.getGroupData(this.groupId)
-        this.profileType = 'group'
-        this.isOwner = this.group.owner._id === this.sessionServices.getUserId()
-        this.isMember = this.group.members.some(member => member._id === this.user._id)
+        this.createServices.currentGroupData$.subscribe({
+          next: (groupData) => {
+            this.group = {...groupData}
+            this.profileType = 'group'
+            this.isOwner = this.group.owner._id === this.sessionServices.getUserId()
+            this.isMember = this.group.members.some(member => member._id === this.user._id)
+          }
+        })
       }
   }
 

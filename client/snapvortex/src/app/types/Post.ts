@@ -2,7 +2,7 @@ import { User } from "./User"
 
 export interface Post {
     author: User,
-    likes: string[],
+    likes: User[],
     comments: string[],
     shares: string[],
     text: string,

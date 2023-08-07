@@ -6,6 +6,7 @@ import { Group, GroupEditData, GroupEditDataFiltered } from '../types/Group';
 import { groupInitValues} from '../types/typesInitValues';
 import { environment } from 'src/environments/environment.development';
 import { ProfileService } from '../features/profile.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,10 @@ export class CreateService {
 
   set currentGroupDataSet(val: Group){
     this.currentGroupData = val
+    this.currentGroupData$.next(this.currentGroupData)
   }
+
+  currentGroupData$ = new BehaviorSubject(this.currentGroupData)
 
   constructor( private http: HttpClient, private sessionServices: SessionStorageService, private profileServices: ProfileService ) { }
 

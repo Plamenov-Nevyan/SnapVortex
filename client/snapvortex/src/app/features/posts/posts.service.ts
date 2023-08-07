@@ -35,7 +35,9 @@ export class PostsService {
     CREATE_POST: '/posts/create/',
     GET_POSTS_DATA: '/posts/',
     EDIT_POST: '/posts/edit/',
-    DELETE_POST: '/posts/delete/'
+    DELETE_POST: '/posts/delete/',
+    LIKE_POST: '/posts/like/',
+    DISLIKE_POST: '/posts/dislike/'
   }
 
   constructor(private http: HttpClient, private sessionServices: SessionStorageService) { }
@@ -98,8 +100,30 @@ export class PostsService {
     this.http.delete(`${baseUrl}${this.endpoints.DELETE_POST}${postId}`).subscribe({
       next: () => {
         let postToDelete = this.currentPostsData.find(post => post._id === postId) as Post
-        console.log(postToDelete)
         this.currentPostsData.splice(this.currentPostsData.indexOf(postToDelete), 1)
+      }
+    })
+  }
+
+  likePost(postId:string){
+    const {baseUrl} = environment
+    this.http.get<Post[]>(`${baseUrl}${this.endpoints.LIKE_POST}${postId}/${this.sessionServices.getUserId()}`).subscribe({
+      next: (likedPost) => {
+        let postToLike = this.currentPostsData.find(post => post._id === postId) as Post
+        this.currentPostsData.splice(this.currentPostsData.indexOf(postToLike), 1)
+        this.currentPostsDataSet = likedPost
+      }
+    })
+  }
+
+  dislikePost(postId:string){
+    const {baseUrl} = environment
+    this.http.get<Post[]>(`${baseUrl}${this.endpoints.DISLIKE_POST}${postId}/${this.sessionServices.getUserId()}`).subscribe({
+      next: (dislikedPost) => {
+        console.log(dislikedPost)
+        let postToDislike = this.currentPostsData.find(post => post._id === postId) as Post
+        this.currentPostsData.splice(this.currentPostsData.indexOf(postToDislike), 1)
+        this.currentPostsDataSet = dislikedPost
       }
     })
   }

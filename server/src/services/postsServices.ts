@@ -119,3 +119,61 @@ export const editPost = async (editData: PostEditData, postId: string) => {
 export const deletePost = async (postId: string) => {
     await Post.findByIdAndDelete(postId)
 }
+
+export const likePost = async (postId: string, userId: string) => {
+    let [user, post] = await Promise.all([
+        User.findById(userId),
+        Post.findById(postId)
+    ])
+
+   if(user instanceof User && post instanceof Post){
+        post.likes.push(user._id)
+        user.likedPosts.push(post._id)
+        await Promise.all([
+            user.save(),
+            post.save()
+        ])
+        return Post.findById(postId)
+        .populate('author')
+        .populate('belongsToGroup')
+        .populate('shares')
+        .populate('likes')
+        .populate({
+            path : 'comments',
+            populate: {
+                path: 'replies',
+                model: 'Reply'
+        }
+    })
+   }
+}
+
+export const dislikePost = async (postId: string, userId: string) => {
+    let [user, post] = await Promise.all([
+        User.findById(userId),
+        Post.findById(postId)
+    ])
+
+   if(user instanceof User && post instanceof Post){
+        let userIndex = post.likes.indexOf(user._id)
+        post.likes.splice(userIndex, 1)
+        let postIndex = user.likedPosts.indexOf(post._id)
+        user.likedPosts.splice(postIndex, 1)
+        await Promise.all([
+            user.save(),
+            post.save()
+        ])
+        return Post.findById(postId)
+        .populate('author')
+        .populate('belongsToGroup')
+        .populate('shares')
+        .populate('likes')
+        .populate({
+            path : 'comments',
+            populate: {
+                path: 'replies',
+                model: 'Reply'
+        }
+    })
+   }
+}
