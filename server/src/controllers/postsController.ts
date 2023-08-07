@@ -1,6 +1,7 @@
 import express, {Express, Request, Response, NextFunction} from "express" 
 const router = express.Router()
 import { getPostsData, createPost, editPost, deletePost, likePost, dislikePost } from "../services/postsServices"
+import { createComment } from "../services/commentServices"
 import multer, {Multer} from "multer"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
@@ -61,5 +62,17 @@ router.get('/dislike/:postId/:userId', async(req: Request, res: Response) => {
     }
 })
 
-router.post('/create/')
+router.post('/comment/:postId/:userId', upload.single('image'), async (req: Request, res: Response) => {
+    try {
+        let commentedPost = await createComment(
+            req.params.postId, 
+            req.params.userId,
+            JSON.parse(req.body.createData),
+            req.file
+        )
+        res.json([commentedPost])
+    }catch(err){
+        console.log(err)
+    }
+})
 export default router

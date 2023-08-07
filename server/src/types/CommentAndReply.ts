@@ -17,4 +17,10 @@ export interface ReplyInterface {
     text: string,
     image: string,
     createdAt: string,
+    taggedUser: ObjectId
+}
+
+export interface CommentCreateData {
+    text: string,
+    image: File | null
 }

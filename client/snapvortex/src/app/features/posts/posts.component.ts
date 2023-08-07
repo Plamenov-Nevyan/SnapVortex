@@ -3,6 +3,8 @@ import { PostsService } from './posts.service';
 import { Post } from 'src/app/types/Post';
 import { ProfileService } from '../profile.service';
 import { User } from 'src/app/types/User';
+import { SessionStorageService } from 'src/app/session-storage.service';
+import { postInitValues } from 'src/app/types/typesInitValues';
 
 @Component({
   selector: 'app-posts',
@@ -10,15 +12,23 @@ import { User } from 'src/app/types/User';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  get currentPosts(): Post[]{return this.postsServices.currentPostsDataGet}
-  get user(): User {return this.profileServices.profileDataGet}
+  currentPosts: Post[] = []
+  userId: string | null = ''
 
-  constructor(private postsServices: PostsService, private profileServices: ProfileService){
+  constructor(private postsServices: PostsService, private profileServices: ProfileService, private sessionServices: SessionStorageService){
 
   }
 
   ngOnInit(): void {
-    this.profileServices.getProfileData()
-    this.postsServices.getPostsData(this.user._id)
+    this.userId = this.sessionServices.getUserId()
+    if(this.userId){
+      this.postsServices.getPostsData(this.userId)
+      this.postsServices.currentPostsData$.subscribe({
+        next: (posts) => {
+          console.log(posts)
+          this.currentPosts = [...posts]
+        }
+      })
+    }
   }
 }

@@ -5,6 +5,7 @@ const replySchema = new Schema<ReplyInterface>({
     text: {type: String},
     image: {type: String},
     author: {type : Types.ObjectId, ref: 'User'},
+    taggedUser: {type : Types.ObjectId, ref: 'User'},
     likes: [
         {
             type : Types.ObjectId,

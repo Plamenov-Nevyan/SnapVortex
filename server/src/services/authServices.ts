@@ -128,8 +128,14 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
  .populate('groupsJoined')
  .populate('groupsCreated')
  .populate('friends')
- .populate('sharedPosts')
- .populate('createdPosts')
+ .populate({
+    path: 'sharedPosts',
+    options: {sort: {createdAt: 1}},
+ })
+ .populate({
+    path: 'createdPosts',
+    options: {sort: {createdAt: 1}},
+})
  .exec()
 }
 

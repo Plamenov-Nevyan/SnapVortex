@@ -10,7 +10,9 @@ const uploadFile = require('../utils/googleUpload')
 
 export const getPostsData = async (userId: string, groupId:string) => {
   try{
-    let profile = userId ? await User.findById(userId) : await Group.findById(groupId)
+      console.log(userId)
+      console.log(groupId)
+    let profile = userId !== '' ? await User.findById(userId) : await Group.findById(groupId)
     let posts
     if(profile instanceof User){
         posts = await Post.find({
@@ -29,10 +31,17 @@ export const getPostsData = async (userId: string, groupId:string) => {
             path : 'comments',
             populate: {
                 path: 'replies',
-                model: 'Reply'
+                populate: {
+                    path: 'author',
+                }
+            },
+        })
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'author',
             }
         })
-        
     }else if(profile instanceof Group){
         posts = await Post.find({belongsToGroup: profile._id})
         .sort({createdAt: 1})
@@ -44,9 +53,18 @@ export const getPostsData = async (userId: string, groupId:string) => {
             path : 'comments',
             populate: {
                 path: 'replies',
-                model: 'Reply'
+                populate: {
+                    path: 'author',
+                }
+            },
+        })
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'author',
             }
         })
+    
     }
     return posts
   }catch(err){
@@ -110,7 +128,16 @@ export const editPost = async (editData: PostEditData, postId: string) => {
         path : 'comments',
         populate: {
             path: 'replies',
-            model: 'Reply'
+            options: {sort: {createdAt: 1}},
+            populate: {
+                path: 'author',
+            }
+        },
+    })
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'author',
         }
     })
     return updatedPost
@@ -142,9 +169,17 @@ export const likePost = async (postId: string, userId: string) => {
             path : 'comments',
             populate: {
                 path: 'replies',
-                model: 'Reply'
-        }
-    })
+                populate: {
+                    path: 'author',
+                }
+            },
+        })
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'author',
+            }
+        })
    }
 }
 
@@ -172,8 +207,17 @@ export const dislikePost = async (postId: string, userId: string) => {
             path : 'comments',
             populate: {
                 path: 'replies',
-                model: 'Reply'
-        }
-    })
+                populate: {
+                    path: 'author',
+                }
+            },
+        })
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'author',
+                model: 'User'
+            }
+        })
    }
 }

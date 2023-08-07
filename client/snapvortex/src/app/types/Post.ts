@@ -1,9 +1,10 @@
+import { Comment } from "./Comment"
 import { User } from "./User"
 
 export interface Post {
     author: User,
     likes: User[],
-    comments: string[],
+    comments: Comment[],
     shares: string[],
     text: string,
     image: string,
