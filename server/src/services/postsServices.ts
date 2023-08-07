@@ -1,7 +1,6 @@
 import { ObjectId, Types } from "mongoose"
 import Post from "../models/Post"
 import User from "../models/User"
-import Page from "../models/Page"
 import { GroupInterface } from "../types/Group"
 import { UserInterface } from "../types/User"
 import { FileProps } from "../types/FileProps"
@@ -9,22 +8,20 @@ import { PostCreateData, PostEditData, PostInterface } from "../types/Post"
 import Group from "../models/Group"
 const uploadFile = require('../utils/googleUpload')
 
-export const getPostsData = async (userId: string) => {
+export const getPostsData = async (userId: string, groupId:string) => {
   try{
-    let user = await User.findById(userId)
-    if(user instanceof User){
-        let posts = await Post.find({
+    let profile = userId ? await User.findById(userId) : await Group.findById(groupId)
+    let posts
+    if(profile instanceof User){
+        posts = await Post.find({
             $or:[
-                {author: user._id}, 
-                {author: {$in: user.friends}},
-                {belongsToPage : {$in : user.pagesFollowed}}, 
-                {belongsToPage: {$in: user.pagesOwned}},
-                {belongsToGroup: {$in: user.groupsJoined}}, 
-                {belongsToGroup: {$in: user.groupsCreated}}
+                {author: profile._id}, 
+                {author: {$in: profile.friends}},
+                {belongsToGroup: {$in: profile.groupsJoined}}, 
+                {belongsToGroup: {$in: profile.groupsCreated}}
             ]
         }).sort({createdAt: 1})
         .populate('author')
-        .populate('belongsToPage')
         .populate('belongsToGroup')
         .populate('shares')
         .populate('likes')
@@ -35,8 +32,23 @@ export const getPostsData = async (userId: string) => {
                 model: 'Reply'
             }
         })
-        return posts
+        
+    }else if(profile instanceof Group){
+        posts = await Post.find({belongsToGroup: profile._id})
+        .sort({createdAt: 1})
+        .populate('author')
+        .populate('belongsToGroup')
+        .populate('shares')
+        .populate('likes')
+        .populate({
+            path : 'comments',
+            populate: {
+                path: 'replies',
+                model: 'Reply'
+            }
+        })
     }
+    return posts
   }catch(err){
     console.log(err)
   }
@@ -55,13 +67,12 @@ export const createPost = async (
         }
         switch(posterType){
             case 'user' : poster = await User.findById(posterId); break
-            case 'page' : poster = await Page.findById(posterId); break
             case 'group' : [poster, group] = await Promise.all([
                 await User.findById(posterId.split('|')[0]),
                 await Group.findById(posterId.split('|')[1])
             ]); break
         }
-        if(poster instanceof User){
+        if(poster instanceof User && !group){
             newPost = await Post.create({
                 ...createData,
                 author: poster._id
@@ -71,19 +82,10 @@ export const createPost = async (
                 poster.save(),
                 newPost.populate('author')
             ])
-        }else if(poster instanceof Page){
-            newPost = await Post.create({
-                ...createData,
-                belongsToPage: poster._id
-            })
-            poster.postsCreated.push(newPost._id)
-            await Promise.all([
-                poster.save(),
-                newPost.populate('belongsToPage')
-            ])
         }else if(group instanceof Group && poster instanceof User) {
             newPost = await Post.create({
                 ...createData,
+                author: poster._id,
                 belongsToGroup: group._id
             })
             group.postsCreated.push(newPost._id)
@@ -91,7 +93,8 @@ export const createPost = async (
             await Promise.all([
                 poster.save(),
                 group.save(),
-                newPost.populate('belongsToGroup')
+                newPost.populate('belongsToGroup'),
+                newPost.populate('author')
             ])
         }
         return newPost
@@ -99,7 +102,17 @@ export const createPost = async (
 
 export const editPost = async (editData: PostEditData, postId: string) => {
     let updatedPost = await Post.findByIdAndUpdate(postId, editData, {new: true})
-    console.log(editData)
+    .populate('author')
+    .populate('belongsToGroup')
+    .populate('shares')
+    .populate('likes')
+    .populate({
+        path : 'comments',
+        populate: {
+            path: 'replies',
+            model: 'Reply'
+        }
+    })
     return updatedPost
 }
 

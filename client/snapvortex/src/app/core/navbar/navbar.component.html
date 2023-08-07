@@ -30,9 +30,8 @@
 
 <nav *ngIf="authorized" class="header-nav-authorized">
     <ul *ngIf="showProfOptions">
-        <li><a routerLink="/profile">My Profile</a></li>
+        <li><a [routerLink]="'/profile/' + authorized.id">My Profile</a></li>
         <li><a id="create-group" (click)="onCreate($event)">Create a group</a></li>
-        <li><a id="create-page" (click)="onCreate($event)">Create a page</a></li>
         <li><a href="#" (click)="onLogout()">Logout</a></li>
     </ul>
 </nav>

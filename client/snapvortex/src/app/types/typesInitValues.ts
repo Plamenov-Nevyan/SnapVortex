@@ -49,7 +49,34 @@ export let createPageInitVals = {
   }
 
 export let groupInitValues = {
-    owner : '',
+    owner : {
+            username: '',
+        email: '',
+        password: '',
+        about: {
+            workplace: '',
+            address: '',
+            description: '',
+            personalWebsite: {
+                url: '',
+                preview: ''
+            }
+        },
+        profilePicture: '',
+        coverPicture: '',
+        createdPosts: [],
+        likedPosts: [],
+        sharedPosts: [],
+        commentedPosts: [],
+        pagesOwned: [],
+        pagesFollowed: [],
+        groupsCreated: [],
+        groupsJoined: [],
+        friends: [],
+        photos: [], 
+        gender: '',
+        _id: ''
+    },
     name: '',
     description: '',
     isPrivate: false,
@@ -61,27 +88,15 @@ export let groupInitValues = {
     _id: ''
 }
 
-export let pageInitValues = {
-    owner: '',
-    followers: [],
-    name: '',
-    profilePicture: '',
-    coverPicture: '',
-    description: '',
-    address: '',
-    postsCreated: [],
-    createdAt: '',
-    _id: ''
-}
-
 export let postInitValues = {
-    author: '',
+    author: UserInitValues,
     likes: [],
     comments: [],
     shares: [],
     text: '',
     image: '',
     belongsToPage: '', 
+    belongsToGroup: '',
     createdAt: '',
     _id: ''
 }

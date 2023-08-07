@@ -35,13 +35,6 @@ export class ProfilePictureComponent {
         id: this.createServices.currentGroupDataGet._id,
         profileType: 'group'
       })
-     }else if(this.profileType === 'page'){
-      this.modalInteraction.onShowCropper({
-        imgChangeEvent: event, 
-        uploadFor: 'profilePicture', 
-        id: this.createServices.currentPageDataGet._id,
-        profileType: 'page'
-      })
-    }
+     }
   }
 }

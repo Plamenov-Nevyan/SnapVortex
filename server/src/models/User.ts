@@ -47,19 +47,6 @@ const userSchema = new Schema<UserInterface>({
             ref: 'Post'
         }
     ],
-    pagesOwned: [
-        {
-            type : mongoose.Schema.Types.ObjectId,
-            ref: 'Page'
-        }
-    ],
-    pagesFollowed: [
-        {
-            type : Types.ObjectId,
-            ref: 'Page'
-        }
-    ],
-
     groupsCreated: [
         {
             type: Types.ObjectId,

@@ -53,8 +53,6 @@ export class ImgCropSectionComponent {
       this.profileServices.updateProfilePicture(this.file)
     }else if(this.imgCropperData.profileType === 'group'){
       this.createServices.updateGroupProfilePicture(this.file)
-    }else if(this.imgCropperData.profileType === 'page'){
-      this.createServices.updatePageProfilePicture(this.file)
     }
     this.modalInteractions.onCloseModal()
   }
@@ -64,8 +62,6 @@ export class ImgCropSectionComponent {
       this.profileServices.updateCoverPicture(this.file)
     }else if(this.imgCropperData.profileType === 'group'){
       this.createServices.updateGroupCoverPicture(this.file)
-    }else if(this.imgCropperData.profileType === 'page'){
-      this.createServices.updatePageCoverPicture(this.file)
     }
     this.modalInteractions.onCloseModal()
   }

@@ -19,7 +19,6 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileServices.getProfileData()
-    this.postsServices.getPostsData()
-    console.log(this.user)
+    this.postsServices.getPostsData(this.user._id)
   }
 }

@@ -21,12 +21,30 @@
     </div>
     <div class="right-part" *ngIf="!group.isPrivate || isOwner || isMember">
         <div *ngIf="activeTab === 'posts'">
-            <app-create-post-header [profilePicture]="user.profilePicture" *ngIf="isOwner || isMember"/>
+            <app-create-post-header 
+            [profilePicture]="user.profilePicture"
+             *ngIf="isOwner || isMember"
+             [posterId]="user._id + '|' + group._id"
+             [posterType]="'group'"
+              />
             <div class="wall">
-                <app-post-article *ngFor="let postArticle of postsData" [postArticle]="postArticle" />
+                <app-post-article 
+                *ngFor="let postArticle of postsData" 
+                [user]="user"
+                [postArticle]="postArticle"
+                [isForGroupProfile]="true"
+                [isMember]="isMember"
+                [isOwnerOfGroup]="isOwner"
+                />
             </div>
         </div>
         <div *ngIf="activeTab === 'members'">
+            <div>
+                <p *ngIf="group.owner._id === user._id" >Owner: You</p>
+                <p *ngIf="group.owner._id !== user._id" >Owner: 
+                    <app-profile-items-list [items]="[group.owner]" [itemsType]="'members'" />
+                </p>
+            </div>
             <div class="wall">
                 <app-profile-items-list [items]="group.members" [itemsType]="'members'"/>
             </div>

@@ -35,7 +35,7 @@
     background-color: lightgray;
 }
 
-.groups-list, .pages-list{
+.groups-list{
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -43,22 +43,22 @@
     padding: 0;
 }
 
-.groups-list li, .pages-list li{
+.groups-list li{
     padding: .6em;
     border-radius: .6em;
 }
 
-.groups-list li:hover, .pages-list li:hover {
+.groups-list li:hover{
     background-color: #dcdbdb;
 }
 
-.groups-list li a, .pages-list li a {
+.groups-list li a {
     display: flex;
     align-items: center;
     gap: 1em;
 }
 
-.groups-list li a img, .pages-list li a img {
+.groups-list li a img {
     max-width: 30%;
     height: auto;
     border-radius: 50%;

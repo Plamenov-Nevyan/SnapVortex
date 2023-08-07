@@ -20,10 +20,6 @@ const routes: Routes = [
     path: 'group/:id',
     component: ProfileComponent
   },
-  {
-     path: 'page/:id',
-     component: ProfileComponent
-  }
 ];
 
 @NgModule({

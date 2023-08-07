@@ -20,8 +20,6 @@ export interface UserInterface {
     likedPosts: Types.ObjectId[],
     sharedPosts: Types.ObjectId[],
     commentedPosts: Types.ObjectId[],
-    pagesOwned: Types.ObjectId[],
-    pagesFollowed: Types.ObjectId[],
     groupsCreated: Types.ObjectId[],
     groupsJoined: Types.ObjectId[],
     friends: Types.ObjectId[],

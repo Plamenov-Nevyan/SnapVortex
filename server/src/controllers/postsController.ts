@@ -5,9 +5,10 @@ import multer, {Multer} from "multer"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 
-router.get('/:userId', async (req: Request, res:Response) => {
+router.get('/:userId/:groupId', async (req: Request, res:Response) => {
     try{
-        let postsData = await getPostsData(req.params.userId)
+        let postsData = req.params.userId !== '_' ? await getPostsData(req.params.userId, '') : await getPostsData('', req.params.groupId)
+        console.log(postsData)
         res.json(postsData)
       }catch(err){
         console.log(err)

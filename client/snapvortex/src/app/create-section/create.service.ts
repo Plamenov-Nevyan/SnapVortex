@@ -3,11 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { SessionStorageService } from '../session-storage.service';
 import { CreateGroupData } from '../types/CreateGroup';
 import { Group, GroupEditData, GroupEditDataFiltered } from '../types/Group';
-import { groupInitValues, pageInitValues } from '../types/typesInitValues';
+import { groupInitValues} from '../types/typesInitValues';
 import { environment } from 'src/environments/environment.development';
-import {Observable} from 'rxjs'
-import { CreatePageData } from '../types/CreatePage';
-import { Page, PageEditDataFiltered } from '../types/Page';
 import { ProfileService } from '../features/profile.service';
 
 @Injectable({
@@ -16,18 +13,12 @@ import { ProfileService } from '../features/profile.service';
 export class CreateService {
   userId:string | null = this.sessionServices.getUserId()
   private currentGroupData: Group = groupInitValues
-  private currentPageData: Page = pageInitValues
   endpoints = {
     GET_GROUP_DATA: '/groups/',
     CREATE_GROUP : '/groups/create/',
     EDIT_GROUP_DATA: '/groups/edit/',
     UPDATE_GROUP_COVER_PIC: '/groups/cover-picture/',
     UPDATE_GROUP_PROFILE_PIC: '/groups/profile-picture/',
-    CREATE_PAGE: '/pages/create/',
-    GET_PAGE_DATA: '/pages/',
-    EDIT_PAGE_DATA: '/pages/edit/',
-    UPDATE_PAGE_COVER_PIC: '/pages/cover-picture/',
-    UPDATE_PAGE_PROFILE_PIC: '/pages/profile-picture/'
   }
 
   get currentGroupDataGet(){
@@ -38,80 +29,7 @@ export class CreateService {
     this.currentGroupData = val
   }
 
-  get currentPageDataGet(){
-    return this.currentPageData
-  }
-
-  set currentPageDataSet(val: Page){
-    this.currentPageData = val
-  }
-
   constructor( private http: HttpClient, private sessionServices: SessionStorageService, private profileServices: ProfileService ) { }
-
-  onCreatePage(pageData: CreatePageData){
-    const {baseUrl} = environment
-    const headers = {'Content-Type': 'application/json'}
-
-   this.http.post<Page>(`${baseUrl}${this.endpoints.CREATE_PAGE}${this.userId}`, pageData, {headers}).subscribe({
-    next: (newPage) => {
-      this.currentPageDataSet = newPage
-      this.profileServices.getProfileData()
-    }
-   })
-  }
-
-  getPageData(pageId: string){
-    const {baseUrl} = environment
-
-    this.http.get<Page>(`${baseUrl}${this.endpoints.GET_PAGE_DATA}${pageId}`).subscribe({
-      next: (page: Page) => {
-        this.currentPageDataSet = page
-      }
-    })
-  }
-
-  editPage(editData: PageEditDataFiltered){
-    const {baseUrl} = environment
-    const headers = {'Content-Type': 'application/json'}
-
-    this.http.post<Page>(`${baseUrl}${this.endpoints.EDIT_PAGE_DATA}${this.currentPageData._id}`, editData, {headers}).subscribe({
-      next: (updatedPageData: Page) => {
-        this.currentPageDataSet = updatedPageData
-        this.profileServices.getProfileData()
-      }
-    })
-  }
-
-  updatePageCoverPicture(file: File){
-    const {baseUrl} = environment
-    let formData = new FormData()
-    formData.append('coverPicture', file)
-    this.http.post<string>(
-      `${baseUrl}${this.endpoints.UPDATE_PAGE_COVER_PIC}${this.currentPageData._id}`,
-      formData
-    ).subscribe({
-      next:(newPicture) => {
-        this.currentPageDataSet = {...this.currentPageData, coverPicture: newPicture}
-        this.profileServices.getProfileData()
-      } 
-    })
-  }
-
-  updatePageProfilePicture(file: File){
-    const {baseUrl} = environment
-    let formData = new FormData()
-    formData.append('profilePicture', file)
-    this.http.post<string>(
-      `${baseUrl}${this.endpoints.UPDATE_PAGE_PROFILE_PIC}${this.currentPageData._id}`,
-      formData
-    ).subscribe({
-      next:(newPicture) => {
-        this.currentPageDataSet = {...this.currentPageData, profilePicture: newPicture}
-        this.profileServices.getProfileData()
-      } 
-    })
-  }
-
 
   onCreateGroup(groupData: CreateGroupData){
     const {baseUrl} = environment

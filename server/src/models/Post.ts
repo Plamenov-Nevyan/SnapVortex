@@ -2,7 +2,6 @@ import mongoose, {Schema, model, Types, ObjectId} from "mongoose"
 import { PostInterface } from "../types/Post"
 import Comment from "./Comment"
 import User from "./User"
-import Page from "./Page"
 import Group from "./Group"
 
 const postSchema = new Schema<PostInterface>({
@@ -27,7 +26,6 @@ const postSchema = new Schema<PostInterface>({
     ],
     text: {type: String},
     image: {type: String},
-    belongsToPage: {type: mongoose.Schema.Types.ObjectId, ref: Page},
     belongsToGroup: {type: mongoose.Schema.Types.ObjectId, ref: Group}
 }, {timestamps: true})
 

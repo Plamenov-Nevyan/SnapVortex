@@ -1,21 +1,12 @@
 <section class="posts-wall">
     <fieldset>
         <label for="post-as"> Post as: </label>
-        <select id="post-as" name="post-as" class="poster-select">
-            <option value="user._id" class="user" (click)="onSelectPoster($event)">
-                <span>{{user.username}}</span>
-            </option>
-            <option *ngFor="let page of user.pagesOwned" (click)="onSelectPoster($event)" class="page" value="page._id">
-                <img src="page.profilePicture" />
-                <p>{{page.name}}</p>
-            </option>
-        </select>
     </fieldset>   
     <app-create-post-header [profilePicture]="user.profilePicture" [posterId]="user._id" [posterType]="'user'" [posterName]="user.username"/>
     <div *ngIf="currentPosts.length > 0" class="posts-wrapper">
         <app-post-article *ngFor="let post of currentPosts" [postArticle]="post" [user]="user"/>
     </div>
     <div *ngIf="currentPosts.length === 0" class="posts-wrapper">
-        <p>No posts found, try adding someone as friend, follow a page or join a group to see more posts on your wall.</p>
+        <p>No posts found, try adding someone as friend, or join a group to see more posts on your wall.</p>
     </div>
 </section>

@@ -24,7 +24,7 @@ const routes: Routes = [
     component: ContactsOwnerComponent
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent
   },
 ];

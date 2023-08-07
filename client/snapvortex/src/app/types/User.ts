@@ -1,5 +1,4 @@
 import { Group } from "./Group"
-import { Page } from "./Page"
 import { Post } from "./Post"
 // import {FileProps} from './FileProps'
 
@@ -22,8 +21,6 @@ export interface User {
     likedPosts: Post[],
     sharedPosts: Post[],
     commentedPosts: Post[],
-    pagesOwned: Page[],
-    pagesFollowed: Page[],
     groupsCreated: Group[],
     groupsJoined: Group[],
     friends: User[],

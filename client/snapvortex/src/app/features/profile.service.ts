@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { SessionStorageService } from '../session-storage.service';
 import { User, UserAboutData } from '../types/User';
-import {Observable} from 'rxjs'
+import {BehaviorSubject, Observable} from 'rxjs'
 import { UserInitValues } from '../types/typesInitValues';
 
 @Injectable({
@@ -20,7 +20,8 @@ export class ProfileService {
 
   constructor(private http: HttpClient, private sessionServices: SessionStorageService) { }
 
-  private currentProfileData: User = UserInitValues
+  private currentProfileData: User = UserInitValues 
+  currentProfileData$ = new BehaviorSubject(this.currentProfileData)
 
   get profileDataGet(){
     return this.currentProfileData
@@ -28,6 +29,7 @@ export class ProfileService {
 
   set profileDataSet(data: User){
     this.currentProfileData = {...data}
+    this.currentProfileData$.next(this.currentProfileData)
   }
 
   getProfileData(): void{
@@ -37,6 +39,11 @@ export class ProfileService {
         this.profileDataSet = data
       }
     })
+  }
+
+  getProfileDataForOtherUser(userId:string): Observable<User> {
+    const {baseUrl} = environment
+    return this.http.get<User>(`${baseUrl}${this.endpoints.GET_PROFILE_DATA}${userId}`)
   }
 
   updateProfileData(updateData: UserAboutData): void{

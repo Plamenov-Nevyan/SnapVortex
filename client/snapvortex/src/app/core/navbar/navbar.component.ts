@@ -32,7 +32,7 @@ export class NavbarComponent {
  onCreate(event: MouseEvent){
   event.preventDefault()
   if(event.target instanceof HTMLAnchorElement){
-    event.target.id === 'create-page' ? this.modalInteraction.onShowModal('create-page') : this.modalInteraction.onShowModal('create-group')
+    this.modalInteraction.onShowModal('create-group')
   }
  }
 }

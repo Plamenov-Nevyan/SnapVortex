@@ -7,7 +7,6 @@ export interface PostInterface {
     shares: Types.ObjectId[],
     text: string,
     image: string,
-    belongsToPage: Types.ObjectId,
     belongsToGroup: Types.ObjectId,
     createdAt: string,
 }

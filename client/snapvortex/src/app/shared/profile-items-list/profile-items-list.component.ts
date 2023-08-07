@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Group } from 'src/app/types/Group';
-import { Page } from 'src/app/types/Page';
 import { User } from 'src/app/types/User';
 import { Router } from '@angular/router';
 

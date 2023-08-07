@@ -22,6 +22,9 @@ export const createGroup = async (groupData: GroupInterface, userId:unknown) => 
 
 export const getGroupProfile = async (groupId: string) => {
     let group = await Group.findById(groupId)
+    .populate('owner')
+    .populate('postsCreated')
+    .populate('members')
     return group
 }
 

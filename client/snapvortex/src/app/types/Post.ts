@@ -1,11 +1,13 @@
+import { User } from "./User"
+
 export interface Post {
-    author: string,
+    author: User,
     likes: string[],
     comments: string[],
     shares: string[],
     text: string,
     image: string,
-    belongsToPage: string 
+    belongsToGroup: string,  
     createdAt: string,
     _id: string
 }

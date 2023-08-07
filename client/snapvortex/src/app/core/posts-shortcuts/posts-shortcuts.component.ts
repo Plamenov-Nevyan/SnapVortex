@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ProfileService } from 'src/app/features/profile.service';
 import { Group } from 'src/app/types/Group';
-import { Page } from 'src/app/types/Page';
 import { User } from 'src/app/types/User';
 import { UserInitValues } from 'src/app/types/typesInitValues';
 import { Router } from '@angular/router';

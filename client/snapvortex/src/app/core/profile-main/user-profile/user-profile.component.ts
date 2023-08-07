@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PostsService } from 'src/app/features/posts/posts.service';
+import { ProfileService } from 'src/app/features/profile.service';
 import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { SessionStorageService } from 'src/app/session-storage.service';
 import { Post } from 'src/app/types/Post';
@@ -11,18 +12,27 @@ import { UserInitValues } from 'src/app/types/typesInitValues';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnChanges{
   @Input() activeTab: string = ''
   @Input() user: User = UserInitValues
   @Input()isOwner:boolean = false
-  get postsData(): Post[] { return this.postServices.currentPostsDataGet}
-  
+  postsData: Post[] = [] 
   constructor(
     private modalInteraction: ModalInteractionsService, 
     private sessionServices: SessionStorageService,
-    private postServices: PostsService
+    private postServices: PostsService,
+    private profileServices: ProfileService
     ) {
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.user._id !== ''){
+      this.postServices.getPostsData(this.user._id)
+      this.postServices.currentPostsData$.subscribe({
+        next: (posts) => this.postsData = [...posts]
+      })
+    }
   }
 
   onAddDescription(){
@@ -36,5 +46,10 @@ export class UserProfileComponent {
   }
   onAddWebsite(){
     this.modalInteraction.onShowModal('edit-user-personalWebsite')
+  }
+
+  print(event: MouseEvent){
+    event.preventDefault()
+    console.log(this.postsData)
   }
 }

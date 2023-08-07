@@ -7,7 +7,6 @@ import { ImageCropperService } from 'src/app/image-cropper.service';
 import { ActivatedRoute } from '@angular/router';
 import { Group } from 'src/app/types/Group';
 import { CreateService } from 'src/app/create-section/create.service';
-import { Page } from 'src/app/types/Page';
 import { SessionStorageService } from 'src/app/session-storage.service';
 
 @Component({
@@ -17,17 +16,16 @@ import { SessionStorageService } from 'src/app/session-storage.service';
 })
 export class ProfileComponent implements OnInit {
   get user(): User{ return this.profileServices.profileDataGet}
+  otherUserProfile: User = UserInitValues
   get group(): Group {return this.createServices.currentGroupDataGet}
-  get page(): Page {return this.createServices.currentPageDataGet}
   activeTab: string = 'posts'
   isUser: boolean = false
-  isPage: boolean = false
   isGroup: boolean = false
-  groupOrPageId: string = ''
+  groupId: string = ''
+  userFromRouteId: string = ''
   profileType: string = ''
   isOwner: boolean = false
   isMember:boolean = false
-  isFollower: boolean = false
 
 
   constructor(
@@ -42,9 +40,11 @@ export class ProfileComponent implements OnInit {
       next: () => {
         this.isUser = activeRoute.snapshot.url[0].path === 'profile'
         this.isGroup = activeRoute.snapshot.url[0].path === 'group'
-        this.isPage = activeRoute.snapshot.url[0].path === 'page'
-        if(this.isGroup || this.isPage){
-          this.groupOrPageId = activeRoute.snapshot.params["id"]
+        if(this.isGroup){
+          this.groupId = activeRoute.snapshot.params["id"]
+        }else if(this.isUser){
+          this.userFromRouteId = activeRoute.snapshot.params["id"]
+
         }
       }
     })
@@ -54,17 +54,17 @@ export class ProfileComponent implements OnInit {
       if(this.isUser){
         this.profileServices.getProfileData()
         this.profileType = 'user'
-        this.isOwner = this.user._id === this.sessionServices.getUserId()
+        this.isOwner = this.user._id === this.userFromRouteId
+        if(!this.isOwner){
+          this.profileServices.getProfileDataForOtherUser(this.userFromRouteId).subscribe({
+            next: (profileData) => this.otherUserProfile = {...profileData}
+          })
+        }
       }else if(this.isGroup){
-        this.createServices.getGroupData(this.groupOrPageId)
+        this.createServices.getGroupData(this.groupId)
         this.profileType = 'group'
-        this.isOwner = this.group.owner === this.sessionServices.getUserId()
-        this.isMember = this.group.members.some(member => member._id === this.sessionServices.getUserId())
-      }else if(this.isPage){
-        this.createServices.getPageData(this.groupOrPageId)
-        this.profileType = 'page'
-        this.isOwner = this.page.owner === this.sessionServices.getUserId()
-        this.isFollower = this.page.followers.some(follower => follower._id === this.sessionServices.getUserId())
+        this.isOwner = this.group.owner._id === this.sessionServices.getUserId()
+        this.isMember = this.group.members.some(member => member._id === this.user._id)
       }
   }
 

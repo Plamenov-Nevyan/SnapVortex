@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Group } from 'src/app/types/Group';
-import { Page } from 'src/app/types/Page';
 import { User } from 'src/app/types/User';
-import { UserInitValues, groupInitValues, pageInitValues } from 'src/app/types/typesInitValues';
+import { UserInitValues, groupInitValues} from 'src/app/types/typesInitValues';
 
 
 @Component({
@@ -11,14 +10,12 @@ import { UserInitValues, groupInitValues, pageInitValues } from 'src/app/types/t
   styleUrls: ['./profile-main.component.css']
 })
 export class ProfileMainComponent {
-  @Input() page: Page = pageInitValues
   @Input() group: Group = groupInitValues
   @Input() profileType: string = ''
   @Input() user: User = UserInitValues
   @Input() activeTab:string = ''
   @Input() isOwner:boolean = false
   @Input() isMember:boolean = false
-  @Input() isFollower:boolean = false
 
   constructor(){}
   

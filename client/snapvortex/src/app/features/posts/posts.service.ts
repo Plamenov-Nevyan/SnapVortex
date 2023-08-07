@@ -3,18 +3,24 @@ import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Post, PostEditData } from 'src/app/types/Post';
 import { SessionStorageService } from 'src/app/session-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
   private currentPostsData: Post[] =  []
+  currentPostsData$ = new BehaviorSubject(this.currentPostsData)
+
   get currentPostsDataGet(){
     return this.currentPostsData
   }
   set currentPostsDataSet(val: Post[]){
     this.currentPostsData =  [...val, ...this.currentPostsData]
+    this.currentPostsData$.next(this.currentPostsData)
   }
+
+
 
   private postToDelete: string = ''
 
@@ -40,8 +46,6 @@ export class PostsService {
     if(image){
       formData.append('image', image)
    }
-   console.log(text)
-   console.log(image)
    if(text && feeling){
     formData.append('createData', JSON.stringify({text, feeling}))
    }else if(text && !feeling){
@@ -56,14 +60,25 @@ export class PostsService {
    })
   }
 
-  getPostsData(){
+  getPostsData(userId?:string, groupId?:string){
     const {baseUrl} = environment
-    this.http.get<Post[]>(`${baseUrl}${this.endpoints.GET_POSTS_DATA}${this.sessionServices.getUserId()}`).subscribe({
-      next: (posts: Post[]) => {
-          this.currentPostsData = []
-          this.currentPostsDataSet = posts
+      if(userId){
+        this.http.get<Post[]>(`${baseUrl}${this.endpoints.GET_POSTS_DATA}${userId}/_`).subscribe({
+          next: (posts: Post[]) => {
+            console.log(posts)
+              this.currentPostsData = []
+              this.currentPostsDataSet = posts
+          }
+        })
+      }else {
+        this.http.get<Post[]>(`${baseUrl}${this.endpoints.GET_POSTS_DATA}/_/${groupId}`).subscribe({
+          next: (posts: Post[]) => {
+            console.log(posts)
+              this.currentPostsData = []
+              this.currentPostsDataSet = posts
+          }
+        })
       }
-    })
   }
 
   editPost(postId: string, editData: PostEditData){

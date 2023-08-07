@@ -69,14 +69,11 @@ export const getProfileData = async (id: string): Promise<UserInterface> => {
     let user = await User.findById(id).select('-password')
     .populate('groupsJoined')
     .populate('groupsCreated')
-    .populate('pagesFollowed')
-    .populate('pagesOwned')
     .populate('friends')
     .populate('sharedPosts')
     .populate('createdPosts')
     .exec()
 if(user){
-    console.log(user)
     return user
 }else {
     throw {message: `We weren/'t able to retrieve your profile..`}
@@ -92,7 +89,6 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
         userData.personalWebsite.preview = `https://drive.google.com/uc?export=view&id=${resp.data.id}`
         let user = await User.findOne({_id: id})
         if(user instanceof User){
-            console.log(user)
             user.set({
                 'about': {
                     description: userData.description ? userData.description : user.about.description,
@@ -128,7 +124,13 @@ export const updateProfileData = async (userData: UserAboutData, id: string, pre
     }
  }
  return await User.findById(id)
- .select("-password -groupsJoined -groupsCreated -pagesFollowed -pagesOwned -friends -postsCreated")
+ .select("-password")
+ .populate('groupsJoined')
+ .populate('groupsCreated')
+ .populate('friends')
+ .populate('sharedPosts')
+ .populate('createdPosts')
+ .exec()
 }
 
 export const updateProfilePicture = async (picture:FileProps | undefined, id:string) => {

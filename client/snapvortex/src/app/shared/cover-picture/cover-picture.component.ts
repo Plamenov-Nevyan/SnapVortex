@@ -34,8 +34,6 @@ export class CoverPictureComponent {
       this.modalInteraction.onShowModal('edit-user-profile')
     }else if(this.profileType === 'group'){
       this.modalInteraction.onShowModal('edit-group-profile')
-    }else {
-      this.modalInteraction.onShowModal('edit-page-profile')
     }
     this.onShowHideOptions()
   }
@@ -54,13 +52,6 @@ export class CoverPictureComponent {
         uploadFor: 'coverPicture', 
         id: this.createServices.currentGroupDataGet._id,
         profileType: 'group'
-      })
-    }else if(this.profileType === 'page'){
-      this.modalInteraction.onShowCropper({
-        imgChangeEvent: event, 
-        uploadFor: 'coverPicture', 
-        id: this.createServices.currentPageDataGet._id,
-        profileType: 'page'
       })
     }
   }

@@ -2,7 +2,7 @@ import { Post } from "./Post";
 import { User } from "./User";
 
 export interface Group {
-    owner: string,
+    owner: User,
     description: string,
     isPrivate: boolean,
     postsCreated: Post[],

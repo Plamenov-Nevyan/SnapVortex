@@ -3,11 +3,11 @@
         <div class="author-info">
             <div class="author-img">
                 <img
-                    src={{user.profilePicture}}
+                    src={{postArticle.author.profilePicture}}
                 />
             </div>
             <div class="author-name-and-date">
-                <span>{{user.username}}</span>
+                <a [routerLink]="'/profile/' + postArticle.author._id"><span>{{postArticle.author.username}}</span></a>
                 <span>{{postArticle.createdAt}}</span>
             </div>
         </div>
@@ -56,9 +56,16 @@
     <div class="line-divider">
 
     </div>
-    <div class="post-interactions">
-        <button class="like-btn">Like</button>
-        <button class="comment-btn">Comment</button>
-        <button class="share-btn">Share</button>
+    <div  class="post-interactions">
+        <div *ngIf="isOwnerOfGroup || isMember">
+            <button class="like-btn">Like</button>
+            <button class="comment-btn">Comment</button>
+            <button class="share-btn">Share</button>
+        </div>
+        <div *ngIf="!isForGroupProfile">
+            <button class="like-btn">Like</button>
+            <button class="comment-btn">Comment</button>
+             <button class="share-btn">Share</button>
+        </div>
     </div>
 </article>

@@ -4,6 +4,7 @@ import { ModalInteractionsService } from 'src/app/modal-interactions.service';
 import { Post } from 'src/app/types/Post';
 import { User } from 'src/app/types/User';
 import { UserInitValues, postInitValues } from 'src/app/types/typesInitValues';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-article',
@@ -13,6 +14,9 @@ import { UserInitValues, postInitValues } from 'src/app/types/typesInitValues';
 export class PostArticleComponent implements OnInit {
 @Input() postArticle: Post = postInitValues
 @Input() user: User = UserInitValues
+@Input() isForGroupProfile: boolean = false
+@Input() isMember: boolean = false
+@Input() isOwnerOfGroup: boolean = false
 isOwner: boolean = false
 isEditing: boolean = false
 postEditData = {
@@ -24,9 +28,7 @@ postEditData = {
   }
 
   ngOnInit(): void {
-    this.isOwner = this.user.pagesOwned.some(page => page.postsCreated.includes(this.postArticle)) || 
-    this.user.createdPosts.some(post => post._id === this.postArticle._id)
-    // this.isOwner = this.postArticle.author
+    this.isOwner = this.user.createdPosts.some(post => post._id === this.postArticle._id)
   }
 
   onInitEdit(){
@@ -42,7 +44,6 @@ postEditData = {
 
   onEdit(event: MouseEvent){
     event.preventDefault()
-    console.log(this.postEditData)
     this.postServices.editPost(this.postArticle._id, this.postEditData)
     this.onInitEdit()
   }
@@ -50,5 +51,9 @@ postEditData = {
   onDelete(){
     this.postServices.postToDeleteSet = this.postArticle._id
     this.modalInteractions.onShowModal('delete-confirmation')
+  }
+
+  print(){
+    console.log(this.isOwnerOfGroup)
   }
 }
