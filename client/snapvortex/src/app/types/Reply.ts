@@ -6,7 +6,12 @@ export interface Reply {
     image: string,
     author: User,
     likes: User[],
-    belongsToComment: Comment,
+    belongsToComment: string,
     createdAt: string,
-    taggedUser: string
+    _id: string
+}
+
+export interface ReplyCreateData {
+    text: string,
+    image: File | null,
 }

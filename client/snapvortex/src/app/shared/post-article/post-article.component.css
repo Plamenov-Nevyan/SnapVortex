@@ -148,12 +148,12 @@
     background-color: #E5E5E5;
 }
 
-.comments-form {
+.comments-form, .replies-form {
     display: flex;
     flex-direction: column;
 }
 
-.comments-form p {
+.close {
     margin-left: auto;
     padding: 0.3em;
     width: 2em;
@@ -163,42 +163,42 @@
     cursor: pointer;
 }
 
-.comments-form form {
+.comments-form form, .replies-form form {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.comments-form form img {
+.comments-form form img, .replies-form form img {
     max-width: 20%;
     height: auto;
 }
 
-.comments-form form .comment-top {
+.comments-form form .comment-top, .replies-form .reply-top {
     display: flex;
     align-items: flex-start;
 }
 
-.comment-top img {
+.comment-top img, .reply-top img {
     max-width: 15%;
     height: auto;
     border-radius: 50%;
 }
 
-.comment-top textarea {
+.comment-top textarea, .reply-top textarea{
     max-width: 100%;
     max-height: 7em;
     height: 7em;
     width: 100%;
 }
 
-.comments-form form .comment-bottom {
+.comments-form form .comment-bottom, .replies-form .reply-bottom {
     display: flex;
     gap: 1em;
     position: relative;
 }
 
-.comment-bottom input {
+.comment-bottom input, .reply-bottom input {
     position: absolute;
     bottom: 0;
     left: 53%;
@@ -207,7 +207,7 @@
     opacity: 0;
 }
 
-.comment-bottom svg {
+.comment-bottom svg, .reply-bottom svg {
     max-width: 2em;
     max-height: 3em;
     position: absolute;
@@ -216,7 +216,7 @@
     fill: orchid;
 }
 
-.comment-bottom button {
+.comment-bottom button, .reply-bottom button {
     flex: 0 1 33%;
     margin-left: auto;
     padding: 0.3em;
@@ -256,5 +256,23 @@
 }
 
 .ul-comments li .comment-li-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    flex:1 1 100%;
+}
+
+.replies-form {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 70%;
     margin-left: auto;
+    margin-top: 1em;
+}
+
+.reply-preview {
+    max-width: 20%;
+    height: auto;
+    margin-left: auto;
+    margin-right: 2em;
 }

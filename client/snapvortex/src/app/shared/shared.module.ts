@@ -19,6 +19,10 @@ import { ItemCardComponent } from './profile-items-list/item-card/item-card.comp
 import { FeelingEmojisComponent } from './feeling-emojis/feeling-emojis.component';
 import { ConfirmationsComponent } from './confirmations/confirmations.component';
 import { DeleteConfirmationComponent } from './confirmations/delete-confirmation/delete-confirmation.component';
+import { CommentsListComponent } from './post-article/comments-list/comments-list.component';
+import { RepliesListComponent } from './post-article/replies-list/replies-list.component';
+import { CommentsListItemComponent } from './post-article/comments-list/comments-list-item/comments-list-item.component';
+import { RepliesLiItemComponent } from './post-article/replies-list/replies-li-item/replies-li-item.component';
 
 
 @NgModule({
@@ -37,6 +41,10 @@ import { DeleteConfirmationComponent } from './confirmations/delete-confirmation
     FeelingEmojisComponent,
     ConfirmationsComponent,
     DeleteConfirmationComponent,
+    CommentsListComponent,
+    RepliesListComponent,
+    CommentsListItemComponent,
+    RepliesLiItemComponent,
     
   ],
   imports: [

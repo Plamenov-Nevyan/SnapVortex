@@ -1,7 +1,7 @@
 import express, {Express, Request, Response, NextFunction} from "express" 
 const router = express.Router()
 import { getPostsData, createPost, editPost, deletePost, likePost, dislikePost } from "../services/postsServices"
-import { createComment } from "../services/commentServices"
+import { createComment, createReply, likeComment, likeReply, dislikeComment, dislikeReply } from "../services/commentServices"
 import multer, {Multer} from "multer"
 import { sorter } from "../utils/sorter"
 const storage = multer.memoryStorage()
@@ -76,4 +76,67 @@ router.post('/comment/:postId/:userId', upload.single('image'), async (req: Requ
         console.log(err)
     }
 })
+
+router.post('/comment/reply/:commentId/:userId', upload.single('image'), async (req: Request, res: Response) => {
+    try {
+        let repliedComment = await createReply(
+            req.params.commentId, 
+            req.params.userId,
+            JSON.parse(req.body.createData),
+            req.file
+        )
+        res.json(repliedComment)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+router.get('/comment/like/:commentId/:userId', async (req: Request, res: Response) => {
+    try {
+        let postWitLikedComment = await likeComment(
+            req.params.commentId, 
+            req.params.userId,
+        )
+        res.json([postWitLikedComment])
+    }catch(err){
+        console.log(err)
+    }
+})
+
+router.get('/comment/dislike/:commentId/:userId', async (req: Request, res: Response) => {
+    try {
+        let postWitDislikedComment = await dislikeComment(
+            req.params.commentId, 
+            req.params.userId,
+        )
+        res.json([postWitDislikedComment])
+    }catch(err){
+        console.log(err)
+    }
+})
+
+router.get('/comment/reply/like/:replyId/:userId', async (req: Request, res: Response) => {
+    try {
+        let likedReply = await likeReply(
+            req.params.replyId, 
+            req.params.userId,
+        )
+        res.json(likedReply)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+router.get('/comment/reply/dislike/:replyId/:userId', async (req: Request, res: Response) => {
+    try {
+        let dislikedReply = await dislikeReply(
+            req.params.replyId, 
+            req.params.userId,
+        )
+        res.json(dislikedReply)
+    }catch(err){
+        console.log(err)
+    }
+})
+
 export default router

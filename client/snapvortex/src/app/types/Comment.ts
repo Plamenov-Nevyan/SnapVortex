@@ -8,7 +8,8 @@ export interface Comment {
     likes: User[],
     replies: Reply[],
     belongsToPost: string,
-    createdAt: string
+    createdAt: string,
+    _id: string
 }
 
 export interface CommentCreateData {

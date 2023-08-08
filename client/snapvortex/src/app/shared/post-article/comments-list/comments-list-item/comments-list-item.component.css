@@ -1,0 +1,26 @@
+li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+li .prof-pic {
+    max-width: 15%;
+    height: auto;
+    border-radius: 50%;
+}
+li .comment-pic {
+    max-width: 40%;
+    height: auto;
+}
+
+li .comment-li-top {
+    flex: 1 1 80%;
+}
+
+li .comment-li-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    flex:1 1 100%;
+}

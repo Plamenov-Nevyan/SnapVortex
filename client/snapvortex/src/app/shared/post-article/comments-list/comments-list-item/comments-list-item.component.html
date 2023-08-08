@@ -1,0 +1,22 @@
+<li>
+    <img src={{comment.author.profilePicture}} class="prof-pic"/>
+    <div class="comment-li-top">
+        <p>{{comment.author.username}}</p>
+        <p>{{comment.text}}</p>
+        <img *ngIf="comment.image" src={{comment.image}} class="comment-pic" />
+    </div>
+    <div class="comment-li-bottom">
+        <button *ngIf="!isLiked" (click)="onCommentLike($event)">Like</button>
+        <button *ngIf="isLiked" (click)="onCommentDislike($event)">Dislike</button>
+        <button (click)="onReplyInit($event)" id={{comment.author._id}}>Reply</button>
+        <a (click)="showHideRepliesList($event)" *ngIf="comment.replies.length > 0">Show replies ({{comment.replies.length}})</a>
+        <a (click)="showHideRepliesList($event)" *ngIf="showReplyList">Hide replies</a>
+        <a>Likes ({{comment.likes.length}})</a>
+    </div>
+    <app-replies-list 
+        *ngIf="showReplyList || replyInit"
+        [openReplyList]="showReplyList"
+        [replyInit]="replyInit"
+        [comment]="comment"
+    />
+</li>

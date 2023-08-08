@@ -9,6 +9,7 @@ import { SessionStorageService } from 'src/app/session-storage.service';
 import { ProfileService } from 'src/app/features/profile.service';
 import { CommentCreateData } from 'src/app/types/Comment';
 import { CreateService } from 'src/app/create-section/create.service';
+import { ReplyCreateData } from 'src/app/types/Reply';
 
 @Component({
   selector: 'app-post-article',
@@ -25,17 +26,11 @@ user: User = UserInitValues
 isOwner: boolean = false
 isEditing: boolean = false
 isLiked: boolean = false
-commentInit: boolean = false
-commentData: CommentCreateData = {
-  text: '',
-  image: null
-}
-commentImgPreview: string = ''
 postEditData = {
   text: this.postArticle.text || ''
 }
+commentInit: boolean = false
 openCommentsList: boolean = false
-
   constructor(
     private postServices: PostsService,
      private modalInteractions: ModalInteractionsService, 
@@ -92,44 +87,11 @@ openCommentsList: boolean = false
     }
   }
 
-  onSelectCommentImage(event: Event){
-    if(event.target instanceof HTMLInputElement){
-      if(event.target.files instanceof FileList){
-        this.commentData.image = event.target.files[0]
-        let fileReader = new FileReader()
-        fileReader.onload = () => {
-          this.commentImgPreview = fileReader.result as string
-        }
-        fileReader.readAsDataURL(this.commentData.image)
-      }
-    }
-  }
-
-  onCommentChange(event: Event) {
-    if(event.target instanceof HTMLTextAreaElement){
-      this.commentData = {...this.commentData, text: event.target.value}
-    }
-  }
-
   onCommentInit(){
-    this.commentInit = true
-  }
-  
-  onCancelComment(){
-    this.commentInit = false
+    this.commentInit ? this.commentInit = false : this.commentInit = true
   }
 
-  onCreateComment(event: MouseEvent){
-    event.preventDefault()
-    this.postServices.commentPost(this.postArticle._id, this.userId, this.commentData)
-   this.showHideCommentsList()
-  }
-
-  showHideCommentsList(){
+  onShowComments(){
     this.openCommentsList ? this.openCommentsList = false : this.openCommentsList = true
-  }
-
-  print(event:any){
-    console.log(event)
   }
 }

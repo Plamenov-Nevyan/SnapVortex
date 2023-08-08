@@ -1,0 +1,13 @@
+<li>
+    <img src={{reply.author.profilePicture}} class="prof-pic"/>
+    <div class="reply-li-top">
+        <p>{{reply.author.username}}</p>
+        <p>{{reply.text}}</p>
+        <img *ngIf="reply.image" src={{reply.image}} class="reply-pic" />
+    </div>
+    <div class="reply-li-bottom">
+        <button *ngIf="!isLiked" (click)="onReplyLike()">Like</button>
+        <button *ngIf="isLiked" (click)="onReplyDislike()">Dislike</button>
+        <a>Likes ({{reply.likes.length}})</a>
+    </div>
+</li>

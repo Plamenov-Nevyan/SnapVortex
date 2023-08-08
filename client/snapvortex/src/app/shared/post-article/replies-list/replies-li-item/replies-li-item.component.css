@@ -1,0 +1,26 @@
+li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+li .prof-pic {
+    max-width: 15%;
+    height: auto;
+    border-radius: 50%;
+}
+li .reply-pic {
+    max-width: 40%;
+    height: auto;
+}
+
+li .reply-li-top {
+    flex: 1 1 80%;
+}
+
+li .reply-li-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    flex:1 1 100%;
+}

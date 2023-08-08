@@ -2,8 +2,8 @@ import { Types, ObjectId } from "mongoose";
 
 export interface CommentInterface {
     author: ObjectId,
-    likes: ObjectId[],
-    replies: ObjectId[],
+    likes: Types.ObjectId[],
+    replies: Types.ObjectId[],
     belongsToPost: ObjectId,
     text: string,
     image: string,
@@ -12,7 +12,7 @@ export interface CommentInterface {
 
 export interface ReplyInterface {
     author: ObjectId,
-    likes: ObjectId[],
+    likes: Types.ObjectId[],
     belongsToComment: ObjectId,
     text: string,
     image: string,
@@ -23,4 +23,9 @@ export interface ReplyInterface {
 export interface CommentCreateData {
     text: string,
     image: File | null
+}
+
+export interface ReplyCreateData {
+    text: string,
+    image: File | null,
 }

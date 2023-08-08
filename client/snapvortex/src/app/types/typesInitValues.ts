@@ -100,3 +100,24 @@ export let postInitValues = {
     createdAt: '',
     _id: ''
 }
+
+export let commentInitValues = {
+    text: '',
+    image: '',
+    author: UserInitValues,
+    likes: [],
+    replies: [],
+    belongsToPost: '',
+    createdAt: '',
+    _id: ''
+}
+
+export let replyInitValues = {
+    text: '',
+    image: '',
+    author: UserInitValues,
+    likes: [],
+    belongsToComment: '',
+    createdAt: '',
+    _id: ''
+}
