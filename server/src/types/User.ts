@@ -36,3 +36,8 @@ export interface UserAboutData {
         preview: Blob | null | string
     }
 }
+
+export interface UserSocketData {
+    socketId: string,
+    userId: string
+}

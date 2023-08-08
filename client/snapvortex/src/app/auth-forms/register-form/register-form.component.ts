@@ -55,6 +55,7 @@ export class RegisterFormComponent {
       this.authServices.registerUser(this.formData).subscribe({
         next: (session) => {
           this.sessionServices.addToStorage(session)
+          this.authServices.setUserOnline(session.id)
         },
         error:(errMessage) => {
           console.log(errMessage)

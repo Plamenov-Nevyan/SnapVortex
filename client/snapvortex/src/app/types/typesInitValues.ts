@@ -121,3 +121,9 @@ export let replyInitValues = {
     createdAt: '',
     _id: ''
 }
+
+export let notificationInitValues = {
+    notificationType: '',
+    receiver: '',
+    sender: UserInitValues
+}

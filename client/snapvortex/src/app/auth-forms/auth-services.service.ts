@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment.development';
 import {HttpClient} from "@angular/common/http"
 import { User, UserLoginData, UserRegisterData } from '../types/User';
 import { Observable } from 'rxjs';
+import { io } from 'socket.io-client';
 import { Session } from '../types/Session';
 
 @Injectable({
@@ -13,7 +14,12 @@ endpoints  = {
   register: '/register',
   login: '/login'
 }
+socket = io('http://localhost:8000')
   constructor( private http: HttpClient) { }
+
+  public setUserOnline(userId: string){
+    this.socket.emit('userSignIn', userId)
+  }
 
   registerUser(userData: UserRegisterData): Observable<Session>{
     const {baseUrl} = environment

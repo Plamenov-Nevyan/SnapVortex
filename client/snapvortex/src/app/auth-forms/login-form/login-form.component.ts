@@ -29,6 +29,7 @@ export class LoginFormComponent {
         next: (session) => {
           console.log(session)
           this.sessionServices.addToStorage(session)
+          this.authServices.setUserOnline(session.id)
         },
         error:(errMessage) => {
           console.log(errMessage)
