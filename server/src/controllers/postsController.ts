@@ -3,6 +3,7 @@ const router = express.Router()
 import { getPostsData, createPost, editPost, deletePost, likePost, dislikePost } from "../services/postsServices"
 import { createComment } from "../services/commentServices"
 import multer, {Multer} from "multer"
+import { sorter } from "../utils/sorter"
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 

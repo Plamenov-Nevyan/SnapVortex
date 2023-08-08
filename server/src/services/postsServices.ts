@@ -22,15 +22,17 @@ export const getPostsData = async (userId: string, groupId:string) => {
                 {belongsToGroup: {$in: profile.groupsJoined}}, 
                 {belongsToGroup: {$in: profile.groupsCreated}}
             ]
-        }).sort({createdAt: 1})
+        }).sort({createdAt: -1})
         .populate('author')
         .populate('belongsToGroup')
         .populate('shares')
         .populate('likes')
         .populate({
             path : 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'replies',
+                options: {sort: {createdAt: -1}},
                 populate: {
                     path: 'author',
                 }
@@ -38,21 +40,26 @@ export const getPostsData = async (userId: string, groupId:string) => {
         })
         .populate({
             path: 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'author',
             }
         })
+        .exec()
+
     }else if(profile instanceof Group){
         posts = await Post.find({belongsToGroup: profile._id})
-        .sort({createdAt: 1})
+        .sort({createdAt: -1})
         .populate('author')
         .populate('belongsToGroup')
         .populate('shares')
         .populate('likes')
         .populate({
             path : 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'replies',
+                options: {sort: {createdAt: -1}},
                 populate: {
                     path: 'author',
                 }
@@ -60,11 +67,12 @@ export const getPostsData = async (userId: string, groupId:string) => {
         })
         .populate({
             path: 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'author',
             }
         })
-    
+        .exec()
     }
     return posts
   }catch(err){
@@ -126,6 +134,7 @@ export const editPost = async (editData: PostEditData, postId: string) => {
     .populate('likes')
     .populate({
         path : 'comments',
+        options: {sort: {createdAt: -1}},
         populate: {
             path: 'replies',
             options: {sort: {createdAt: 1}},
@@ -136,10 +145,12 @@ export const editPost = async (editData: PostEditData, postId: string) => {
     })
     .populate({
         path: 'comments',
+        options: {sort: {createdAt: -1}},
         populate: {
             path: 'author',
         }
     })
+    .exec()
     return updatedPost
 }
 
@@ -167,8 +178,10 @@ export const likePost = async (postId: string, userId: string) => {
         .populate('likes')
         .populate({
             path : 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'replies',
+                options: {sort: {createdAt: -1}},
                 populate: {
                     path: 'author',
                 }
@@ -176,10 +189,12 @@ export const likePost = async (postId: string, userId: string) => {
         })
         .populate({
             path: 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'author',
             }
         })
+        .exec()
    }
 }
 
@@ -205,8 +220,10 @@ export const dislikePost = async (postId: string, userId: string) => {
         .populate('likes')
         .populate({
             path : 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'replies',
+                options: {sort: {createdAt: -1}},
                 populate: {
                     path: 'author',
                 }
@@ -214,10 +231,12 @@ export const dislikePost = async (postId: string, userId: string) => {
         })
         .populate({
             path: 'comments',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'author',
                 model: 'User'
             }
         })
+        .exec()
    }
 }

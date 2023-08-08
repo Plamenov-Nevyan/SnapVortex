@@ -37,11 +37,10 @@ export const createComment = async (postId: string, userId: string, commentData:
         .populate('likes')
         .populate({
             path : 'comments',
-            select: 'createdAt',
-            options: {sort: {createdAt: 1}},
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'replies',
-                options: {sort: {createdAt: 1}},
+                options: {sort: {createdAt: -1}},
                 populate: {
                     path: 'author',
                 }
@@ -49,10 +48,11 @@ export const createComment = async (postId: string, userId: string, commentData:
         })
         .populate({
             path: 'comments',
-            select: 'createdAt',
+            options: {sort: {createdAt: -1}},
             populate: {
                 path: 'author',
             }
         })
+        .exec()
     }
 }
